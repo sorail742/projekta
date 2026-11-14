@@ -1,13 +1,14 @@
 export interface CompanyInfo {
   name: string;
   tagline: string;
+  baseline: string;
   slogan: string;
   description: string;
   fullBio: string;
   email: string;
   phone: string;
   phoneFormatted: string;
-  whatsappNumber: string; // international format without spaces or +
+  whatsappNumber: string;
   whatsappLink: string;
   address: {
     city: string;
@@ -38,6 +39,7 @@ export interface CompanyInfo {
 export const COMPANY_INFO: CompanyInfo = {
   name: "PROJEKTA",
   tagline: "Solutions numériques & Innovation digitale",
+  baseline: "INNOVATION • TECHNOLOGY • PROJECTS",
   slogan: "Donnons vie à vos idées grâce au numérique.",
   description:
     "PROJEKTA vous accompagne dans le développement web et mobile, la création graphique, la communication digitale et la transformation numérique.",

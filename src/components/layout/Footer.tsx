@@ -1,12 +1,12 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Mail,
   Phone,
   MapPin,
   ArrowUpRight,
   MessageCircle,
-  ExternalLink,
 } from "lucide-react";
 import { Logo } from "@/components/common/Logo";
 import { COMPANY_INFO } from "@/data/company";
@@ -21,11 +21,19 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-slate-800">
           {/* Brand Column */}
           <div className="lg:col-span-2 flex flex-col space-y-5">
-            <Logo variant="light" showTagline />
+            <Logo variant="light" showBaseline />
+
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
               {COMPANY_INFO.description}
             </p>
-            <div className="flex flex-col space-y-2 pt-2 text-xs text-slate-400">
+
+            <div className="inline-flex items-center gap-2 text-xs text-slate-400 pt-1">
+              <span className="font-mono text-green-400 font-semibold tracking-wider">
+                {COMPANY_INFO.baseline}
+              </span>
+            </div>
+
+            <div className="flex flex-col space-y-1 pt-1 text-xs text-slate-400">
               <span className="font-semibold text-emerald-400 uppercase tracking-wider">
                 Zone d&apos;intervention :
               </span>
@@ -40,7 +48,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn PROJEKTA"
-                  className="h-9 w-9 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-600 transition-colors"
+                  className="h-9 w-9 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 transition-colors"
                 >
                   <span className="text-xs font-bold">in</span>
                 </a>
@@ -51,7 +59,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook PROJEKTA"
-                  className="h-9 w-9 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-600 transition-colors"
+                  className="h-9 w-9 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 transition-colors"
                 >
                   <span className="text-xs font-bold">fb</span>
                 </a>
@@ -84,7 +92,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="X (Twitter) PROJEKTA"
-                  className="h-9 w-9 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-600 transition-colors"
+                  className="h-9 w-9 rounded-lg bg-slate-900 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 transition-colors"
                 >
                   <span className="text-xs font-bold">x</span>
                 </a>
@@ -203,7 +211,7 @@ export function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
           <p>
             © {currentYear} <strong className="text-slate-200">PROJEKTA</strong>. Tous
-            droits réservés. « Donnons vie à vos idées grâce au numérique. »
+            droits réservés. {COMPANY_INFO.baseline}.
           </p>
 
           <div className="flex items-center gap-6">

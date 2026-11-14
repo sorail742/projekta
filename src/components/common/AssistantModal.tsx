@@ -2,18 +2,16 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Send,
   Sparkles,
   X,
-  Bot,
   User,
   ArrowRight,
   MessageCircle,
-  HelpCircle,
 } from "lucide-react";
 import { FAQS_DATA } from "@/data/faqs";
-import { SERVICES_DATA } from "@/data/services";
 import { COMPANY_INFO } from "@/data/company";
 
 interface Message {
@@ -34,10 +32,10 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
     {
       id: "welcome",
       sender: "assistant",
-      text: "Bonjour et bienvenue sur PROJEKTA ! 👋 Je suis l'assistant virtuel de l'équipe. Comment puis-je vous accompagner dans votre projet numérique aujourd'hui ?",
+      text: "Bonjour et bienvenue chez PROJEKTA ! 👋 Je suis l'assistant virtuel de l'équipe. Comment puis-je vous accompagner dans votre projet numérique aujourd'hui ?",
       quickReplies: [
         {
-          label: "Découvrir les services",
+          label: "Découvrir les 5 services",
           action: () => handleQuickReply("Quels sont les services proposés par PROJEKTA ?"),
         },
         {
@@ -49,7 +47,7 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
           action: () => handleQuickReply("Quels sont vos délais de réalisation ?"),
         },
         {
-          label: "Formations en informatique",
+          label: "Formations pour débutants",
           action: () => handleQuickReply("Parlez-moi des formations pour débutants."),
         },
       ],
@@ -150,33 +148,38 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-3 sm:p-4 bg-slate-950/50 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-3 sm:p-4 bg-slate-950/60 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col h-[600px] max-h-[90vh]">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-emerald-700 via-emerald-800 to-projekta-deep text-white px-5 py-4 flex items-center justify-between shadow-sm">
+        {/* Header with Official Logo Emblem */}
+        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-emerald-950 text-white px-5 py-4 flex items-center justify-between shadow-sm border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-white/10 ring-1 ring-white/20 flex items-center justify-center">
-              <Sparkles className="h-5 w-5 text-emerald-300" />
+            <div className="relative h-10 w-10 rounded-xl overflow-hidden bg-white p-1 shadow-xs border border-white/20">
+              <Image
+                src="/logoo.jpg"
+                alt="PROJEKTA Assistant"
+                fill
+                className="object-contain"
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="font-heading font-bold text-sm tracking-tight text-white">
                   Assistant PROJEKTA
                 </h3>
-                <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-500/20 text-emerald-200 px-2 py-0.5 rounded-full ring-1 ring-emerald-400/30">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="inline-flex items-center gap-1 text-[10px] bg-green-500/20 text-green-300 px-2 py-0.5 rounded-full ring-1 ring-green-400/30">
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
                   En ligne
                 </span>
               </div>
-              <p className="text-xs text-emerald-100/80">
-                Conseils & orientation sur nos prestations
+              <p className="text-[11px] text-slate-300 font-mono">
+                {COMPANY_INFO.baseline}
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 text-emerald-200 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+            className="p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
             aria-label="Fermer la boîte de dialogue"
           >
             <X className="h-5 w-5" />
@@ -184,7 +187,7 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
         </div>
 
         {/* Messages Body */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/60">
           {messages.map((msg) => (
             <div
               key={msg.id}
@@ -193,16 +196,21 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
               }`}
             >
               {msg.sender === "assistant" && (
-                <div className="h-8 w-8 rounded-full bg-emerald-700 text-white flex items-center justify-center shrink-0 text-xs shadow-sm">
-                  <Bot className="h-4 w-4" />
+                <div className="relative h-8 w-8 rounded-full overflow-hidden bg-white border border-slate-200 p-0.5 shrink-0 shadow-xs">
+                  <Image
+                    src="/logoo.jpg"
+                    alt="Bot"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               )}
 
               <div
                 className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                   msg.sender === "user"
-                    ? "bg-emerald-700 text-white rounded-br-none shadow-sm"
-                    : "bg-white text-slate-800 border border-slate-200/80 shadow-sm rounded-bl-none"
+                    ? "bg-slate-900 text-white rounded-br-none shadow-sm"
+                    : "bg-white text-slate-800 border border-slate-200/80 shadow-xs rounded-bl-none"
                 }`}
               >
                 <p className="whitespace-pre-line">{msg.text}</p>
@@ -212,7 +220,7 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
                     <Link
                       href={msg.actionLink.href}
                       onClick={onClose}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-900 hover:underline"
                     >
                       <span>{msg.actionLink.label}</span>
                       <ArrowRight className="h-3 w-3" />
@@ -226,7 +234,7 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
                       <button
                         key={i}
                         onClick={reply.action}
-                        className="text-xs font-medium bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200 px-2.5 py-1.5 rounded-lg transition-colors text-left"
+                        className="text-xs font-semibold bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200 px-2.5 py-1.5 rounded-lg transition-colors text-left"
                       >
                         {reply.label}
                       </button>
@@ -246,7 +254,7 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
         </div>
 
         {/* Quick Contact Shortcut */}
-        <div className="bg-emerald-50/70 border-t border-emerald-100 px-4 py-2 flex items-center justify-between text-xs text-emerald-900">
+        <div className="bg-emerald-50/80 border-t border-emerald-100 px-4 py-2 flex items-center justify-between text-xs text-emerald-950">
           <span className="flex items-center gap-1.5 font-medium">
             <MessageCircle className="h-3.5 w-3.5 text-emerald-600" />
             Échange direct avec un conseiller :
@@ -279,7 +287,7 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
           <button
             type="submit"
             disabled={!input.trim()}
-            className="h-10 w-10 flex items-center justify-center bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 disabled:hover:bg-emerald-700 text-white rounded-xl transition-colors shadow-sm"
+            className="h-10 w-10 flex items-center justify-center bg-slate-900 hover:bg-emerald-700 disabled:opacity-50 text-white rounded-xl transition-colors shadow-xs"
             aria-label="Envoyer le message"
           >
             <Send className="h-4 w-4" />

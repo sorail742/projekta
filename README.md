@@ -2,11 +2,28 @@
 
 Plateforme web moderne développée avec **Next.js 15 (App Router)**, **TypeScript** et **Tailwind CSS**, conforme au cahier des charges fonctionnel et technique v1.0.
 
+> **Baseline Officielle :** `INNOVATION • TECHNOLOGY • PROJECTS`  
+> **Slogan :** « Donnons vie à vos idées grâce au numérique. »
+
+---
+
+## 🎨 Charte Graphique & Logos Officiels
+
+Le site intègre les deux logos officiels de PROJEKTA :
+- **Logo Signature (`/public/logo.jpg`)** : Version complète horizontale avec l'emblème géométrique (chevron vert & noir avec arc de cercle bleu), le logotype typographique `PROJEKTA` et la baseline `INNOVATION • TECHNOLOGY • PROJECTS`.
+- **Emblème Icône (`/public/logoo.jpg`)** : Format carré haute définition, utilisé pour l'en-tête, les avatars de l'assistant virtuel et les déclinaisons mobiles.
+
+### Palette de Couleurs Officielles :
+- **Vert Innovation (`#16a34a` / `#22c55e`)** : Chevron principal, symbole de croissance et de dynamisme.
+- **Bleu Technologie (`#2563eb` / `#3b82f6`)** : Arc de cercle, symbole de connectivité et de rigueur technique.
+- **Noir Profond (`#0f172a` / `#111827`)** : Chevron central et typographie principale.
+- **Blanc & Gris Neutre (`#ffffff` / `#f8fafc`)** : Clarté et lisibilité maximale.
+
 ---
 
 ## 🚀 Fonctionnalités Implémentées
 
-- **Architecture Next.js 15 App Router** avec rendu hybride et navigation optimisée.
+- **Architecture Next.js 15 App Router** avec rendu hybride et navigation fluide.
 - **5 Domaines d'Intervention Complets** :
   1. Développement web et mobile
   2. Création graphique et identité visuelle
@@ -14,116 +31,45 @@ Plateforme web moderne développée avec **Next.js 15 (App Router)**, **TypeScri
   4. Gestion des réseaux sociaux & communication digitale
   5. Formations et accompagnement informatique
 - **Pages Développées** :
-  - **Accueil (`/`)** : Hero section accrocheuse (« Donnons vie à vos idées grâce au numérique »), présentation entreprise, services illustrés, arguments de valeur, projets phares, processus de collaboration en 5 étapes, CTA.
+  - **Accueil (`/`)** : Hero section avec logos officiels, présentation entreprise, services illustrés, arguments de valeur, projets phares, processus de collaboration en 5 étapes, CTA.
   - **À propos (`/a-propos`)** : Histoire, mission, vision, valeurs et engagement client.
   - **Services (`/services`)** : Description exhaustive des 5 pôles avec toutes les prestations et livrables.
   - **Réalisations (`/realisations`)** : Galerie interactive avec filtres dynamiques par catégorie et modale d'étude de cas détaillée.
   - **Formations (`/formations`)** : Catalogue de formations pratiques pour débutants et professionnels avec objectifs, durées et projets de fin de cursus.
   - **Contact (`/contact`)** : Formulaire de contact fonctionnel avec validation serveur, coordonnées et FAQ.
-  - **Demande de Devis (`/devis`)** : Formulaire multi-critères conforme à la section 5.2 (type de projet, besoins, fonctionnalités cochables, budget estimatif, coordonnées).
+  - **Demande de Devis (`/devis`)** : Formulaire multi-critères conforme à la section 5.2.
   - **Pages Légales** : Mentions légales (`/mentions-legales`) & Politique de confidentialité (`/politique-de-confidentialite`).
 - **Canaux d'Interaction Directe** :
   - **Bouton WhatsApp Flottant** avec message contextuel pré-rempli et numéro configurable.
-  - **Assistant Virtuel Intelligent** (modal interactive d'orientation et de réponse aux questions fréquentes sur PROJEKTA).
+  - **Assistant Virtuel Intelligent** avec avatar de marque pour guider les visiteurs.
 - **APIs Serveur** :
   - `POST /api/contact` : Validation et réception des messages.
   - `POST /api/devis` : Traitement structuré des demandes d'estimation.
-- **SEO & Performance** :
-  - Métadonnées OpenGraph, Twitter Cards, `robots.ts` et `sitemap.ts` automatiques.
-
----
-
-## 🛠️ Stack Technique
-
-- **Framework** : [Next.js 15](https://nextjs.org/)
-- **Langage** : [TypeScript](https://www.typescriptlang.org/)
-- **Style** : [Tailwind CSS 3](https://tailwindcss.com/)
-- **Icônes** : [Lucide React](https://lucide.dev/)
-- **Gestionnaire de paquets** : [pnpm](https://pnpm.io/)
 
 ---
 
 ## 📦 Installation & Démarrage
 
-### Prérequis
-- Node.js version 18.18+ ou 20+ (recommandé v24)
-- pnpm (ou npm / yarn)
-
-### 1. Installation des dépendances
-```bash
-pnpm install
-```
-
-### 2. Démarrage du serveur de développement
+### 1. Démarrage en Développement
 ```bash
 pnpm dev
 ```
 Ouvrez ensuite [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
-### 3. Compilation pour la production
+### 2. Compilation et Lancement en Production
 ```bash
+# Compilation
 pnpm build
-```
 
-### 4. Démarrage de la version de production
-```bash
+# Lancement
 pnpm start
 ```
 
----
-
-## 📁 Arborescence du Projet
-
+*Note : si vous basculez entre le mode production (`pnpm build`) et le mode développement (`pnpm dev`), vous pouvez vider le cache `.next` si nécessaire :*
+```bash
+# PowerShell
+Remove-Item -Recurse -Force .next
 ```
-projekta/
-├── docs/
-│   └── cahier_de_charge.md       # Cahier des charges officiel
-├── public/                       # Fichiers statiques
-├── src/
-│   ├── app/
-│   │   ├── api/                  # Routes API (contact, devis)
-│   │   ├── a-propos/             # Page À propos
-│   │   ├── contact/              # Page Contact
-│   │   ├── devis/                # Configurateur de devis
-│   │   ├── formations/           # Page Formations
-│   │   ├── mentions-legales/     # Mentions légales
-│   │   ├── politique-de-confidentialite/ # Politique de confidentialité
-│   │   ├── realisations/         # Portfolio & Galerie de projets
-│   │   ├── services/             # 5 Pôles d'expertise détaillés
-│   │   ├── globals.css           # Styles Tailwind CSS & utilitaires
-│   │   ├── layout.tsx            # Layout racine (Navbar, Footer, Floating WhatsApp & Bot)
-│   │   ├── page.tsx              # Page d'accueil principale
-│   │   ├── robots.ts             # Directives robots.txt
-│   │   └── sitemap.ts            # Générateur sitemap XML
-│   ├── components/
-│   │   ├── common/               # Logo, Badge, SectionHeader, AssistantModal
-│   │   ├── contact/              # Formulaire de contact
-│   │   ├── devis/                # Formulaire de devis
-│   │   ├── home/                 # Sections de la page d'accueil
-│   │   └── layout/               # Navbar, Footer, FloatingActions
-│   ├── data/
-│   │   ├── company.ts            # Données entreprise & coordonnées
-│   │   ├── faqs.ts               # Questions fréquentes
-│   │   ├── formations.ts         # Données des formations
-│   │   ├── projects.ts           # Projets & réalisations
-│   │   └── services.ts           # Les 5 pôles de services
-│   └── lib/
-│       └── utils.ts              # Utilitaires Tailwind merge et formateurs
-├── next.config.mjs               # Configuration Next.js
-├── package.json
-├── postcss.config.mjs
-├── tailwind.config.ts            # Charte graphique & couleurs PROJEKTA
-├── tsconfig.json
-└── README.md
-```
-
----
-
-## ⚙️ Configuration & Personnalisation
-
-- Les coordonnées de contact, numéro WhatsApp, liens de réseaux sociaux et textes de l'entreprise sont centralisés dans `src/data/company.ts`.
-- La palette de couleurs officielle (vert profond `#064e3b`, accent vert `#10b981`, etc.) est configurée dans `tailwind.config.ts`.
-- Pour connecter un service d'envoi d'e-mails réels (Resend, SendGrid ou SMTP), complétez les routes `src/app/api/contact/route.ts` et `src/app/api/devis/route.ts`.
 
 ---
 

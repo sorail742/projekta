@@ -7,81 +7,132 @@ import { cn } from "@/lib/utils";
 
 interface LogoProps {
   className?: string;
-  variant?: "light" | "dark" | "default";
-  showTagline?: boolean;
+  variant?: "light" | "dark" | "default" | "full" | "icon";
+  showBaseline?: boolean;
 }
 
-export function Logo({ className, variant = "default", showTagline = false }: LogoProps) {
+export function Logo({
+  className,
+  variant = "default",
+  showBaseline = false,
+}: LogoProps) {
   const isLight = variant === "light";
-  const [hasError, setHasError] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
+  // If full banner logo is explicitly requested
+  if (variant === "full") {
+    return (
+      <Link
+        href="/"
+        className={cn("inline-block transition-transform hover:opacity-95", className)}
+        aria-label="PROJEKTA - Accueil"
+      >
+        <div className="relative h-12 w-48 sm:h-14 sm:w-56 overflow-hidden rounded-lg bg-white p-1">
+          <Image
+            src="/logo.jpg"
+            alt="PROJEKTA - Innovation • Technology • Projects"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+      </Link>
+    );
+  }
+
+  // If icon-only is requested
+  if (variant === "icon") {
+    return (
+      <Link
+        href="/"
+        className={cn("inline-block transition-transform hover:scale-105", className)}
+        aria-label="PROJEKTA - Accueil"
+      >
+        <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-white shadow-xs border border-slate-200/80 p-0.5">
+          <Image
+            src="/logoo.jpg"
+            alt="PROJEKTA Icon"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+      </Link>
+    );
+  }
+
+  // Default composite logo: Official mark + Geometric typography + Tagline
   return (
     <Link
       href="/"
-      className={cn("group inline-flex items-center gap-2.5 transition-transform", className)}
+      className={cn("group inline-flex items-center gap-3 transition-transform", className)}
       aria-label="PROJEKTA - Accueil"
     >
-      {/* Official Logo Image Container */}
-      <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl overflow-hidden bg-white shadow-md shadow-emerald-950/20 ring-1 ring-emerald-500/20 group-hover:scale-105 transition-all">
-        {!hasError ? (
+      {/* Official Symbol Box using logoo.jpg */}
+      <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl overflow-hidden bg-white shadow-xs border border-slate-200/90 p-1 group-hover:scale-105 transition-all">
+        {!imageError ? (
           <Image
-            src="/logo.jpg"
-            alt="PROJEKTA Logo"
-            width={40}
-            height={40}
-            className="h-full w-full object-cover"
-            onError={() => setHasError(true)}
+            src="/logoo.jpg"
+            alt="PROJEKTA - Marque officielle"
+            width={44}
+            height={44}
+            className="h-full w-full object-contain"
+            onError={() => setImageError(true)}
             priority
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-emerald-600 via-emerald-700 to-projekta-deep p-0.5">
-            <svg
-              viewBox="0 0 40 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-full w-full"
-            >
-              <path
-                d="M12 28V12H20C23.3137 12 26 14.6863 26 18C26 21.3137 23.3137 24 20 24H17"
-                stroke="#ffffff"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="27" cy="13" r="2.5" fill="#34d399" />
-              <path
-                d="M20 24L26 30"
-                stroke="#34d399"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
+          /* Vector geometric fallback reproducing the official chevron + blue arc */
+          <svg viewBox="0 0 100 100" fill="none" className="h-full w-full">
+            {/* Green chevron */}
+            <path
+              d="M50 15L20 50L50 85"
+              stroke="#22c55e"
+              strokeWidth="6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Black chevron */}
+            <path
+              d="M50 22L28 50L50 78"
+              stroke="#0f172a"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Blue arc */}
+            <path
+              d="M52 26 C68 33, 68 67, 52 74"
+              stroke="#2563eb"
+              strokeWidth="6"
+              strokeLinecap="round"
+            />
+          </svg>
         )}
       </div>
 
+      {/* Typography with brand tracking */}
       <div className="flex flex-col">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <span
             className={cn(
-              "font-heading font-extrabold tracking-tight text-xl leading-none",
-              isLight ? "text-white" : "text-slate-900 group-hover:text-emerald-700 transition-colors"
+              "font-heading font-extrabold tracking-brand text-xl sm:text-2xl leading-none",
+              isLight ? "text-white" : "text-slate-950 group-hover:text-emerald-700 transition-colors"
             )}
           >
             PROJEKTA
           </span>
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
         </div>
-        {showTagline && (
-          <span
-            className={cn(
-              "text-[10px] tracking-wider uppercase font-medium mt-0.5",
-              isLight ? "text-emerald-200/80" : "text-slate-500"
-            )}
-          >
-            Solutions Numériques
-          </span>
-        )}
+
+        {/* Baseline: INNOVATION • TECHNOLOGY • PROJECTS */}
+        <span
+          className={cn(
+            "text-[9px] sm:text-[10px] tracking-wider uppercase font-semibold mt-0.5",
+            isLight ? "text-slate-300" : "text-slate-500"
+          )}
+        >
+          {showBaseline ? "INNOVATION • TECHNOLOGY • PROJECTS" : "INNOVATION • TECHNOLOGY"}
+        </span>
       </div>
     </Link>
   );
