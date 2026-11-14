@@ -40,14 +40,14 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-xs border-b border-slate-200/80 py-3"
-          : "bg-white/90 backdrop-blur-sm border-b border-slate-100 py-3.5"
+          ? "bg-white/98 backdrop-blur-md shadow-xs border-b border-slate-200/80 py-2.5"
+          : "bg-white/95 backdrop-blur-sm border-b border-slate-100 py-3 sm:py-3.5"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Official Logo */}
-          <Logo showBaseline={!isScrolled} />
+          {/* Official Full Logo */}
+          <Logo size="md" />
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
@@ -83,7 +83,7 @@ export function Navbar() {
               href={COMPANY_INFO.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors border border-emerald-200/60"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-colors border border-emerald-200/60"
               title="Discuter sur WhatsApp"
             >
               <MessageCircle className="h-4 w-4 text-emerald-600" />

@@ -5,7 +5,6 @@ import {
   ArrowRight,
   Code2,
   Palette,
-  Sparkles,
   CheckCircle2,
   ShieldCheck,
   TrendingUp,
@@ -24,8 +23,8 @@ export function HeroSection() {
           {/* Left Column: Value proposition */}
           <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left">
             {/* Top pill badge with official baseline */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-800 text-xs sm:text-sm font-semibold w-fit mx-auto lg:mx-0 shadow-xs">
-              <span className="flex h-2 w-2 rounded-full bg-green-500" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200/90 text-slate-800 text-xs sm:text-sm font-semibold w-fit mx-auto lg:mx-0 shadow-xs">
+              <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse" />
               <span className="font-mono text-xs tracking-wider text-slate-900 font-bold">
                 {COMPANY_INFO.baseline}
               </span>
@@ -90,11 +89,11 @@ export function HeroSection() {
 
                 <div className="relative z-10 flex flex-col space-y-6">
                   {/* Top bar with official banner logo */}
-                  <div className="rounded-2xl bg-white p-3 shadow-md flex items-center justify-center overflow-hidden">
-                    <div className="relative h-14 w-full">
+                  <div className="rounded-2xl bg-white p-4 sm:p-5 shadow-lg flex items-center justify-center overflow-hidden border border-slate-100">
+                    <div className="relative h-16 sm:h-20 w-full">
                       <Image
-                        src="/logo.jpg"
-                        alt="PROJEKTA Logo Officiel"
+                        src="/logo-full.png"
+                        alt="PROJEKTA - Innovation • Technology • Projects"
                         fill
                         className="object-contain"
                         priority
@@ -131,7 +130,7 @@ export function HeroSection() {
                   </div>
 
                   {/* Floating Action Box */}
-                  <div className="rounded-xl bg-gradient-to-r from-emerald-950/80 to-slate-900 p-4 border border-emerald-500/30 flex items-center justify-between">
+                  <div className="rounded-xl bg-gradient-to-r from-emerald-950/90 to-slate-900 p-4 border border-emerald-500/30 flex items-center justify-between">
                     <div>
                       <p className="text-xs text-emerald-300 font-medium">Devis personnalisé gratuit</p>
                       <p className="text-sm font-bold text-white">Sous 24h à 48h ouvrées</p>
@@ -146,19 +145,20 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* Decorative side badge */}
-              <div className="absolute -bottom-4 -left-4 sm:-left-6 bg-white rounded-2xl p-3.5 shadow-xl border border-slate-200 flex items-center gap-3">
-                <div className="relative h-10 w-10 rounded-xl overflow-hidden bg-slate-50 border border-slate-200 p-1">
+              {/* Decorative side badge featuring emblem */}
+              <div className="absolute -bottom-5 -left-4 sm:-left-6 bg-white rounded-2xl p-3.5 shadow-xl border border-slate-200/90 flex items-center gap-3.5">
+                <div className="relative h-12 w-12 rounded-xl overflow-hidden bg-slate-50 border border-slate-200/80 p-1 shadow-2xs flex items-center justify-center">
                   <Image
-                    src="/logoo.jpg"
-                    alt="PROJEKTA Emblem"
-                    fill
-                    className="object-contain"
+                    src="/logo-icon.png"
+                    alt="PROJEKTA Emblème"
+                    width={48}
+                    height={48}
+                    className="h-full w-full object-contain"
                   />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-900">PROJEKTA</p>
-                  <p className="text-[11px] text-slate-500">Guinée & International</p>
+                  <p className="text-xs font-extrabold text-slate-950 tracking-wider">PROJEKTA</p>
+                  <p className="text-[10px] font-semibold text-green-600 font-mono">INNOVATION & TECH</p>
                 </div>
               </div>
             </div>

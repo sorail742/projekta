@@ -1,138 +1,106 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-interface LogoProps {
+export interface LogoProps {
   className?: string;
-  variant?: "light" | "dark" | "default" | "full" | "icon";
-  showBaseline?: boolean;
+  variant?: "default" | "light" | "footer" | "icon" | "square";
+  size?: "sm" | "md" | "lg" | "xl";
+  priority?: boolean;
 }
 
 export function Logo({
   className,
   variant = "default",
-  showBaseline = false,
+  size = "md",
+  priority = true,
 }: LogoProps) {
-  const isLight = variant === "light";
-  const [imageError, setImageError] = useState(false);
+  // Height definitions for proportional rendering
+  const heightClass = {
+    sm: "h-9 sm:h-10",
+    md: "h-11 sm:h-12",
+    lg: "h-14 sm:h-16",
+    xl: "h-16 sm:h-20",
+  }[size];
 
-  // If full banner logo is explicitly requested
-  if (variant === "full") {
+  // Footer / Dark variant: renders high-res logo-white.png (pure white text with official green chevron & blue arc)
+  if (variant === "footer" || variant === "light") {
     return (
       <Link
         href="/"
-        className={cn("inline-block transition-transform hover:opacity-95", className)}
+        className={cn("inline-flex items-center transition-all hover:opacity-90", className)}
         aria-label="PROJEKTA - Accueil"
       >
-        <div className="relative h-12 w-48 sm:h-14 sm:w-56 overflow-hidden rounded-lg bg-white p-1">
+        <div className="relative flex items-center py-1">
           <Image
-            src="/logo.jpg"
+            src="/logo-white.png"
             alt="PROJEKTA - Innovation • Technology • Projects"
-            fill
-            className="object-contain"
-            priority
+            width={270}
+            height={100}
+            className={cn("w-auto object-contain", heightClass)}
+            priority={priority}
           />
         </div>
       </Link>
     );
   }
 
-  // If icon-only is requested
-  if (variant === "icon") {
+  // Square / Emblem variant (using tight-crop logo-icon.png)
+  if (variant === "icon" || variant === "square") {
+    const iconDimension = {
+      sm: "h-9 w-9",
+      md: "h-11 w-11 sm:h-12 sm:w-12",
+      lg: "h-14 w-14 sm:h-16 sm:w-16",
+      xl: "h-20 w-20",
+    }[size];
+
     return (
       <Link
         href="/"
-        className={cn("inline-block transition-transform hover:scale-105", className)}
+        className={cn("inline-flex items-center transition-transform hover:scale-105", className)}
         aria-label="PROJEKTA - Accueil"
       >
-        <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-white shadow-xs border border-slate-200/80 p-0.5">
+        <div
+          className={cn(
+            "relative overflow-hidden rounded-2xl bg-white shadow-xs border border-slate-200/90 p-1.5 flex items-center justify-center",
+            iconDimension
+          )}
+        >
           <Image
-            src="/logoo.jpg"
-            alt="PROJEKTA Icon"
-            fill
-            className="object-contain"
-            priority
+            src="/logo-icon.png"
+            alt="PROJEKTA Emblème"
+            width={64}
+            height={64}
+            className="h-full w-full object-contain"
+            priority={priority}
           />
         </div>
       </Link>
     );
   }
 
-  // Default composite logo: Official mark + Geometric typography + Tagline
+  // Default (Navbar, Header): renders high-res transparent logo-full.png with official typography & baseline
   return (
     <Link
       href="/"
-      className={cn("group inline-flex items-center gap-3 transition-transform", className)}
+      className={cn(
+        "group inline-flex items-center transition-all hover:opacity-90",
+        className
+      )}
       aria-label="PROJEKTA - Accueil"
     >
-      {/* Official Symbol Box using logoo.jpg */}
-      <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl overflow-hidden bg-white shadow-xs border border-slate-200/90 p-1 group-hover:scale-105 transition-all">
-        {!imageError ? (
-          <Image
-            src="/logoo.jpg"
-            alt="PROJEKTA - Marque officielle"
-            width={44}
-            height={44}
-            className="h-full w-full object-contain"
-            onError={() => setImageError(true)}
-            priority
-          />
-        ) : (
-          /* Vector geometric fallback reproducing the official chevron + blue arc */
-          <svg viewBox="0 0 100 100" fill="none" className="h-full w-full">
-            {/* Green chevron */}
-            <path
-              d="M50 15L20 50L50 85"
-              stroke="#22c55e"
-              strokeWidth="6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* Black chevron */}
-            <path
-              d="M50 22L28 50L50 78"
-              stroke="#0f172a"
-              strokeWidth="8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* Blue arc */}
-            <path
-              d="M52 26 C68 33, 68 67, 52 74"
-              stroke="#2563eb"
-              strokeWidth="6"
-              strokeLinecap="round"
-            />
-          </svg>
-        )}
-      </div>
-
-      {/* Typography with brand tracking */}
-      <div className="flex flex-col">
-        <div className="flex items-center gap-1.5">
-          <span
-            className={cn(
-              "font-heading font-extrabold tracking-brand text-xl sm:text-2xl leading-none",
-              isLight ? "text-white" : "text-slate-950 group-hover:text-emerald-700 transition-colors"
-            )}
-          >
-            PROJEKTA
-          </span>
-          <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
-        </div>
-
-        {/* Baseline: INNOVATION • TECHNOLOGY • PROJECTS */}
-        <span
-          className={cn(
-            "text-[9px] sm:text-[10px] tracking-wider uppercase font-semibold mt-0.5",
-            isLight ? "text-slate-300" : "text-slate-500"
-          )}
-        >
-          {showBaseline ? "INNOVATION • TECHNOLOGY • PROJECTS" : "INNOVATION • TECHNOLOGY"}
-        </span>
+      <div className="relative flex items-center py-0.5">
+        <Image
+          src="/logo-full.png"
+          alt="PROJEKTA - Innovation • Technology • Projects"
+          width={270}
+          height={100}
+          className={cn("w-auto object-contain", heightClass)}
+          priority={priority}
+        />
       </div>
     </Link>
   );

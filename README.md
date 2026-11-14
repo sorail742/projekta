@@ -9,9 +9,15 @@ Plateforme web moderne développée avec **Next.js 15 (App Router)**, **TypeScri
 
 ## 🎨 Charte Graphique & Logos Officiels
 
-Le site intègre les deux logos officiels de PROJEKTA :
-- **Logo Signature (`/public/logo.jpg`)** : Version complète horizontale avec l'emblème géométrique (chevron vert & noir avec arc de cercle bleu), le logotype typographique `PROJEKTA` et la baseline `INNOVATION • TECHNOLOGY • PROJECTS`.
-- **Emblème Icône (`/public/logoo.jpg`)** : Format carré haute définition, utilisé pour l'en-tête, les avatars de l'assistant virtuel et les déclinaisons mobiles.
+Le site intègre et met en valeur les logos officiels de PROJEKTA :
+- **Fichiers sources d'origine** :
+  - `/public/logo.jpg` : Bannière originale (960×320).
+  - `/public/logoo.jpg` : Export source haute résolution (1600×1600).
+- **Déclinaisons optimisées haute fidélité** :
+  - **`/public/logo-full.png`** : Version horizontale transparente haute résolution (1254×464) pour la barre de navigation et les en-têtes sans artefact de fond.
+  - **`/public/logo-icon.png`** : Emblème géométrique carré (484×484) parfaitement centré pour les favicons, l'avatar de l'assistant virtuel et les badges applicatifs.
+  - **`/public/logo-white.png`** : Déclinaison contrastée pour fonds sombres (footer), avec typographie blanche et préservation des teintes officielles (vert et bleu).
+  - **`/public/logo-full-whitebg.png`** : Déclinaison sur fond blanc pur pour les partages sociaux (OpenGraph, Twitter Cards).
 
 ### Palette de Couleurs Officielles :
 - **Vert Innovation (`#16a34a` / `#22c55e`)** : Chevron principal, symbole de croissance et de dynamisme.

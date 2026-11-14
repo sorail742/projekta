@@ -1,17 +1,13 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  ShieldCheck,
-  HeartHandshake,
-  Sparkles,
-  TrendingUp,
   Target,
   Compass,
-  CheckCircle2,
   ArrowRight,
   Globe,
-  Award,
+  Sparkles,
 } from "lucide-react";
 import { Badge } from "@/components/common/Badge";
 import { COMPANY_INFO } from "@/data/company";
@@ -45,12 +41,28 @@ export default function AProposPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
-                L&apos;histoire de PROJEKTA
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-slate-900">
-                Une initiative au service de l&apos;émancipation numérique
-              </h2>
+              {/* Official Logo Banner Showcase */}
+              <div className="rounded-2xl bg-white p-4 shadow-sm border border-slate-200 inline-block">
+                <div className="relative h-14 w-56">
+                  <Image
+                    src="/logo-full.png"
+                    alt="PROJEKTA Logo Officiel"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </div>
+
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+                  L&apos;histoire de PROJEKTA
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-heading font-bold text-slate-900 mt-1">
+                  Une initiative au service de l&apos;émancipation numérique
+                </h2>
+              </div>
+
               <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
                 Dans un environnement économique où la présence en ligne est devenue l&apos;un des piliers majeurs de la crédibilité et du développement des affaires, nous avons constaté un écart récurrent : beaucoup d&apos;entreprises peinent à trouver des partenaires capables de combiner à la fois l&apos;excellence technique, le sens artistique et la proximité relationnelle.
               </p>
@@ -71,7 +83,7 @@ export default function AProposPage() {
               </div>
 
               <div className="p-6 rounded-2xl bg-slate-900 text-white space-y-2">
-                <Compass className="h-8 w-8 text-emerald-400" />
+                <Compass className="h-8 w-8 text-blue-400" />
                 <h3 className="text-base font-bold text-white font-heading">
                   Notre Vision
                 </h3>
@@ -135,22 +147,22 @@ export default function AProposPage() {
       {/* Engagement client & Approche */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-projekta-deep via-emerald-900 to-slate-950 text-white shadow-xl">
+          <div className="p-8 sm:p-12 rounded-3xl bg-slate-950 text-white shadow-xl border border-slate-800">
             <div className="max-w-3xl">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
+              <span className="text-xs font-bold uppercase tracking-wider text-green-400">
                 Notre engagement envers chaque client
               </span>
               <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white">
                 Transparence, écoute active et respect des engagements
               </h2>
-              <p className="mt-4 text-sm sm:text-base text-emerald-100/90 leading-relaxed">
+              <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
                 Faire appel à PROJEKTA, c&apos;est choisir un partenaire qui prend le temps de vous écouter, qui respecte scrupuleusement les délais convenus et qui vous livre un travail soigné, sans jargon inutile ni mauvaise surprise.
               </p>
 
-              <div className="mt-8 pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center gap-4">
+              <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center gap-4">
                 <Link
                   href="/devis"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded-xl transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-bold text-slate-950 bg-gradient-to-r from-green-400 to-emerald-400 hover:from-green-300 hover:to-emerald-300 rounded-xl transition-all"
                 >
                   <span>Démarrer une collaboration</span>
                   <ArrowRight className="h-4 w-4" />
