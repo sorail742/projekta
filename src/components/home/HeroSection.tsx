@@ -274,10 +274,7 @@ export function HeroSection() {
               {COMPANY_INFO.description}
             </motion.p>
 
-            {/* 4. Deux boutons :
-                - Principal : fond vert, texte blanc, léger glow au hover
-                - Secondaire : contour fin, remplissage progressif au hover
-            */}
+            {/* Actions : Boutons aux arrondis élégants et transitions soignées */}
             <motion.div
               variants={itemVariants}
               className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4"
@@ -288,7 +285,7 @@ export function HeroSection() {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white bg-primary hover:bg-primary-hover rounded-full shadow-soft hover:shadow-[0_0_28px_rgba(79,167,100,0.45)] transition-all duration-300 group"
               >
                 <span>Démarrer un projet</span>
-                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-200" />
+                <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
 
               {/* Bouton Secondaire : contour fin 1px + remplissage progressif de gauche à droite */}
@@ -310,15 +307,15 @@ export function HeroSection() {
               className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-ink/10 text-xs text-ink-muted"
             >
               <div className="flex items-center gap-2.5 justify-center lg:justify-start">
-                <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
+                <CheckCircle2 strokeWidth={1.5} className="h-4 w-4 text-primary shrink-0" />
                 <span>Accompagnement dédié</span>
               </div>
               <div className="flex items-center gap-2.5 justify-center lg:justify-start">
-                <ShieldCheck className="h-4 w-4 text-secondary shrink-0" />
+                <ShieldCheck strokeWidth={1.5} className="h-4 w-4 text-secondary shrink-0" />
                 <span>Technologies modernes</span>
               </div>
               <div className="flex items-center gap-2.5 justify-center lg:justify-start">
-                <Sparkles className="h-4 w-4 text-primary shrink-0" />
+                <Sparkles strokeWidth={1.5} className="h-4 w-4 text-primary shrink-0" />
                 <span>Orientation résultats</span>
               </div>
             </motion.div>
@@ -389,13 +386,13 @@ export function HeroSection() {
                 {/* Grille de 2 spécialités emblématiques avec bordures fines */}
                 <div className="grid grid-cols-2 gap-3 pt-1">
                   <div className="rounded-2xl bg-[#F7F8FA] p-4 border border-ink/[0.06] flex flex-col space-y-1.5 hover:border-primary/30 transition-colors">
-                    <Code2 className="h-4 w-4 text-primary" />
+                    <Code2 strokeWidth={1.5} className="h-4 w-4 text-primary" />
                     <span className="text-xs font-semibold text-ink">Dév Web & Mobile</span>
                     <span className="text-[11px] text-ink-muted leading-tight">Next.js & Applications</span>
                   </div>
 
                   <div className="rounded-2xl bg-[#F7F8FA] p-4 border border-ink/[0.06] flex flex-col space-y-1.5 hover:border-secondary/30 transition-colors">
-                    <Palette className="h-4 w-4 text-secondary" />
+                    <Palette strokeWidth={1.5} className="h-4 w-4 text-secondary" />
                     <span className="text-xs font-semibold text-ink">Identité Visuelle</span>
                     <span className="text-[11px] text-ink-muted leading-tight">Logos & Chartes pro</span>
                   </div>

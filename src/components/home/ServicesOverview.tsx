@@ -16,144 +16,149 @@ import { SERVICES_DATA } from "@/data/services";
 import { ScrollReveal, StaggerGrid, StaggerCard } from "@/components/common/ScrollReveal";
 
 export function ServicesOverview() {
+  // Icônes Lucide à trait fin (strokeWidth 1.5)
   const getServiceIcon = (name: string) => {
     switch (name) {
       case "Code2":
-        return <Code2 className="h-5 w-5" />;
+        return <Code2 strokeWidth={1.5} className="h-6 w-6 text-primary" />;
       case "Palette":
-        return <Palette className="h-5 w-5" />;
+        return <Palette strokeWidth={1.5} className="h-6 w-6 text-secondary" />;
       case "Briefcase":
-        return <Briefcase className="h-5 w-5" />;
+        return <Briefcase strokeWidth={1.5} className="h-6 w-6 text-primary" />;
       case "Share2":
-        return <Share2 className="h-5 w-5" />;
+        return <Share2 strokeWidth={1.5} className="h-6 w-6 text-secondary" />;
       case "GraduationCap":
-        return <GraduationCap className="h-5 w-5" />;
+        return <GraduationCap strokeWidth={1.5} className="h-6 w-6 text-primary" />;
       default:
-        return <Sparkles className="h-5 w-5" />;
+        return <Sparkles strokeWidth={1.5} className="h-6 w-6 text-primary" />;
     }
   };
 
+  // Exactement les 5 pôles de compétences officiels PROJEKTA
+  const fiveServices = SERVICES_DATA.slice(0, 5);
+
   return (
-    <section className="py-24 lg:py-32 bg-surface-muted/60 border-b border-ink/5 relative overflow-hidden">
+    <section className="py-20 sm:py-24 lg:py-32 bg-[#F7F8FA] border-b border-ink/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <SectionHeader
-            badge="Domaines d'intervention"
-            title="Des expertises complètes pour propulser vos projets"
-            subtitle="Découvrez nos 5 grands pôles de compétences pensés pour répondre à chacun de vos besoins numériques, de la conception technique à la valorisation de marque."
+            badge="Domaines d'expertise"
+            title="Nos 5 pôles de compétences numériques"
+            subtitle="Découvrez nos expertises complètes pensées pour répondre à chacun de vos défis, de la conception logicielle à la communication de marque."
             align="center"
           />
         </ScrollReveal>
 
-        {/* Grille avec stagger de 0.08s déclenchée à 20% de visibilité */}
-        <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {SERVICES_DATA.map((service, index) => (
-            <StaggerCard
-              key={service.id}
-              className={`h-full ${index === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}
-            >
-              {/* Carte de service :
-                  - Au hover : élévation de 6px (-translate-y-[6px])
-                  - Ombre douce (hover:shadow-card-hover)
-                  - Bordure en dégradé vert→bleu qui apparaît (opacity-0 -> group-hover:opacity-100)
-                  - Icône qui change légèrement d'échelle (group-hover:scale-110)
-              */}
-              <div className="group relative h-full rounded-3xl bg-white p-8 border border-ink/[0.06] shadow-card hover:shadow-card-hover hover:-translate-y-[6px] transition-all duration-300 flex flex-col justify-between overflow-hidden">
-                {/* Bordure dégradée vert→bleu apparaissant au hover */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 rounded-3xl p-[1.5px] bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none -z-0"
-                >
-                  <div className="w-full h-full bg-white rounded-[22.5px]" />
-                </div>
+        {/* Grille des 5 cartes de services avec numérotation 01 à 05 très légère et icônes à trait fin */}
+        <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-8">
+          {fiveServices.map((service, index) => {
+            // Disposition équilibrée : 3 cartes en haut (2 cols chacune), 2 cartes en bas (3 cols chacune)
+            const colSpanClass =
+              index < 3 ? "lg:col-span-2" : "lg:col-span-3";
 
-                <div className="relative z-10">
-                  {/* En-tête de carte avec icône animée en échelle */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="h-11 w-11 rounded-2xl bg-surface-muted border border-ink/[0.06] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white group-hover:scale-110 transition-all duration-300">
-                      {getServiceIcon(service.iconName)}
-                    </div>
-                    <span className="tagline-label text-ink-light text-[11px]">
-                      {service.number}
-                    </span>
-                  </div>
-
-                  {/* Titre */}
-                  <h3 className="text-xl font-medium text-ink group-hover:text-primary transition-colors duration-250">
-                    {service.title}
-                  </h3>
-
-                  {/* Description courte */}
-                  <p className="mt-3 text-sm text-ink-muted leading-relaxed font-normal">
-                    {service.shortDescription}
-                  </p>
-
-                  {/* Aperçu des prestations clés */}
-                  <div className="mt-6 pt-5 border-t border-ink/[0.06] space-y-2">
-                    <span className="tagline-label text-[10px] text-ink-light">
-                      Prestations clés :
-                    </span>
-                    <ul className="text-xs text-ink-muted space-y-1.5 font-normal">
-                      {service.prestations.slice(0, 3).map((item, i) => (
-                        <li key={i} className="flex items-center gap-2 truncate">
-                          <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
-                          <span className="truncate">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Lien d'approfondissement */}
-                <div className="relative z-10 mt-6 pt-5 border-t border-ink/[0.06]">
-                  <Link
-                    href={`/services#${service.id}`}
-                    className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink group-hover:text-primary transition-colors duration-250 active:scale-[0.98]"
-                  >
-                    <span>En savoir plus</span>
-                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
-                  </Link>
-                </div>
-              </div>
-            </StaggerCard>
-          ))}
-
-          {/* Carte Devis Personnalisé intégrée à la grille */}
-          <StaggerCard className="h-full">
-            <div className="group relative h-full rounded-3xl bg-ink p-8 text-white flex flex-col justify-between border border-white/10 shadow-card hover:shadow-card-hover hover:-translate-y-[6px] transition-all duration-300 overflow-hidden">
-              {/* Bordure dégradée au hover sur la carte sombre */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 rounded-3xl p-[1.5px] bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none -z-0"
+            return (
+              <StaggerCard
+                key={service.id}
+                className={`h-full ${colSpanClass}`}
               >
-                <div className="w-full h-full bg-ink rounded-[22.5px]" />
-              </div>
+                {/* Carte de service :
+                    - Élévation de 6px au hover (-translate-y-[6px])
+                    - Ombre douce haut de gamme
+                    - Bordure dégradée vert→bleu qui apparaît
+                    - Icône à trait fin qui s'agrandit légèrement
+                    - Grand numéro 01 à 05 très léger
+                */}
+                <div className="group relative h-full rounded-3xl bg-white p-7 sm:p-8 border border-ink/[0.08] shadow-card hover:shadow-card-hover hover:-translate-y-[6px] transition-all duration-300 flex flex-col justify-between overflow-hidden">
+                  {/* Bordure dégradée vert→bleu apparaissant au hover */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 rounded-3xl p-[1.5px] bg-gradient-to-r from-primary via-emerald-500 to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none -z-0"
+                  >
+                    <div className="w-full h-full bg-white rounded-[22.5px]" />
+                  </div>
 
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-1.5 tagline-label text-[10px] text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full mb-6">
-                  <Sparkles className="h-3 w-3" />
-                  <span>Besoin spécifique ?</span>
+                  <div className="relative z-10">
+                    {/* En-tête : Icône à trait fin (1.5) + Grand numéro très léger */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="h-12 w-12 rounded-2xl bg-[#F7F8FA] border border-ink/[0.06] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-soft">
+                        {getServiceIcon(service.iconName)}
+                      </div>
+                      <span className="text-4xl sm:text-5xl font-extralight text-ink/20 tracking-tighter select-none font-sans">
+                        {service.number}
+                      </span>
+                    </div>
+
+                    {/* Titre */}
+                    <h3 className="text-lg sm:text-xl font-medium text-ink group-hover:text-primary transition-colors duration-250 leading-snug">
+                      {service.title}
+                    </h3>
+
+                    {/* Description courte */}
+                    <p className="mt-3 text-xs sm:text-sm text-ink-muted leading-relaxed font-normal">
+                      {service.shortDescription}
+                    </p>
+
+                    {/* Prestations clés */}
+                    <div className="mt-6 pt-5 border-t border-ink/[0.06] space-y-2">
+                      <span className="tagline-label text-[10px] text-ink-light block">
+                        Prestations clés :
+                      </span>
+                      <ul className="text-xs text-ink-muted space-y-1.5 font-normal">
+                        {service.prestations.slice(0, 3).map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 truncate">
+                            <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
+                            <span className="truncate">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Lien d'approfondissement */}
+                  <div className="relative z-10 mt-6 pt-5 border-t border-ink/[0.06] flex items-center justify-between">
+                    <Link
+                      href={`/services#${service.id}`}
+                      className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink group-hover:text-primary transition-colors duration-250 active:scale-[0.98]"
+                    >
+                      <span>En savoir plus</span>
+                      <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
+                    </Link>
+                    <span className="tagline-label text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                      PROJEKTA
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-light text-white">
-                  Vous avez un projet <span className="font-semibold text-primary">sur mesure ?</span>
-                </h3>
-                <p className="mt-3 text-sm text-white/60 leading-relaxed font-normal">
-                  Nos équipes étudient votre cahier des charges et conçoivent une solution personnalisée clé en main.
+              </StaggerCard>
+            );
+          })}
+        </StaggerGrid>
+
+        {/* Bandeau d'invitation au sur-mesure sous les 5 cartes */}
+        <ScrollReveal delay={0.2} className="mt-12 lg:mt-16">
+          <div className="rounded-3xl bg-white border border-ink/[0.08] p-6 sm:p-8 shadow-card flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4 text-center md:text-left">
+              <div className="h-11 w-11 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 hidden sm:flex">
+                <Sparkles strokeWidth={1.5} className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-ink">
+                  Vous avez un projet spécifique nécessitant un accompagnement sur mesure ?
+                </p>
+                <p className="text-xs text-ink-muted mt-0.5">
+                  Nos ingénieurs et designers étudient votre cahier des charges et conçoivent une solution adaptée.
                 </p>
               </div>
-
-              <div className="relative z-10 mt-8 pt-6 border-t border-white/10">
-                <Link
-                  href="/devis"
-                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-xs font-semibold uppercase tracking-wider text-ink bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-250 active:scale-[0.98] group"
-                >
-                  <span>Demander une étude gratuite</span>
-                  <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
-                </Link>
-              </div>
             </div>
-          </StaggerCard>
-        </StaggerGrid>
+
+            <Link
+              href="/devis"
+              className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white bg-ink hover:bg-primary rounded-full transition-all duration-250 active:scale-[0.98] shadow-soft shrink-0 group"
+            >
+              <span>Demander une étude gratuite</span>
+              <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "./Badge";
 
 interface SectionHeaderProps {
   badge?: string;
@@ -28,16 +27,24 @@ export function SectionHeader({
   return (
     <div className={cn("flex flex-col max-w-3xl mb-14 md:mb-18", alignClass, className)}>
       {badge && (
-        <Badge
-          variant={dark ? "outline" : "primary"}
-          className={cn("mb-4", dark && "text-white/80 border-white/20 bg-white/5")}
+        <div
+          className={cn(
+            "inline-flex items-center gap-2 px-3.5 py-1 rounded-full border mb-4 shadow-soft",
+            dark
+              ? "bg-white/5 border-white/15 text-white/90"
+              : "bg-white border-ink/10 text-ink"
+          )}
         >
-          {badge}
-        </Badge>
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+          <span className="tagline-label text-[11px] font-semibold tracking-[0.22em] uppercase">
+            {badge}
+          </span>
+          <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+        </div>
       )}
       <h2
         className={cn(
-          "text-2xl sm:text-3xl md:text-4xl font-light tracking-tight leading-tight",
+          "text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight leading-[1.12]",
           dark ? "text-white" : "text-ink"
         )}
       >
@@ -47,7 +54,7 @@ export function SectionHeader({
         <p
           className={cn(
             "mt-4 text-base sm:text-lg leading-relaxed max-w-2xl font-normal",
-            dark ? "text-white/60" : "text-ink-muted"
+            dark ? "text-white/70" : "text-ink-muted"
           )}
         >
           {subtitle}

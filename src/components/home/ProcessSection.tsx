@@ -72,7 +72,7 @@ export function ProcessSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-24 lg:py-32 bg-white border-b border-ink/5 relative overflow-hidden"
+      className="py-20 sm:py-24 lg:py-32 bg-white border-b border-ink/5 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
@@ -123,15 +123,15 @@ export function ProcessSection() {
               const Icon = step.icon;
               return (
                 <StaggerCard key={step.step} className="h-full">
-                  <div className="h-full relative flex flex-col items-center text-center p-7 rounded-3xl bg-surface-muted border border-ink/[0.06] hover:border-primary/40 shadow-soft hover:shadow-card hover:-translate-y-[4px] transition-all duration-300 group">
+                  <div className="h-full relative flex flex-col items-center text-center p-7 rounded-3xl bg-[#F7F8FA] border border-ink/[0.08] hover:border-primary/40 shadow-soft hover:shadow-card hover:-translate-y-[4px] transition-all duration-300 group">
                     {/* Pastille numéro d'étape avec pastille d'ancrage */}
                     <span className="relative z-10 tagline-label text-[10px] px-3.5 py-1.5 rounded-full bg-white border border-ink/10 text-ink mb-5 shadow-soft group-hover:border-primary/40 transition-colors">
                       Étape {step.step}
                     </span>
 
-                    {/* Boîtier d'icône avec échelle douce au survol */}
+                    {/* Boîtier d'icône avec échelle douce au survol et trait fin 1.5 */}
                     <div className="h-12 w-12 rounded-2xl bg-white border border-ink/[0.06] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white group-hover:scale-110 transition-all duration-300 mb-4 shadow-soft">
-                      <Icon className="h-5 w-5" />
+                      <Icon strokeWidth={1.5} className="h-5 w-5" />
                     </div>
 
                     {/* Titre */}

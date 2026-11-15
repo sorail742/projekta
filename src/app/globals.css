@@ -45,6 +45,12 @@
   [role="button"]:active {
     transform: scale(0.98);
   }
+
+  /* Indicateurs de focus hautement visibles pour l'accessibilité WCAG AA */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
 }
 
 @layer utilities {
