@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X, ArrowRight, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/common/Logo";
 import { COMPANY_INFO } from "@/data/company";
@@ -21,12 +22,17 @@ export function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    // Vérification initiale
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -41,7 +47,7 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
           ? "bg-white/90 backdrop-blur-md border-b border-ink/5 py-3 shadow-soft"
-          : "bg-white/80 backdrop-blur-sm border-b border-ink/[0.04] py-4 sm:py-5"
+          : "bg-transparent border-b border-transparent py-4 sm:py-5"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,7 +55,7 @@ export function Navbar() {
           {/* Logo officiel horizontal PROJEKTA (hauteur 36-40px, fond transparent) */}
           <Logo size="md" />
 
-          {/* Navigation Desktop épurée */}
+          {/* Navigation Desktop épurée avec trait animé sous le lien actif */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
             {NAV_LINKS.map((link) => {
               const isActive =
@@ -62,28 +68,36 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative px-3.5 py-2 text-[13px] tracking-wide transition-colors duration-200",
+                    "relative px-3.5 py-2 text-[13px] tracking-wide transition-colors duration-250",
                     isActive
                       ? "text-ink font-semibold"
                       : "text-ink-muted hover:text-ink font-medium"
                   )}
                 >
-                  {link.label}
+                  <span className="relative z-10">{link.label}</span>
                   {isActive && (
-                    <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-primary rounded-full transition-all" />
+                    <motion.span
+                      layoutId={shouldReduceMotion ? undefined : "activeNavIndicator"}
+                      className="absolute bottom-0 left-3 right-3 h-[2px] bg-primary rounded-full z-0"
+                      transition={
+                        shouldReduceMotion
+                          ? { duration: 0 }
+                          : { type: "spring", stiffness: 380, damping: 30 }
+                      }
+                    />
                   )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Actions : WhatsApp discret & Bouton Devis */}
+          {/* Actions : WhatsApp discret & Bouton Devis avec micro-interactions */}
           <div className="hidden md:flex items-center gap-4">
             <a
               href={COMPANY_INFO.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-ink-muted hover:text-primary transition-colors border border-ink/10 rounded-full hover:border-primary/40 bg-surface-muted"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-ink-muted hover:text-primary transition-colors duration-250 border border-ink/10 rounded-full hover:border-primary/40 bg-surface-muted active:scale-[0.98]"
               title="Discuter directement sur WhatsApp"
             >
               <MessageCircle className="h-3.5 w-3.5 text-primary" />
@@ -92,10 +106,10 @@ export function Navbar() {
 
             <Link
               href="/devis"
-              className="inline-flex items-center gap-2 px-4.5 py-2 text-xs font-semibold tracking-wider uppercase text-white bg-ink hover:bg-primary rounded-full shadow-soft transition-all duration-200 group"
+              className="inline-flex items-center gap-2 px-5 py-2 text-xs font-semibold tracking-wider uppercase text-white bg-ink hover:bg-primary rounded-full shadow-soft transition-all duration-250 active:scale-[0.98] group"
             >
               <span>Demander un devis</span>
-              <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
             </Link>
           </div>
 
@@ -103,13 +117,13 @@ export function Navbar() {
           <div className="flex items-center gap-2 lg:hidden">
             <Link
               href="/devis"
-              className="inline-flex items-center px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white bg-ink rounded-full sm:hidden"
+              className="inline-flex items-center px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white bg-ink rounded-full active:scale-[0.98] transition-transform duration-250 sm:hidden"
             >
               Devis
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-ink hover:bg-surface-muted focus:outline-none transition-colors"
+              className="p-2 rounded-lg text-ink hover:bg-surface-muted focus:outline-none transition-colors duration-250 active:scale-[0.95]"
               aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={mobileMenuOpen}
             >
@@ -138,7 +152,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "px-3 py-3 text-sm font-medium rounded-xl flex items-center justify-between transition-colors",
+                    "px-3 py-3 text-sm font-medium rounded-xl flex items-center justify-between transition-colors duration-250 active:scale-[0.99]",
                     isActive
                       ? "text-primary bg-primary-50 font-semibold"
                       : "text-ink hover:bg-surface-muted"
@@ -158,7 +172,7 @@ export function Navbar() {
               href={COMPANY_INFO.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-2.5 text-xs font-medium text-ink bg-surface-muted border border-ink/10 rounded-xl"
+              className="flex items-center justify-center gap-2 py-2.5 text-xs font-medium text-ink bg-surface-muted border border-ink/10 rounded-xl active:scale-[0.98] transition-transform duration-250"
             >
               <MessageCircle className="h-4 w-4 text-primary" />
               <span>Contacter sur WhatsApp</span>
@@ -166,10 +180,10 @@ export function Navbar() {
 
             <Link
               href="/devis"
-              className="flex items-center justify-center gap-2 py-3 text-xs font-semibold tracking-wider uppercase text-white bg-ink rounded-xl shadow-soft"
+              className="flex items-center justify-center gap-2 py-3 text-xs font-semibold tracking-wider uppercase text-white bg-ink rounded-xl shadow-soft active:scale-[0.98] transition-transform duration-250 group"
             >
               <span>Demander un devis personnalisé</span>
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-250" />
             </Link>
           </div>
         </div>

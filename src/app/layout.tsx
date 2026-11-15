@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingActions } from "@/components/layout/FloatingActions";
+import { ReadingProgressBar } from "@/components/layout/ReadingProgressBar";
 
 export const metadata: Metadata = {
   title: {
@@ -77,6 +78,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className="scroll-smooth">
       <body className="min-h-screen flex flex-col bg-white text-ink font-sans antialiased selection:bg-primary-100 selection:text-ink">
+        <ReadingProgressBar />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
