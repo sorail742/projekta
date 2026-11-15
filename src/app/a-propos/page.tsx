@@ -7,7 +7,6 @@ import {
   Compass,
   ArrowRight,
   Globe,
-  Sparkles,
 } from "lucide-react";
 import { Badge } from "@/components/common/Badge";
 import { COMPANY_INFO } from "@/data/company";
@@ -20,84 +19,93 @@ export const metadata: Metadata = {
 
 export default function AProposPage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28">
-      {/* Hero Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+    <div className="pt-36 pb-24 md:pt-44 md:pb-32">
+      {/* En-tête de page aéré */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <div className="max-w-3xl">
           <Badge variant="primary" className="mb-4">
             Notre Identité & Vision
           </Badge>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-slate-900 tracking-tight leading-tight">
-            Accompagner la transformation numérique avec rigueur et créativité.
+          <h1 className="text-3xl sm:text-5xl lg:text-5xl font-light text-ink tracking-tight leading-tight">
+            Accompagner la transformation numérique avec{" "}
+            <span className="font-semibold text-ink">rigueur et créativité.</span>
           </h1>
-          <p className="mt-5 text-lg text-slate-600 leading-relaxed">
+          <p className="mt-5 text-lg text-ink-muted leading-relaxed font-normal">
             PROJEKTA est née de la volonté d&apos;offrir aux entrepreneurs, aux entreprises et aux organisations d&apos;Afrique et d&apos;ailleurs des solutions digitales de calibre mondial, accessibles et orientées résultats.
           </p>
         </div>
       </div>
 
       {/* Histoire & Origine */}
-      <section className="bg-white py-16 border-y border-slate-100">
+      <section className="bg-surface-muted/60 py-20 lg:py-28 border-y border-ink/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-6 space-y-6">
-              {/* Official Logo Banner Showcase */}
-              <div className="rounded-2xl bg-white p-4 shadow-sm border border-slate-200 inline-block">
-                <div className="relative h-14 w-56">
+              {/* Vitrine officielle du logo horizontal PROJEKTA */}
+              <div className="rounded-2xl bg-white p-4 shadow-soft border border-ink/[0.08] inline-block">
+                <div className="relative h-12 w-48 sm:h-14 sm:w-56 flex items-center justify-center">
                   <Image
                     src="/logo-full.png"
                     alt="PROJEKTA Logo Officiel"
-                    fill
-                    className="object-contain"
+                    width={270}
+                    height={100}
+                    className="max-h-full w-auto object-contain"
                     priority
                   />
                 </div>
               </div>
 
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+                <span className="tagline-label text-primary">
                   L&apos;histoire de PROJEKTA
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-heading font-bold text-slate-900 mt-1">
-                  Une initiative au service de l&apos;émancipation numérique
+                <h2 className="text-2xl sm:text-3xl font-light text-ink mt-1.5 leading-snug">
+                  Une initiative au service de l&apos;émancipation{" "}
+                  <span className="font-semibold text-ink">numérique</span>
                 </h2>
               </div>
 
-              <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
+              <p className="text-ink-muted leading-relaxed text-sm sm:text-base font-normal">
                 Dans un environnement économique où la présence en ligne est devenue l&apos;un des piliers majeurs de la crédibilité et du développement des affaires, nous avons constaté un écart récurrent : beaucoup d&apos;entreprises peinent à trouver des partenaires capables de combiner à la fois l&apos;excellence technique, le sens artistique et la proximité relationnelle.
               </p>
-              <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
+              <p className="text-ink-muted leading-relaxed text-sm sm:text-base font-normal">
                 C&apos;est pour répondre à ce défi que PROJEKTA a été fondée. Depuis Conakry, notre équipe conçoit des plateformes modernes, forge des identités visuelles fortes et forme la jeunesse aux compétences d&apos;avenir, tout en collaborant avec des clients sur les marchés internationaux.
               </p>
             </div>
 
             <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-100 space-y-2">
-                <Target className="h-8 w-8 text-emerald-700" />
-                <h3 className="text-base font-bold text-emerald-950 font-heading">
+              <div className="p-7 rounded-3xl bg-white border border-ink/[0.06] shadow-soft space-y-3">
+                <div className="h-10 w-10 rounded-2xl bg-primary-50 border border-primary/20 text-primary flex items-center justify-center">
+                  <Target className="h-5 w-5" />
+                </div>
+                <h3 className="text-base font-semibold text-ink">
                   Notre Mission
                 </h3>
-                <p className="text-xs text-emerald-800 leading-relaxed">
+                <p className="text-xs text-ink-muted leading-relaxed font-normal">
                   Démocratiser l&apos;accès aux meilleures technologies et créer des outils numériques qui génèrent un impact économique tangible pour nos partenaires.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-slate-900 text-white space-y-2">
-                <Compass className="h-8 w-8 text-blue-400" />
-                <h3 className="text-base font-bold text-white font-heading">
+              <div className="p-7 rounded-3xl bg-ink text-white border border-white/10 shadow-soft space-y-3">
+                <div className="h-10 w-10 rounded-2xl bg-white/10 border border-white/15 text-secondary-300 flex items-center justify-center">
+                  <Compass className="h-5 w-5" />
+                </div>
+                <h3 className="text-base font-semibold text-white">
                   Notre Vision
                 </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-white/60 leading-relaxed font-normal">
                   Devenir une référence incontournable de l&apos;ingénierie logicielle, du design et de la formation numérique en Guinée et dans l&apos;espace francophone.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 sm:col-span-2">
-                <Globe className="h-8 w-8 text-emerald-600" />
-                <h3 className="text-base font-bold text-slate-900 font-heading">
+              <div className="p-7 rounded-3xl bg-white border border-ink/[0.06] shadow-soft space-y-3 sm:col-span-2">
+                <div className="h-10 w-10 rounded-2xl bg-secondary-50 border border-secondary/20 text-secondary flex items-center justify-center">
+                  <Globe className="h-5 w-5" />
+                </div>
+                <h3 className="text-base font-semibold text-ink">
                   Ancrage local, portée internationale
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-ink-muted leading-relaxed font-normal">
                   Nous combinons une connaissance intime des réalités du terrain guinéen (connexions mobiles, WhatsApp commerce, ergonomie intuitive) avec les standards d&apos;ingénierie les plus exigeants de la scène tech mondiale.
                 </p>
               </div>
@@ -107,16 +115,16 @@ export default function AProposPage() {
       </section>
 
       {/* Valeurs fondamentales */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-24 bg-white border-b border-ink/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <Badge variant="primary" className="mb-3">
+            <Badge variant="primary" className="mb-3.5">
               Ce qui nous guide
             </Badge>
-            <h2 className="text-3xl font-heading font-bold text-slate-900">
-              Nos valeurs fondamentales
+            <h2 className="text-3xl font-light text-ink">
+              Nos valeurs <span className="font-semibold text-ink">fondamentales</span>
             </h2>
-            <p className="mt-3 text-slate-600 text-sm sm:text-base">
+            <p className="mt-3 text-ink-muted text-sm sm:text-base font-normal">
               Ces principes forgent notre éthique de travail et dictent chacune de nos décisions au quotidien.
             </p>
           </div>
@@ -125,16 +133,16 @@ export default function AProposPage() {
             {COMPANY_INFO.values.map((val, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-emerald-300 hover:shadow-md transition-all flex flex-col justify-between"
+                className="p-7 rounded-3xl bg-surface-muted border border-ink/[0.06] shadow-soft hover:shadow-card hover:border-primary/40 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="h-10 w-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold mb-4">
-                    {idx + 1}
+                  <div className="tagline-label text-xs h-9 w-9 rounded-2xl bg-white border border-ink/[0.06] text-primary flex items-center justify-center mb-5">
+                    0{idx + 1}
                   </div>
-                  <h3 className="text-base font-heading font-bold text-slate-900">
+                  <h3 className="text-base font-semibold text-ink">
                     {val.title}
                   </h3>
-                  <p className="mt-2.5 text-xs text-slate-600 leading-relaxed">
+                  <p className="mt-2.5 text-xs text-ink-muted leading-relaxed font-normal">
                     {val.description}
                   </p>
                 </div>
@@ -145,32 +153,33 @@ export default function AProposPage() {
       </section>
 
       {/* Engagement client & Approche */}
-      <section className="py-20 bg-white">
+      <section className="py-20 lg:py-24 bg-surface-muted/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-12 rounded-3xl bg-slate-950 text-white shadow-xl border border-slate-800">
+          <div className="p-8 sm:p-14 rounded-3xl bg-ink text-white shadow-card border border-white/10">
             <div className="max-w-3xl">
-              <span className="text-xs font-bold uppercase tracking-wider text-green-400">
+              <span className="tagline-label text-primary text-xs">
                 Notre engagement envers chaque client
               </span>
-              <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white">
-                Transparence, écoute active et respect des engagements
+              <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-light text-white leading-tight">
+                Transparence, écoute active et{" "}
+                <span className="font-semibold text-primary">respect des engagements</span>
               </h2>
-              <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+              <p className="mt-4 text-sm sm:text-base text-white/60 leading-relaxed font-normal">
                 Faire appel à PROJEKTA, c&apos;est choisir un partenaire qui prend le temps de vous écouter, qui respecte scrupuleusement les délais convenus et qui vous livre un travail soigné, sans jargon inutile ni mauvaise surprise.
               </p>
 
               <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center gap-4">
                 <Link
                   href="/devis"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-bold text-slate-950 bg-gradient-to-r from-green-400 to-emerald-400 hover:from-green-300 hover:to-emerald-300 rounded-xl transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-ink bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-200"
                 >
                   <span>Démarrer une collaboration</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
 
                 <Link
                   href="/services"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-white/10 hover:bg-white/20 rounded-xl transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-white bg-transparent hover:bg-white/5 border border-white/20 rounded-full transition-all duration-200"
                 >
                   <span>Explorer nos prestations</span>
                 </Link>

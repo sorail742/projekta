@@ -10,46 +10,46 @@ export const metadata: Metadata = {
 
 export default function MentionsLegalesPage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28">
+    <div className="pt-36 pb-24 md:pt-44 md:pb-32">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Badge variant="secondary" className="mb-4">
+        <Badge variant="primary" className="mb-4">
           Cadre Réglementaire
         </Badge>
-        <h1 className="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 tracking-tight mb-8">
-          Mentions Légales
+        <h1 className="text-3xl sm:text-4xl font-light text-ink tracking-tight mb-8">
+          Mentions <span className="font-semibold text-ink">Légales</span>
         </h1>
 
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/80 shadow-xs space-y-8 text-sm text-slate-600 leading-relaxed">
+        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-ink/[0.08] shadow-card space-y-8 text-sm text-ink-muted leading-relaxed font-normal">
           <section className="space-y-3">
-            <h2 className="text-lg font-heading font-bold text-slate-900">
+            <h2 className="text-lg font-semibold text-ink">
               1. Éditeur de la plateforme
             </h2>
             <p>
               Le site web officiel accessible à l&apos;adresse{" "}
-              <strong>https://projekta-tech.com</strong> est édité par l&apos;initiative{" "}
-              <strong>PROJEKTA</strong>, spécialisée dans les services numériques, le développement informatique, la création graphique et la formation.
+              <strong className="text-ink">https://projekta-tech.com</strong> est édité par l&apos;initiative{" "}
+              <strong className="text-ink">PROJEKTA</strong>, spécialisée dans les services numériques, le développement informatique, la création graphique et la formation.
             </p>
             <ul className="list-disc pl-5 space-y-1">
               <li>
-                <strong>Dénomination :</strong> PROJEKTA
+                <strong className="text-ink">Dénomination :</strong> PROJEKTA
               </li>
               <li>
-                <strong>Localisation :</strong> {COMPANY_INFO.address.city}, {COMPANY_INFO.address.country}
+                <strong className="text-ink">Localisation :</strong> {COMPANY_INFO.address.city}, {COMPANY_INFO.address.country}
               </li>
               <li>
-                <strong>Contact électronique :</strong> {COMPANY_INFO.email}
+                <strong className="text-ink">Contact électronique :</strong> {COMPANY_INFO.email}
               </li>
               <li>
-                <strong>Téléphone / WhatsApp :</strong> {COMPANY_INFO.phoneFormatted}
+                <strong className="text-ink">Téléphone / WhatsApp :</strong> {COMPANY_INFO.phoneFormatted}
               </li>
               <li>
-                <strong>Zone d&apos;activité :</strong> République de Guinée & Clients Internationaux
+                <strong className="text-ink">Zone d&apos;activité :</strong> République de Guinée & Clients Internationaux
               </li>
             </ul>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-heading font-bold text-slate-900">
+            <h2 className="text-lg font-semibold text-ink">
               2. Hébergement
             </h2>
             <p>
@@ -58,20 +58,23 @@ export default function MentionsLegalesPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-heading font-bold text-slate-900">
+            <h2 className="text-lg font-semibold text-ink">
               3. Propriété intellectuelle
             </h2>
             <p>
-              L&apos;ensemble des éléments constituant ce site web (textes, graphismes, logotypes, icônes, images, codes sources, animations et agencements) sont la propriété exclusive de PROJEKTA ou font l&apos;objet d&apos;une licence légale d&apos;exploitation. Toute reproduction, représentation, modification ou publication, totale ou partielle, sans accord écrit préalable de PROJEKTA est formellement interdite.
+              Tous les contenus présents sur le site (textes, logos officiels, marques, créations graphiques, arborescences, code source) sont protégés par les lois internationales régissant la propriété intellectuelle.
+            </p>
+            <p>
+              Toute reproduction, distribution ou représentation partielle ou intégrale de ces éléments sans autorisation écrite expresse préalable de PROJEKTA est formellement interdite.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-heading font-bold text-slate-900">
+            <h2 className="text-lg font-semibold text-ink">
               4. Responsabilité & Liens externes
             </h2>
             <p>
-              PROJEKTA s&apos;efforce de fournir des informations fiables et mises à jour. Toutefois, PROJEKTA ne saurait être tenue pour responsable des erreurs, omissions ou indisponibilités temporaires des services. Les liens hypertextes menant vers des sites tiers ne sauraient engager la responsabilité de PROJEKTA quant à leurs contenus respectifs.
+              PROJEKTA s&apos;efforce d&apos;assurer au mieux de ses possibilités l&apos;exactitude et la mise à jour des informations diffusées sur ce site. Toutefois, PROJEKTA décline toute responsabilité pour toute imprécision ou omission portant sur des informations disponibles sur le site.
             </p>
           </section>
         </div>

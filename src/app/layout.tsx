@@ -27,8 +27,12 @@ export const metadata: Metadata = {
   creator: "PROJEKTA",
   publisher: "PROJEKTA",
   icons: {
-    icon: "/logo-icon.png",
-    apple: "/logo-icon.png",
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/logo-icon.png", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+    shortcut: "/favicon.ico",
   },
   formatDetection: {
     email: true,
@@ -72,7 +76,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans antialiased">
+      <body className="min-h-screen flex flex-col bg-white text-ink font-sans antialiased selection:bg-primary-100 selection:text-ink">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

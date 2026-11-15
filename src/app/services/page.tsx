@@ -14,7 +14,7 @@ import {
   Award,
 } from "lucide-react";
 import { Badge } from "@/components/common/Badge";
-import { SERVICES_DATA, ServiceItem } from "@/data/services";
+import { SERVICES_DATA } from "@/data/services";
 
 export const metadata: Metadata = {
   title: "Nos Services",
@@ -26,43 +26,44 @@ export default function ServicesPage() {
   const getIcon = (name: string) => {
     switch (name) {
       case "Code2":
-        return <Code2 className="h-7 w-7 text-emerald-600" />;
+        return <Code2 className="h-6 w-6 text-primary" />;
       case "Palette":
-        return <Palette className="h-7 w-7 text-emerald-600" />;
+        return <Palette className="h-6 w-6 text-secondary" />;
       case "Briefcase":
-        return <Briefcase className="h-7 w-7 text-emerald-600" />;
+        return <Briefcase className="h-6 w-6 text-primary" />;
       case "Share2":
-        return <Share2 className="h-7 w-7 text-emerald-600" />;
+        return <Share2 className="h-6 w-6 text-secondary" />;
       case "GraduationCap":
-        return <GraduationCap className="h-7 w-7 text-emerald-600" />;
+        return <GraduationCap className="h-6 w-6 text-primary" />;
       default:
-        return <Sparkles className="h-7 w-7 text-emerald-600" />;
+        return <Sparkles className="h-6 w-6 text-primary" />;
     }
   };
 
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28">
-      {/* Header */}
+    <div className="pt-36 pb-24 md:pt-44 md:pb-32">
+      {/* En-tête du catalogue */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20">
         <div className="max-w-3xl">
           <Badge variant="primary" className="mb-4">
             Catalogue des Prestations
           </Badge>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-slate-900 tracking-tight leading-tight">
-            5 pôles d&apos;expertise pour tous vos défis numériques.
+          <h1 className="text-3xl sm:text-5xl lg:text-5xl font-light text-ink tracking-tight leading-tight">
+            5 pôles d&apos;expertise pour tous vos{" "}
+            <span className="font-semibold text-ink">défis numériques.</span>
           </h1>
-          <p className="mt-5 text-lg text-slate-600 leading-relaxed">
+          <p className="mt-5 text-lg text-ink-muted leading-relaxed font-normal">
             De l&apos;ingénierie web à la création visuelle en passant par le community management et la formation, découvrez nos solutions d&apos;accompagnement complètes et sur mesure.
           </p>
         </div>
 
-        {/* Quick in-page nav */}
-        <div className="mt-8 flex flex-wrap gap-2 pt-4 border-t border-slate-200">
+        {/* Navigation rapide par ancres */}
+        <div className="mt-8 flex flex-wrap gap-2 pt-5 border-t border-ink/10">
           {SERVICES_DATA.map((srv) => (
             <a
               key={srv.id}
               href={`#${srv.id}`}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 hover:border-emerald-500 hover:text-emerald-700 hover:bg-emerald-50/50 transition-all text-slate-700"
+              className="tagline-label text-[10px] px-4 py-2 rounded-full bg-surface-muted border border-ink/[0.08] hover:border-primary/50 hover:text-primary transition-all text-ink-muted"
             >
               {srv.title}
             </a>
@@ -70,49 +71,47 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      {/* Services List */}
+      {/* Liste détaillée des 5 Pôles */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24">
-        {SERVICES_DATA.map((service, index) => {
-          const isEven = index % 2 === 1;
-
+        {SERVICES_DATA.map((service) => {
           return (
             <section
               key={service.id}
               id={service.id}
-              className="scroll-mt-32 rounded-3xl bg-white border border-slate-200/80 p-6 sm:p-10 lg:p-12 shadow-sm hover:shadow-md transition-shadow"
+              className="scroll-mt-32 rounded-3xl bg-white border border-ink/[0.06] p-7 sm:p-10 lg:p-12 shadow-card"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                {/* Left overview */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+                {/* Colonne gauche : Synthèse du pôle */}
                 <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
                   <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="h-12 w-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="h-12 w-12 rounded-2xl bg-surface-muted border border-ink/[0.06] flex items-center justify-center">
                         {getIcon(service.iconName)}
                       </div>
-                      <span className="font-mono text-sm font-bold text-emerald-700">
+                      <span className="tagline-label text-xs text-primary font-semibold">
                         PÔLE {service.number}
                       </span>
                     </div>
 
-                    <h2 className="text-2xl sm:text-3xl font-heading font-bold text-slate-900">
+                    <h2 className="text-2xl sm:text-3xl font-light text-ink leading-snug">
                       {service.title}
                     </h2>
 
-                    <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+                    <p className="mt-4 text-sm sm:text-base text-ink-muted leading-relaxed font-normal">
                       {service.fullDescription}
                     </p>
                   </div>
 
-                  {/* Target Audience & Benefits */}
-                  <div className="space-y-4 pt-4 border-t border-slate-100">
+                  {/* Public ciblé & CTA */}
+                  <div className="space-y-5 pt-5 border-t border-ink/[0.06]">
                     <div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-2">
+                      <span className="tagline-label text-[10px] text-ink-light block mb-2.5">
                         Public concerné :
                       </span>
-                      <ul className="text-xs text-slate-600 space-y-1">
+                      <ul className="text-xs text-ink-muted space-y-1.5 font-normal">
                         {service.targetAudience.map((target, idx) => (
                           <li key={idx} className="flex items-center gap-2">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
+                            <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
                             <span>{target}</span>
                           </li>
                         ))}
@@ -122,20 +121,20 @@ export default function ServicesPage() {
                     <div className="pt-2">
                       <Link
                         href={`/devis?service=${service.id}`}
-                        className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-projekta-deep hover:from-emerald-700 hover:to-emerald-950 rounded-xl shadow-sm transition-all group"
+                        className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white bg-ink hover:bg-primary rounded-full shadow-soft transition-all duration-200 group"
                       >
                         <span>Demander un accompagnement</span>
-                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </div>
                   </div>
                 </div>
 
-                {/* Right detailed prestations */}
-                <div className="lg:col-span-7 bg-slate-50/80 rounded-2xl p-6 sm:p-8 border border-slate-200/60 flex flex-col justify-between space-y-6">
+                {/* Colonne droite : Prestations détaillées & Livrables */}
+                <div className="lg:col-span-7 bg-surface-muted rounded-3xl p-7 sm:p-9 border border-ink/[0.06] flex flex-col justify-between space-y-7">
                   <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-4 flex items-center gap-2">
-                      <Layers className="h-4 w-4 text-emerald-600" />
+                    <h3 className="tagline-label text-xs text-ink mb-5 flex items-center gap-2 font-semibold">
+                      <Layers className="h-4 w-4 text-primary" />
                       <span>Prestations incluses dans ce pôle :</span>
                     </h3>
 
@@ -143,9 +142,9 @@ export default function ServicesPage() {
                       {service.prestations.map((presta, pIdx) => (
                         <div
                           key={pIdx}
-                          className="p-3 rounded-xl bg-white border border-slate-200/70 flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 shadow-2xs"
+                          className="p-3.5 rounded-2xl bg-white border border-ink/[0.06] flex items-start gap-2.5 text-xs sm:text-sm text-ink-muted shadow-soft font-normal"
                         >
-                          <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                           <span>{presta}</span>
                         </div>
                       ))}
@@ -153,25 +152,31 @@ export default function ServicesPage() {
                   </div>
 
                   {/* Livrables & Atouts */}
-                  <div className="pt-4 border-t border-slate-200/60 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                  <div className="pt-5 border-t border-ink/[0.06] grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs">
                     <div>
-                      <span className="font-bold text-slate-900 block mb-1">
+                      <span className="tagline-label text-[10px] text-ink block mb-2 font-semibold">
                         Atouts clés :
                       </span>
-                      <ul className="text-slate-600 space-y-1">
+                      <ul className="text-ink-muted space-y-1 font-normal">
                         {service.benefits.map((b, bIdx) => (
-                          <li key={bIdx}>• {b}</li>
+                          <li key={bIdx} className="flex items-center gap-1.5">
+                            <span className="text-primary font-bold">•</span>
+                            <span>{b}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
 
                     <div>
-                      <span className="font-bold text-slate-900 block mb-1">
-                        Livrables types :
+                      <span className="tagline-label text-[10px] text-ink block mb-2 font-semibold">
+                        Livrables garantis :
                       </span>
-                      <ul className="text-slate-600 space-y-1">
+                      <ul className="text-ink-muted space-y-1 font-normal">
                         {service.deliverables.map((d, dIdx) => (
-                          <li key={dIdx}>• {d}</li>
+                          <li key={dIdx} className="flex items-center gap-1.5">
+                            <span className="text-secondary font-bold">•</span>
+                            <span>{d}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
@@ -183,27 +188,28 @@ export default function ServicesPage() {
         })}
       </div>
 
-      {/* Bottom CTA */}
+      {/* Bannière d'appel à l'action finale */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-emerald-800 to-projekta-deep text-white text-center flex flex-col items-center">
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold">
-            Vous ne trouvez pas exactement ce que vous cherchez ?
-          </h2>
-          <p className="mt-3 text-sm sm:text-base text-emerald-100 max-w-xl">
-            Notre équipe étudie également vos projets sur mesure. Exposez-nous votre besoin pour recevoir une recommandation personnalisée.
-          </p>
-          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+        <div className="rounded-3xl bg-ink text-white p-8 sm:p-14 border border-white/10 shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-xl">
+            <span className="tagline-label text-primary text-xs">
+              Votre projet sur mesure
+            </span>
+            <h3 className="mt-2 text-2xl sm:text-3xl font-light text-white">
+              Une idée à modéliser ou un défi spécifique ?
+            </h3>
+            <p className="mt-3 text-sm text-white/60 font-normal leading-relaxed">
+              Consultez nos experts pour une séance de cadrage sans engagement et obtenez un devis précis adapté à votre feuille de route.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
             <Link
               href="/devis"
-              className="px-6 py-3 text-sm font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded-xl transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-ink bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-200"
             >
-              Demander une étude personnalisée
-            </Link>
-            <Link
-              href="/contact"
-              className="px-6 py-3 text-sm font-semibold text-white bg-white/10 hover:bg-white/20 rounded-xl transition-colors"
-            >
-              Contacter l&apos;équipe
+              <span>Demander un devis</span>
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
         </div>

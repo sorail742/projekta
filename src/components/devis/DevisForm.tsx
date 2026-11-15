@@ -6,11 +6,6 @@ import {
   CheckCircle2,
   AlertCircle,
   Loader2,
-  Code2,
-  Palette,
-  Briefcase,
-  Share2,
-  GraduationCap,
 } from "lucide-react";
 import { SERVICES_DATA } from "@/data/services";
 
@@ -115,16 +110,16 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
   };
 
   return (
-    <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200/80">
+    <div className="bg-white rounded-3xl p-7 sm:p-11 shadow-card border border-ink/[0.08]">
       {status === "success" ? (
         <div className="py-16 text-center space-y-4 animate-in fade-in">
-          <div className="h-16 w-16 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center">
-            <CheckCircle2 className="h-10 w-10" />
+          <div className="h-16 w-16 rounded-full bg-primary-50 text-primary mx-auto flex items-center justify-center border border-primary/20">
+            <CheckCircle2 className="h-9 w-9" />
           </div>
-          <h3 className="text-2xl font-heading font-bold text-slate-900">
-            Demande de devis enregistrée avec succès !
+          <h3 className="text-2xl font-light text-ink">
+            Demande de devis enregistrée avec <span className="font-semibold text-primary">succès !</span>
           </h3>
-          <p className="text-slate-600 text-base max-w-lg mx-auto leading-relaxed">
+          <p className="text-ink-muted text-base max-w-lg mx-auto leading-relaxed font-normal">
             Merci de faire confiance à PROJEKTA. Notre équipe technique analyse vos spécifications et reviendra vers vous sous 24 à 48 heures ouvrées avec une estimation personnalisée.
           </p>
           <div className="pt-6 flex justify-center gap-4">
@@ -145,24 +140,24 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                   projectDescription: "",
                 });
               }}
-              className="px-6 py-3 text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-colors"
+              className="px-7 py-3 text-xs font-semibold uppercase tracking-wider text-ink bg-surface-muted hover:bg-primary hover:text-white rounded-full transition-colors border border-ink/[0.08]"
             >
               Soumettre une autre demande
             </button>
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-9">
           {status === "error" && (
-            <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-start gap-2.5">
+            <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-start gap-2.5">
               <AlertCircle className="h-5 w-5 shrink-0 text-rose-600 mt-0.5" />
               <span>{errorMessage}</span>
             </div>
           )}
 
           {/* Étape 1 : Domaine de service */}
-          <div className="space-y-3">
-            <label className="block text-sm font-bold text-slate-900">
+          <div className="space-y-3.5">
+            <label className="block tagline-label text-xs text-ink font-semibold">
               1. Sélectionnez le domaine principal de votre projet{" "}
               <span className="text-rose-500">*</span>
             </label>
@@ -176,16 +171,16 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                     onClick={() =>
                       setFormData((prev) => ({ ...prev, serviceType: srv.title }))
                     }
-                    className={`p-4 rounded-xl border text-left transition-all flex flex-col justify-between ${
+                    className={`p-4 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between ${
                       isSelected
-                        ? "border-emerald-600 bg-emerald-50/80 ring-2 ring-emerald-600/30 text-emerald-950"
-                        : "border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700"
+                        ? "border-primary bg-primary-50/60 ring-1 ring-primary/40 text-ink shadow-soft"
+                        : "border-ink/[0.08] hover:border-ink/20 hover:bg-surface-muted text-ink-muted"
                     }`}
                   >
-                    <span className="text-xs font-mono font-bold text-emerald-700 mb-1">
+                    <span className="tagline-label text-[10px] text-primary mb-1.5 font-semibold">
                       {srv.number}
                     </span>
-                    <span className="text-sm font-bold leading-tight">
+                    <span className="text-sm font-medium leading-snug text-ink">
                       {srv.title}
                     </span>
                   </button>
@@ -195,18 +190,18 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
           </div>
 
           {/* Étape 2 : Nature du projet */}
-          <div className="space-y-3">
-            <label className="block text-sm font-bold text-slate-900">
+          <div className="space-y-3.5">
+            <label className="block tagline-label text-xs text-ink font-semibold">
               2. Nature de votre projet
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {PROJECT_NATURES.map((nature, idx) => (
                 <label
                   key={idx}
-                  className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all text-xs sm:text-sm ${
+                  className={`flex items-center gap-3 p-3.5 rounded-2xl border cursor-pointer transition-all duration-200 text-xs sm:text-sm ${
                     formData.projectNature === nature
-                      ? "border-emerald-600 bg-emerald-50/60 font-semibold text-emerald-900"
-                      : "border-slate-200 hover:bg-slate-50 text-slate-700"
+                      ? "border-primary bg-primary-50/40 font-medium text-ink shadow-soft"
+                      : "border-ink/[0.08] hover:bg-surface-muted text-ink-muted"
                   }`}
                 >
                   <input
@@ -216,7 +211,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                     onChange={() =>
                       setFormData((prev) => ({ ...prev, projectNature: nature }))
                     }
-                    className="accent-emerald-600"
+                    className="accent-primary"
                   />
                   <span>{nature}</span>
                 </label>
@@ -225,8 +220,8 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
           </div>
 
           {/* Étape 3 : Fonctionnalités & besoins souhaités */}
-          <div className="space-y-3">
-            <label className="block text-sm font-bold text-slate-900">
+          <div className="space-y-3.5">
+            <label className="block tagline-label text-xs text-ink font-semibold">
               3. Besoins & fonctionnalités clés souhaitées (cochez ce qui s&apos;applique)
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
@@ -237,17 +232,17 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                     key={idx}
                     type="button"
                     onClick={() => toggleFeature(feat)}
-                    className={`flex items-center gap-2.5 p-3 rounded-xl border text-left text-xs transition-all ${
+                    className={`flex items-center gap-2.5 p-3 rounded-2xl border text-left text-xs transition-all duration-200 ${
                       checked
-                        ? "border-emerald-600 bg-emerald-50 text-emerald-900 font-medium"
-                        : "border-slate-200 hover:bg-slate-50 text-slate-600"
+                        ? "border-primary bg-primary-50/50 text-ink font-medium shadow-soft"
+                        : "border-ink/[0.08] hover:bg-surface-muted text-ink-muted"
                     }`}
                   >
                     <span
-                      className={`h-4 w-4 rounded flex items-center justify-center shrink-0 border text-[10px] ${
+                      className={`h-4 w-4 rounded-md flex items-center justify-center shrink-0 border text-[10px] ${
                         checked
-                          ? "bg-emerald-600 border-emerald-600 text-white font-bold"
-                          : "border-slate-300 bg-white"
+                          ? "bg-primary border-primary text-white font-bold"
+                          : "border-ink/20 bg-white"
                       }`}
                     >
                       {checked ? "✓" : ""}
@@ -262,7 +257,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
           {/* Étape 4 : Délais et Budget indicatif */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+              <label className="block tagline-label text-[10px] text-ink font-semibold">
                 Délai cible de livraison
               </label>
               <select
@@ -270,7 +265,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, timeline: e.target.value }))
                 }
-                className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-900"
+                className="w-full px-4 py-3 text-sm bg-surface-muted border border-ink/[0.08] rounded-2xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:bg-white text-ink transition-all font-normal"
               >
                 {TIMELINES.map((t, idx) => (
                   <option key={idx} value={t}>
@@ -281,7 +276,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+              <label className="block tagline-label text-[10px] text-ink font-semibold">
                 Fourchette budgétaire estimative (Facultatif)
               </label>
               <select
@@ -292,7 +287,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                     estimatedBudget: e.target.value,
                   }))
                 }
-                className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-900"
+                className="w-full px-4 py-3 text-sm bg-surface-muted border border-ink/[0.08] rounded-2xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:bg-white text-ink transition-all font-normal"
               >
                 {BUDGET_RANGES.map((b, idx) => (
                   <option key={idx} value={b}>
@@ -304,8 +299,8 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
           </div>
 
           {/* Étape 5 : Coordonnées du demandeur */}
-          <div className="space-y-4 pt-4 border-t border-slate-200">
-            <h4 className="text-sm font-bold text-slate-900">
+          <div className="space-y-4 pt-4 border-t border-ink/[0.06]">
+            <h4 className="tagline-label text-xs text-ink font-semibold">
               4. Vos coordonnées de contact
             </h4>
 
@@ -313,7 +308,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
               <div className="space-y-1.5">
                 <label
                   htmlFor="clientName"
-                  className="text-xs font-bold uppercase tracking-wider text-slate-700"
+                  className="tagline-label text-[10px] text-ink block font-semibold"
                 >
                   Votre nom complet <span className="text-rose-500">*</span>
                 </label>
@@ -329,14 +324,14 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                     }))
                   }
                   placeholder="Mamadou Barry"
-                  className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-900"
+                  className="w-full px-4 py-3 text-sm bg-surface-muted border border-ink/[0.08] rounded-2xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:bg-white text-ink transition-all font-normal"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <label
                   htmlFor="clientEmail"
-                  className="text-xs font-bold uppercase tracking-wider text-slate-700"
+                  className="tagline-label text-[10px] text-ink block font-semibold"
                 >
                   Adresse e-mail <span className="text-rose-500">*</span>
                 </label>
@@ -352,14 +347,14 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                     }))
                   }
                   placeholder="nom@entreprise.com"
-                  className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-900"
+                  className="w-full px-4 py-3 text-sm bg-surface-muted border border-ink/[0.08] rounded-2xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:bg-white text-ink transition-all font-normal"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <label
                   htmlFor="clientPhone"
-                  className="text-xs font-bold uppercase tracking-wider text-slate-700"
+                  className="tagline-label text-[10px] text-ink block font-semibold"
                 >
                   Téléphone / WhatsApp <span className="text-rose-500">*</span>
                 </label>
@@ -375,14 +370,14 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                     }))
                   }
                   placeholder="+224 6XX XX XX XX"
-                  className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-900"
+                  className="w-full px-4 py-3 text-sm bg-surface-muted border border-ink/[0.08] rounded-2xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:bg-white text-ink transition-all font-normal"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <label
                   htmlFor="clientCompany"
-                  className="text-xs font-bold uppercase tracking-wider text-slate-700"
+                  className="tagline-label text-[10px] text-ink block font-semibold"
                 >
                   Nom de l&apos;entreprise ou organisation (Optionnel)
                 </label>
@@ -397,7 +392,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                     }))
                   }
                   placeholder="Ex. Sahel Commerce SARL"
-                  className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-900"
+                  className="w-full px-4 py-3 text-sm bg-surface-muted border border-ink/[0.08] rounded-2xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:bg-white text-ink transition-all font-normal"
                 />
               </div>
             </div>
@@ -407,7 +402,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
           <div className="space-y-1.5">
             <label
               htmlFor="projectDescription"
-              className="text-xs font-bold uppercase tracking-wider text-slate-700"
+              className="tagline-label text-[10px] text-ink block font-semibold"
             >
               Description de votre projet & attentes spécifiques{" "}
               <span className="text-rose-500">*</span>
@@ -424,7 +419,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                 }))
               }
               placeholder="Expliquez-nous l'objectif du projet, votre secteur d'activité, vos inspirations ou les fonctionnalités indispensables..."
-              className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-900"
+              className="w-full px-4 py-3 text-sm bg-surface-muted border border-ink/[0.08] rounded-2xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:bg-white text-ink transition-all font-normal"
             />
           </div>
 
@@ -433,21 +428,21 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-emerald-600 to-projekta-deep hover:from-emerald-700 hover:to-emerald-950 rounded-xl shadow-md hover:shadow-xl disabled:opacity-50 transition-all"
+              className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white bg-ink hover:bg-primary rounded-full shadow-soft hover:shadow-card disabled:opacity-50 transition-all duration-200"
             >
               {status === "loading" ? (
                 <>
-                  <Loader2 className="h-5 w-5 animate-spin" />
+                  <Loader2 className="h-4 w-4 animate-spin" />
                   <span>Traitement de votre devis...</span>
                 </>
               ) : (
                 <>
                   <span>Soumettre ma demande de devis gratuite</span>
-                  <Send className="h-4 w-4" />
+                  <Send className="h-3.5 w-3.5" />
                 </>
               )}
             </button>
-            <p className="mt-2.5 text-center text-xs text-slate-500">
+            <p className="mt-3 text-center text-xs text-ink-light font-normal">
               Sans engagement. Vos informations restent strictement confidentielles.
             </p>
           </div>

@@ -30,7 +30,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on page change
+  // Fermeture du menu mobile lors d'un changement d'URL
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
@@ -40,17 +40,17 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white/98 backdrop-blur-md shadow-xs border-b border-slate-200/80 py-2.5"
-          : "bg-white/95 backdrop-blur-sm border-b border-slate-100 py-3 sm:py-3.5"
+          ? "bg-white/90 backdrop-blur-md border-b border-ink/5 py-3 shadow-soft"
+          : "bg-white/80 backdrop-blur-sm border-b border-ink/[0.04] py-4 sm:py-5"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Official Full Logo */}
+          {/* Logo officiel horizontal PROJEKTA (hauteur 36-40px, fond transparent) */}
           <Logo size="md" />
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {/* Navigation Desktop épurée */}
+          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
             {NAV_LINKS.map((link) => {
               const isActive =
                 link.href === "/"
@@ -62,70 +62,70 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "px-3.5 py-2 text-sm font-medium rounded-lg transition-colors relative",
+                    "relative px-3.5 py-2 text-[13px] tracking-wide transition-colors duration-200",
                     isActive
-                      ? "text-emerald-700 bg-emerald-50/80 font-bold"
-                      : "text-slate-600 hover:text-slate-950 hover:bg-slate-50"
+                      ? "text-ink font-semibold"
+                      : "text-ink-muted hover:text-ink font-medium"
                   )}
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-3.5 right-3.5 h-0.5 bg-gradient-to-r from-green-500 to-blue-600 rounded-full" />
+                    <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-primary rounded-full transition-all" />
                   )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Action Button & WhatsApp */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Actions : WhatsApp discret & Bouton Devis */}
+          <div className="hidden md:flex items-center gap-4">
             <a
               href={COMPANY_INFO.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-colors border border-emerald-200/60"
-              title="Discuter sur WhatsApp"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-ink-muted hover:text-primary transition-colors border border-ink/10 rounded-full hover:border-primary/40 bg-surface-muted"
+              title="Discuter directement sur WhatsApp"
             >
-              <MessageCircle className="h-4 w-4 text-emerald-600" />
+              <MessageCircle className="h-3.5 w-3.5 text-primary" />
               <span>WhatsApp</span>
             </a>
 
             <Link
               href="/devis"
-              className="inline-flex items-center gap-2 px-4.5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-emerald-600 via-green-600 to-slate-900 hover:from-emerald-700 hover:to-slate-950 rounded-xl shadow-xs hover:shadow-md transition-all group"
+              className="inline-flex items-center gap-2 px-4.5 py-2 text-xs font-semibold tracking-wider uppercase text-white bg-ink hover:bg-primary rounded-full shadow-soft transition-all duration-200 group"
             >
               <span>Demander un devis</span>
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Bouton Menu Mobile */}
           <div className="flex items-center gap-2 lg:hidden">
             <Link
               href="/devis"
-              className="inline-flex items-center px-3 py-1.5 text-xs font-semibold text-white bg-emerald-700 rounded-lg sm:hidden"
+              className="inline-flex items-center px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white bg-ink rounded-full sm:hidden"
             >
               Devis
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="p-2 rounded-lg text-ink hover:bg-surface-muted focus:outline-none transition-colors"
               aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? (
-                <X className="h-6 w-6 text-slate-900" />
+                <X className="h-5 w-5 text-ink" />
               ) : (
-                <Menu className="h-6 w-6 text-slate-900" />
+                <Menu className="h-5 w-5 text-ink" />
               )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Menu Mobile Coulissant */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[64px] bg-white border-b border-slate-200 shadow-xl px-4 pt-3 pb-6 max-h-[calc(100vh-64px)] overflow-y-auto animate-in slide-in-from-top-2 duration-200">
+        <div className="lg:hidden fixed inset-x-0 top-[60px] bg-white border-b border-ink/10 shadow-card px-5 pt-4 pb-8 max-h-[calc(100vh-60px)] overflow-y-auto animate-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col space-y-1">
             {NAV_LINKS.map((link) => {
               const isActive =
@@ -138,39 +138,39 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "px-4 py-3 text-base font-medium rounded-xl flex items-center justify-between transition-colors",
+                    "px-3 py-3 text-sm font-medium rounded-xl flex items-center justify-between transition-colors",
                     isActive
-                      ? "text-emerald-700 bg-emerald-50 font-bold"
-                      : "text-slate-700 hover:bg-slate-50"
+                      ? "text-primary bg-primary-50 font-semibold"
+                      : "text-ink hover:bg-surface-muted"
                   )}
                 >
                   <span>{link.label}</span>
                   {isActive && (
-                    <span className="h-2 w-2 rounded-full bg-blue-600" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                   )}
                 </Link>
               );
             })}
           </nav>
 
-          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col gap-3">
-            <Link
-              href="/devis"
-              className="w-full flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 via-green-600 to-slate-900 rounded-xl shadow-xs"
-            >
-              <span>Demander un devis personnalisé</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-
+          <div className="mt-6 pt-5 border-t border-ink/10 flex flex-col gap-3">
             <a
               href={COMPANY_INFO.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-emerald-800 bg-emerald-50 rounded-xl border border-emerald-200/60"
+              className="flex items-center justify-center gap-2 py-2.5 text-xs font-medium text-ink bg-surface-muted border border-ink/10 rounded-xl"
             >
-              <MessageCircle className="h-4 w-4 text-emerald-600" />
-              <span>Échanger sur WhatsApp (+224 620 00 00 00)</span>
+              <MessageCircle className="h-4 w-4 text-primary" />
+              <span>Contacter sur WhatsApp</span>
             </a>
+
+            <Link
+              href="/devis"
+              className="flex items-center justify-center gap-2 py-3 text-xs font-semibold tracking-wider uppercase text-white bg-ink rounded-xl shadow-soft"
+            >
+              <span>Demander un devis personnalisé</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       )}

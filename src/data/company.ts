@@ -45,11 +45,11 @@ export const COMPANY_INFO: CompanyInfo = {
     "PROJEKTA vous accompagne dans le développement web et mobile, la création graphique, la communication digitale et la transformation numérique.",
   fullBio:
     "PROJEKTA est une initiative spécialisée dans les services numériques, le développement informatique, la création graphique et l'accompagnement des particuliers, entrepreneurs, organisations et entreprises en Guinée et à l'international dans leur transformation numérique.",
-  email: "contact@projekta-tech.com",
-  phone: "+224 620 00 00 00",
-  phoneFormatted: "+224 620 00 00 00",
-  whatsappNumber: "224620000000",
-  whatsappLink: "https://wa.me/224620000000?text=Bonjour%20PROJEKTA%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20num%C3%A9riques.",
+  email: "keithsorail@gmail.com",
+  phone: "+224 624 28 48 74",
+  phoneFormatted: "+224 624 28 48 74",
+  whatsappNumber: "224624284874",
+  whatsappLink: "https://wa.me/224624284874?text=Bonjour%20PROJEKTA%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20num%C3%A9riques.",
   address: {
     city: "Conakry",
     country: "Guinée",

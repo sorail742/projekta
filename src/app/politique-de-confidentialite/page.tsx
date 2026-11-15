@@ -11,18 +11,18 @@ export const metadata: Metadata = {
 
 export default function PolitiqueConfidentialitePage() {
   return (
-    <div className="pt-28 pb-20 md:pt-36 md:pb-28">
+    <div className="pt-36 pb-24 md:pt-44 md:pb-32">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Badge variant="secondary" className="mb-4">
+        <Badge variant="primary" className="mb-4">
           Protection des Données
         </Badge>
-        <h1 className="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 tracking-tight mb-8">
-          Politique de Confidentialité
+        <h1 className="text-3xl sm:text-4xl font-light text-ink tracking-tight mb-8">
+          Politique de <span className="font-semibold text-ink">Confidentialité</span>
         </h1>
 
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/80 shadow-xs space-y-8 text-sm text-slate-600 leading-relaxed">
+        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-ink/[0.08] shadow-card space-y-8 text-sm text-ink-muted leading-relaxed font-normal">
           <section className="space-y-3">
-            <h2 className="text-lg font-heading font-bold text-slate-900">
+            <h2 className="text-lg font-semibold text-ink">
               1. Collecte des données personnelles
             </h2>
             <p>
@@ -36,7 +36,7 @@ export default function PolitiqueConfidentialitePage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-heading font-bold text-slate-900">
+            <h2 className="text-lg font-semibold text-ink">
               2. Finalité des traitements
             </h2>
             <p>Les données collectées sont strictement destinées à :</p>
@@ -46,35 +46,29 @@ export default function PolitiqueConfidentialitePage() {
               <li>Gérer la relation commerciale et le suivi des missions engagées.</li>
             </ul>
             <p>
-              <strong>Aucune revente ni cession :</strong> PROJEKTA ne commercialise, ne loue, ni ne cède aucune donnée personnelle à des entités tierces à des fins publicitaires.
+              <strong className="text-ink">Aucune revente ni cession :</strong> PROJEKTA ne commercialise, ne loue, ni ne cède aucune donnée personnelle à des entités tierces à des fins publicitaires.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-heading font-bold text-slate-900">
+            <h2 className="text-lg font-semibold text-ink">
               3. Durée de conservation & Sécurité
             </h2>
             <p>
               Les données sont conservées pendant la durée strictement nécessaire au traitement de la demande commerciale ou pour une durée maximale de trois ans après le dernier échange en l&apos;absence de conclusion de contrat.
             </p>
             <p>
-              PROJEKTA met en œuvre des mesures techniques et organisationnelles appropriées pour préserver la sécurité, l&apos;intégrité et la confidentialité des informations échangées (chiffrement HTTPS, accès restreint aux collaborateurs habilités).
+              Des mesures techniques et organisationnelles conformes aux bonnes pratiques de cybersécurité sont mises en place pour préserver l&apos;intégrité et la confidentialité de vos informations.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-heading font-bold text-slate-900">
-              4. Vos droits
+            <h2 className="text-lg font-semibold text-ink">
+              4. Vos droits d&apos;accès et de rectification
             </h2>
             <p>
-              Conformément aux législations relatives à la protection des données personnelles, vous disposez d&apos;un droit d&apos;accès, de rectification, de limitation et de suppression des données qui vous concernent. Pour exercer ces droits, il vous suffit de nous adresser votre demande par courrier électronique à{" "}
-              <a
-                href={`mailto:${COMPANY_INFO.email}`}
-                className="text-emerald-700 underline font-semibold"
-              >
-                {COMPANY_INFO.email}
-              </a>
-              .
+              Conformément aux réglementations sur la protection des données personnelles, vous disposez d&apos;un droit d&apos;accès, de rectification, de portabilité et de suppression de vos données personnelles. Vous pouvez exercer ce droit à tout moment en écrivant à :{" "}
+              <strong className="text-ink">{COMPANY_INFO.email}</strong>.
             </p>
           </section>
         </div>

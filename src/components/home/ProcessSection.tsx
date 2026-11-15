@@ -5,7 +5,6 @@ import {
   FileCheck,
   Code,
   Rocket,
-  ArrowRight,
 } from "lucide-react";
 import { SectionHeader } from "@/components/common/SectionHeader";
 
@@ -49,7 +48,7 @@ const STEPS = [
 
 export function ProcessSection() {
   return (
-    <section className="py-20 md:py-28 bg-white border-b border-slate-100">
+    <section className="py-24 lg:py-32 bg-white border-b border-ink/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Méthodologie de travail"
@@ -59,30 +58,30 @@ export function ProcessSection() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
-          {STEPS.map((step, index) => {
+          {STEPS.map((step) => {
             const Icon = step.icon;
             return (
               <div
                 key={step.step}
-                className="relative flex flex-col items-center text-center p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-emerald-300 hover:bg-emerald-50/20 transition-all group"
+                className="relative flex flex-col items-center text-center p-7 rounded-3xl bg-surface-muted border border-ink/[0.06] hover:border-primary/40 shadow-soft hover:shadow-card transition-all duration-300 group"
               >
-                {/* Step number badge */}
-                <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 mb-4">
+                {/* Pastille numéro d'étape */}
+                <span className="tagline-label text-[10px] px-3 py-1 rounded-full bg-white border border-ink/10 text-ink mb-5">
                   Étape {step.step}
                 </span>
 
-                {/* Icon box */}
-                <div className="h-12 w-12 rounded-xl bg-white shadow-xs border border-slate-200 flex items-center justify-center text-emerald-700 group-hover:scale-110 group-hover:bg-emerald-700 group-hover:text-white transition-all mb-4">
-                  <Icon className="h-6 w-6" />
+                {/* Boîtier d'icône */}
+                <div className="h-11 w-11 rounded-2xl bg-white border border-ink/[0.06] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all mb-4">
+                  <Icon className="h-5 w-5" />
                 </div>
 
-                {/* Title */}
-                <h3 className="text-base font-heading font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">
+                {/* Titre */}
+                <h3 className="text-sm font-semibold text-ink group-hover:text-primary transition-colors">
                   {step.title}
                 </h3>
 
                 {/* Description */}
-                <p className="mt-2.5 text-xs text-slate-600 leading-relaxed">
+                <p className="mt-2.5 text-xs text-ink-muted leading-relaxed font-normal">
                   {step.description}
                 </p>
               </div>

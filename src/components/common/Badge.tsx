@@ -3,11 +3,15 @@ import { cn } from "@/lib/utils";
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "accent" | "outline" | "success";
+  variant?: "primary" | "secondary" | "accent" | "outline" | "ink";
   className?: string;
   size?: "sm" | "md";
 }
 
+/**
+ * Badge étiquette PROJEKTA
+ * Conforme à la signature du logo : majuscules espacées, bordure fine 1px, fond feutré.
+ */
 export function Badge({
   children,
   variant = "primary",
@@ -15,22 +19,22 @@ export function Badge({
   size = "md",
 }: BadgeProps) {
   const variantStyles = {
-    primary: "bg-emerald-50 text-emerald-800 border-emerald-200/80",
-    secondary: "bg-slate-100 text-slate-700 border-slate-200",
-    accent: "bg-emerald-500/10 text-emerald-700 border-emerald-500/30",
-    outline: "bg-transparent text-slate-700 border-slate-300",
-    success: "bg-teal-50 text-teal-800 border-teal-200",
+    primary: "bg-primary-50 text-primary-800 border-primary/25",
+    secondary: "bg-secondary-50 text-secondary-800 border-secondary/25",
+    accent: "bg-surface-muted text-ink border-ink/10",
+    outline: "bg-transparent text-ink-muted border-ink/15",
+    ink: "bg-ink text-white border-transparent",
   };
 
   const sizeStyles = {
-    sm: "text-xs px-2.5 py-0.5",
-    md: "text-xs md:text-sm px-3 py-1",
+    sm: "tagline-label text-[10px] px-2.5 py-0.5",
+    md: "tagline-label text-[11px] px-3.5 py-1",
   };
 
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 font-medium rounded-full border transition-colors",
+        "inline-flex items-center gap-1.5 rounded-full border transition-colors",
         variantStyles[variant],
         sizeStyles[size],
         className

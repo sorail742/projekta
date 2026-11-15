@@ -50,7 +50,7 @@ export const FAQS_DATA: FaqItem[] = [
   {
     question: "Comment puis-je échanger rapidement avec un responsable ?",
     answer:
-      "Vous pouvez nous contacter directement sur WhatsApp via le bouton dédié sur le site, par téléphone au +224 620 00 00 00 ou en renseignant notre formulaire de contact.",
+      "Vous pouvez nous contacter directement sur WhatsApp via le bouton dédié sur le site, par téléphone au +224 624 28 48 74 ou en renseignant notre formulaire de contact.",
     category: "general",
   },
 ];

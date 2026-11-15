@@ -79,4 +79,11 @@ Remove-Item -Recurse -Force .next
 
 ---
 
+## 📞 Coordonnées Officielles
+- **Email direct :** `keithsorail@gmail.com`
+- **Téléphone / WhatsApp :** `+224 624 28 48 74`
+- **Localisation :** Conakry, République de Guinée (Interventions locales & internationales)
+
+---
+
 © 2026 **PROJEKTA** — « Donnons vie à vos idées grâce au numérique. »

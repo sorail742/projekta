@@ -148,12 +148,12 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-3 sm:p-4 bg-slate-950/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col h-[600px] max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-3 sm:p-4 bg-ink/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-ink/10 overflow-hidden flex flex-col h-[600px] max-h-[90vh]">
         {/* Header with Official Logo Emblem */}
-        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-emerald-950 text-white px-5 py-4 flex items-center justify-between shadow-sm border-b border-white/10">
+        <div className="bg-ink text-white px-6 py-4 flex items-center justify-between border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="relative h-10 w-10 rounded-xl overflow-hidden bg-white p-1 shadow-xs border border-white/20">
+            <div className="relative h-10 w-10 rounded-2xl overflow-hidden bg-white p-1 border border-white/20">
               <Image
                 src="/logo-icon.png"
                 alt="PROJEKTA Assistant"
@@ -163,15 +163,15 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-heading font-bold text-sm tracking-tight text-white">
+                <h3 className="font-semibold text-sm tracking-tight text-white">
                   Assistant PROJEKTA
                 </h3>
-                <span className="inline-flex items-center gap-1 text-[10px] bg-green-500/20 text-green-300 px-2 py-0.5 rounded-full ring-1 ring-green-400/30">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                <span className="inline-flex items-center gap-1 tagline-label text-[9px] bg-primary/20 text-primary-200 px-2 py-0.5 rounded-full border border-primary/30">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                   En ligne
                 </span>
               </div>
-              <p className="text-[11px] text-slate-300 font-mono">
+              <p className="tagline-label text-[10px] text-white/50 pt-0.5">
                 {COMPANY_INFO.baseline}
               </p>
             </div>
@@ -179,7 +179,7 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
 
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+            className="p-1.5 text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors"
             aria-label="Fermer la boîte de dialogue"
           >
             <X className="h-5 w-5" />
@@ -187,7 +187,7 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
         </div>
 
         {/* Messages Body */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/60">
+        <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-surface-muted/60">
           {messages.map((msg) => (
             <div
               key={msg.id}
@@ -196,7 +196,7 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
               }`}
             >
               {msg.sender === "assistant" && (
-                <div className="relative h-8 w-8 rounded-full overflow-hidden bg-white border border-slate-200 p-0.5 shrink-0 shadow-xs">
+                <div className="relative h-8 w-8 rounded-full overflow-hidden bg-white border border-ink/10 p-0.5 shrink-0 shadow-soft">
                   <Image
                     src="/logo-icon.png"
                     alt="Bot"
@@ -209,18 +209,18 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
               <div
                 className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                   msg.sender === "user"
-                    ? "bg-slate-900 text-white rounded-br-none shadow-sm"
-                    : "bg-white text-slate-800 border border-slate-200/80 shadow-xs rounded-bl-none"
+                    ? "bg-ink text-white rounded-br-none shadow-soft font-normal"
+                    : "bg-white text-ink border border-ink/[0.08] shadow-soft rounded-bl-none font-normal"
                 }`}
               >
                 <p className="whitespace-pre-line">{msg.text}</p>
 
                 {msg.actionLink && (
-                  <div className="mt-3 pt-2.5 border-t border-slate-100">
+                  <div className="mt-3 pt-2.5 border-t border-ink/[0.06]">
                     <Link
                       href={msg.actionLink.href}
                       onClick={onClose}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-900 hover:underline"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover hover:underline"
                     >
                       <span>{msg.actionLink.label}</span>
                       <ArrowRight className="h-3 w-3" />
@@ -229,12 +229,12 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
                 )}
 
                 {msg.quickReplies && (
-                  <div className="mt-3 pt-3 border-t border-slate-100 flex flex-wrap gap-1.5">
+                  <div className="mt-3 pt-3 border-t border-ink/[0.06] flex flex-wrap gap-1.5">
                     {msg.quickReplies.map((reply, i) => (
                       <button
                         key={i}
                         onClick={reply.action}
-                        className="text-xs font-semibold bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200 px-2.5 py-1.5 rounded-lg transition-colors text-left"
+                        className="text-xs font-medium bg-surface-muted hover:bg-primary-50 text-ink hover:text-primary border border-ink/10 px-3 py-1.5 rounded-full transition-colors text-left"
                       >
                         {reply.label}
                       </button>
@@ -244,7 +244,7 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
               </div>
 
               {msg.sender === "user" && (
-                <div className="h-8 w-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center shrink-0 text-xs">
+                <div className="h-8 w-8 rounded-full bg-surface-muted border border-ink/10 text-ink flex items-center justify-center shrink-0 text-xs">
                   <User className="h-4 w-4" />
                 </div>
               )}
@@ -254,16 +254,16 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
         </div>
 
         {/* Quick Contact Shortcut */}
-        <div className="bg-emerald-50/80 border-t border-emerald-100 px-4 py-2 flex items-center justify-between text-xs text-emerald-950">
-          <span className="flex items-center gap-1.5 font-medium">
-            <MessageCircle className="h-3.5 w-3.5 text-emerald-600" />
+        <div className="bg-surface-muted border-t border-ink/10 px-5 py-2.5 flex items-center justify-between text-xs text-ink">
+          <span className="flex items-center gap-1.5 font-normal text-ink-muted">
+            <MessageCircle className="h-3.5 w-3.5 text-primary" />
             Échange direct avec un conseiller :
           </span>
           <a
             href={COMPANY_INFO.whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold underline text-emerald-700 hover:text-emerald-900"
+            className="font-semibold text-primary hover:underline"
           >
             WhatsApp PROJEKTA
           </a>
@@ -275,19 +275,19 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
             e.preventDefault();
             handleSend(input);
           }}
-          className="p-3 bg-white border-t border-slate-200 flex items-center gap-2"
+          className="p-3 bg-white border-t border-ink/10 flex items-center gap-2"
         >
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Posez votre question sur PROJEKTA..."
-            className="flex-1 px-4 py-2.5 text-sm bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-800 placeholder-slate-400"
+            className="flex-1 px-4 py-2.5 text-sm bg-surface-muted border border-ink/[0.08] rounded-full focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-ink placeholder-ink-light"
           />
           <button
             type="submit"
             disabled={!input.trim()}
-            className="h-10 w-10 flex items-center justify-center bg-slate-900 hover:bg-emerald-700 disabled:opacity-50 text-white rounded-xl transition-colors shadow-xs"
+            className="h-10 w-10 flex items-center justify-center bg-ink hover:bg-primary disabled:opacity-40 text-white rounded-full transition-colors shadow-soft"
             aria-label="Envoyer le message"
           >
             <Send className="h-4 w-4" />

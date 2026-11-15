@@ -44,7 +44,7 @@ const REASONS = [
 
 export function WhyUsSection() {
   return (
-    <section className="py-20 md:py-28 bg-white border-b border-slate-100">
+    <section className="py-24 lg:py-32 bg-white border-b border-ink/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Notre engagement"
@@ -59,44 +59,44 @@ export function WhyUsSection() {
             return (
               <div
                 key={index}
-                className="p-8 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-emerald-300 hover:shadow-lg transition-all flex flex-col justify-between"
+                className="p-8 rounded-3xl bg-surface-muted border border-ink/[0.06] hover:border-primary/40 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="h-12 w-12 rounded-xl bg-emerald-100/80 text-emerald-800 flex items-center justify-center mb-6">
-                    <Icon className="h-6 w-6" />
+                  <div className="h-11 w-11 rounded-2xl bg-white border border-ink/[0.06] text-primary flex items-center justify-center mb-6">
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-heading font-bold text-slate-900">
+                  <h3 className="text-lg font-medium text-ink">
                     {reason.title}
                   </h3>
-                  <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-3 text-sm text-ink-muted leading-relaxed font-normal">
                     {reason.description}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center gap-1.5 text-xs font-semibold text-emerald-700">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                <div className="mt-6 pt-5 border-t border-ink/[0.06] flex items-center gap-2 text-xs font-medium text-primary">
+                  <CheckCircle2 className="h-4 w-4 shrink-0" />
                   <span>Garantie de qualité PROJEKTA</span>
                 </div>
               </div>
             );
           })}
 
-          {/* Callout box */}
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-emerald-800 to-projekta-deep text-white flex flex-col justify-between shadow-md">
+          {/* Encadré Promesse PROJEKTA */}
+          <div className="p-8 rounded-3xl bg-ink text-white flex flex-col justify-between border border-white/10 shadow-card">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-emerald-300">
+              <span className="tagline-label text-primary text-[10px]">
                 La promesse PROJEKTA
               </span>
-              <h3 className="mt-2 text-2xl font-heading font-bold text-white">
+              <h3 className="mt-3 text-xl sm:text-2xl font-light text-white leading-snug">
                 « Faire du numérique un levier de croissance accessible et crédible. »
               </h3>
-              <p className="mt-4 text-sm text-emerald-100/90 leading-relaxed">
+              <p className="mt-4 text-sm text-white/60 leading-relaxed font-normal">
                 Que vous soyez un jeune entrepreneur, une PME établie ou une organisation, nous mettons le même niveau d&apos;exigence dans chacun de nos partenariats.
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/20">
-              <span className="text-xs font-medium text-emerald-200">
+            <div className="mt-8 pt-5 border-t border-white/10">
+              <span className="text-xs text-white/40 font-normal">
                 Basé en République de Guinée • Actif à l&apos;international
               </span>
             </div>

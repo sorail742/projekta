@@ -7,73 +7,48 @@ import { cn } from "@/lib/utils";
 
 export interface LogoProps {
   className?: string;
-  variant?: "default" | "light" | "footer" | "icon" | "square";
-  size?: "sm" | "md" | "lg" | "xl";
+  variant?: "default" | "footer" | "icon" | "square" | "white";
+  size?: "sm" | "md" | "lg";
   priority?: boolean;
 }
 
+/**
+ * Composant Logo officiel PROJEKTA
+ * Respecte scrupuleusement les proportions, les couleurs et l'intégrité de l'identité visuelle :
+ * - Navbar : logo horizontal (ratio 2.7:1), hauteur 36-40px, fond transparent.
+ * - Footer : version haute lisibilité adaptée au fond choisi.
+ * - Icon / Favicon : symbole isolé (chevron vert & noir + arc bleu).
+ * Aucune déformation, recoloration ou filtre dénaturant n'est appliqué.
+ */
 export function Logo({
   className,
   variant = "default",
   size = "md",
   priority = true,
 }: LogoProps) {
-  // Height definitions for proportional rendering
-  const heightClass = {
-    sm: "h-9 sm:h-10",
-    md: "h-11 sm:h-12",
-    lg: "h-14 sm:h-16",
-    xl: "h-16 sm:h-20",
-  }[size];
-
-  // Footer / Dark variant: renders high-res logo-white.png (pure white text with official green chevron & blue arc)
-  if (variant === "footer" || variant === "light") {
-    return (
-      <Link
-        href="/"
-        className={cn("inline-flex items-center transition-all hover:opacity-90", className)}
-        aria-label="PROJEKTA - Accueil"
-      >
-        <div className="relative flex items-center py-1">
-          <Image
-            src="/logo-white.png"
-            alt="PROJEKTA - Innovation • Technology • Projects"
-            width={270}
-            height={100}
-            className={cn("w-auto object-contain", heightClass)}
-            priority={priority}
-          />
-        </div>
-      </Link>
-    );
-  }
-
-  // Square / Emblem variant (using tight-crop logo-icon.png)
+  // 1. Déclinaison Symbole seul (icône carrée / losange + arc)
   if (variant === "icon" || variant === "square") {
-    const iconDimension = {
-      sm: "h-9 w-9",
-      md: "h-11 w-11 sm:h-12 sm:w-12",
-      lg: "h-14 w-14 sm:h-16 sm:w-16",
-      xl: "h-20 w-20",
+    const iconSizes = {
+      sm: "h-8 w-8",
+      md: "h-10 w-10",
+      lg: "h-12 w-12",
     }[size];
 
     return (
       <Link
         href="/"
-        className={cn("inline-flex items-center transition-transform hover:scale-105", className)}
+        className={cn(
+          "inline-flex items-center justify-center transition-opacity hover:opacity-85",
+          className
+        )}
         aria-label="PROJEKTA - Accueil"
       >
-        <div
-          className={cn(
-            "relative overflow-hidden rounded-2xl bg-white shadow-xs border border-slate-200/90 p-1.5 flex items-center justify-center",
-            iconDimension
-          )}
-        >
+        <div className={cn("relative flex items-center justify-center", iconSizes)}>
           <Image
             src="/logo-icon.png"
-            alt="PROJEKTA Emblème"
-            width={64}
-            height={64}
+            alt="PROJEKTA - Symbole officiel"
+            width={48}
+            height={48}
             className="h-full w-full object-contain"
             priority={priority}
           />
@@ -82,23 +57,60 @@ export function Logo({
     );
   }
 
-  // Default (Navbar, Header): renders high-res transparent logo-full.png with official typography & baseline
+  // 2. Déclinaison Footer adaptée sur fond sombre (texte blanc pur avec teintes officielles vert & bleu)
+  if (variant === "footer" || variant === "white") {
+    const footerHeight = {
+      sm: "h-[32px]",
+      md: "h-[38px] sm:h-[42px]",
+      lg: "h-[44px] sm:h-[50px]",
+    }[size];
+
+    return (
+      <Link
+        href="/"
+        className={cn(
+          "inline-flex items-center transition-opacity hover:opacity-85",
+          className
+        )}
+        aria-label="PROJEKTA - Accueil"
+      >
+        <div className="relative flex items-center">
+          <Image
+            src="/logo-white.png"
+            alt="PROJEKTA - Innovation • Technology • Projects"
+            width={270}
+            height={100}
+            className={cn("w-auto object-contain", footerHeight)}
+            priority={priority}
+          />
+        </div>
+      </Link>
+    );
+  }
+
+  // 3. Déclinaison Navbar standard : logo horizontal officiel, hauteur 36-40px, fond transparent
+  const navHeight = {
+    sm: "h-[32px] sm:h-[36px]",
+    md: "h-[36px] sm:h-[40px]", // Hauteur stricte 36-40px prescrite par la direction artistique
+    lg: "h-[42px] sm:h-[48px]",
+  }[size];
+
   return (
     <Link
       href="/"
       className={cn(
-        "group inline-flex items-center transition-all hover:opacity-90",
+        "group inline-flex items-center transition-opacity hover:opacity-85",
         className
       )}
       aria-label="PROJEKTA - Accueil"
     >
-      <div className="relative flex items-center py-0.5">
+      <div className="relative flex items-center">
         <Image
           src="/logo-full.png"
           alt="PROJEKTA - Innovation • Technology • Projects"
           width={270}
           height={100}
-          className={cn("w-auto object-contain", heightClass)}
+          className={cn("w-auto object-contain", navHeight)}
           priority={priority}
         />
       </div>

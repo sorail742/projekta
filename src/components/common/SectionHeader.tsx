@@ -26,19 +26,19 @@ export function SectionHeader({
   }[align];
 
   return (
-    <div className={cn("flex flex-col max-w-3xl mb-12 md:mb-16", alignClass, className)}>
+    <div className={cn("flex flex-col max-w-3xl mb-14 md:mb-18", alignClass, className)}>
       {badge && (
         <Badge
-          variant={dark ? "accent" : "primary"}
-          className={cn("mb-3.5", dark && "text-emerald-300 border-emerald-500/30 bg-emerald-950/40")}
+          variant={dark ? "outline" : "primary"}
+          className={cn("mb-4", dark && "text-white/80 border-white/20 bg-white/5")}
         >
           {badge}
         </Badge>
       )}
       <h2
         className={cn(
-          "text-2xl sm:text-3xl md:text-4xl font-heading font-bold tracking-tight leading-tight",
-          dark ? "text-white" : "text-slate-900"
+          "text-2xl sm:text-3xl md:text-4xl font-light tracking-tight leading-tight",
+          dark ? "text-white" : "text-ink"
         )}
       >
         {title}
@@ -46,8 +46,8 @@ export function SectionHeader({
       {subtitle && (
         <p
           className={cn(
-            "mt-4 text-base sm:text-lg leading-relaxed max-w-2xl",
-            dark ? "text-slate-300" : "text-slate-600"
+            "mt-4 text-base sm:text-lg leading-relaxed max-w-2xl font-normal",
+            dark ? "text-white/60" : "text-ink-muted"
           )}
         >
           {subtitle}
