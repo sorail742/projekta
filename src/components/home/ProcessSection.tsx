@@ -101,7 +101,7 @@ export function ProcessSection() {
             {/* Ligne active qui se trace au scroll en dégradé vert→bleu */}
             <motion.div
               style={{ scaleX: shouldReduceMotion ? 1 : scaleXProgress }}
-              className="absolute inset-0 bg-gradient-to-r from-primary via-emerald-500 to-secondary rounded-full origin-left"
+              className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full origin-left"
             />
           </div>
 
@@ -113,7 +113,7 @@ export function ProcessSection() {
             <div className="absolute inset-0 bg-ink/[0.08] rounded-full" />
             <motion.div
               style={{ scaleY: shouldReduceMotion ? 1 : scaleYProgress }}
-              className="absolute inset-0 bg-gradient-to-b from-primary via-emerald-500 to-secondary rounded-full origin-top"
+              className="absolute inset-0 bg-gradient-to-b from-primary to-secondary rounded-full origin-top"
             />
           </div>
 

@@ -60,6 +60,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          "var(--font-montserrat)",
           "Montserrat",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -68,6 +69,7 @@ const config: Config = {
           "sans-serif",
         ],
         heading: [
+          "var(--font-montserrat)",
           "Montserrat",
           "-apple-system",
           "BlinkMacSystemFont",

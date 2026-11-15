@@ -30,7 +30,7 @@ export function ReadingProgressBar() {
     <motion.div
       style={{ scaleX }}
       aria-hidden="true"
-      className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary via-emerald-500 to-secondary origin-left z-[60] pointer-events-none"
+      className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary to-secondary origin-left z-[60] pointer-events-none"
     />
   );
 }

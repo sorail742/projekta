@@ -72,7 +72,7 @@ export function ServicesOverview() {
                   {/* Bordure dégradée vert→bleu apparaissant au hover */}
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 rounded-3xl p-[1.5px] bg-gradient-to-r from-primary via-emerald-500 to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none -z-0"
+                    className="absolute inset-0 rounded-3xl p-[1.5px] bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none -z-0"
                   >
                     <div className="w-full h-full bg-white rounded-[22.5px]" />
                   </div>

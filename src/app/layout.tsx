@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingActions } from "@/components/layout/FloatingActions";
 import { ReadingProgressBar } from "@/components/layout/ReadingProgressBar";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -29,10 +37,10 @@ export const metadata: Metadata = {
   publisher: "PROJEKTA",
   icons: {
     icon: [
-      { url: "/icon.png", type: "image/png" },
+      { url: "/logo-icon.webp", type: "image/webp" },
       { url: "/logo-icon.png", type: "image/png" },
     ],
-    apple: "/apple-icon.png",
+    apple: "/logo-icon.png",
     shortcut: "/favicon.ico",
   },
   formatDetection: {
@@ -77,7 +85,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col bg-white text-ink font-sans antialiased selection:bg-primary-100 selection:text-ink">
+      <body className={`${montserrat.variable} ${montserrat.className} min-h-screen flex flex-col bg-white text-ink font-sans antialiased selection:bg-primary-100 selection:text-ink`}>
         <ReadingProgressBar />
         <Navbar />
         <main className="flex-1">{children}</main>

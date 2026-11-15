@@ -94,8 +94,8 @@ export function ContactForm({ initialService = "" }: ContactFormProps) {
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
           {status === "error" && (
-            <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs sm:text-sm flex items-start gap-2.5">
-              <AlertCircle className="h-5 w-5 shrink-0 text-rose-600" />
+            <div className="p-4 rounded-2xl bg-ink/5 border border-ink/20 text-ink text-xs sm:text-sm flex items-start gap-2.5">
+              <AlertCircle className="h-5 w-5 shrink-0 text-secondary" />
               <span>{errorMessage}</span>
             </div>
           )}
@@ -107,7 +107,7 @@ export function ContactForm({ initialService = "" }: ContactFormProps) {
                 htmlFor="name"
                 className="tagline-label text-[10px] text-ink block font-semibold"
               >
-                Nom complet <span className="text-rose-500">*</span>
+                Nom complet <span className="text-primary">*</span>
               </label>
               <input
                 id="name"
@@ -127,7 +127,7 @@ export function ContactForm({ initialService = "" }: ContactFormProps) {
                 htmlFor="email"
                 className="tagline-label text-[10px] text-ink block font-semibold"
               >
-                Adresse e-mail <span className="text-rose-500">*</span>
+                Adresse e-mail <span className="text-primary">*</span>
               </label>
               <input
                 id="email"
@@ -211,7 +211,7 @@ export function ContactForm({ initialService = "" }: ContactFormProps) {
               htmlFor="message"
               className="tagline-label text-[10px] text-ink block font-semibold"
             >
-              Description de votre projet ou question <span className="text-rose-500">*</span>
+              Description de votre projet ou question <span className="text-primary">*</span>
             </label>
             <textarea
               id="message"

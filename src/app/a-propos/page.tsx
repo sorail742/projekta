@@ -43,7 +43,7 @@ export default function AProposPage() {
               <div className="rounded-2xl bg-white p-4 shadow-soft border border-ink/[0.08] inline-block">
                 <div className="relative h-12 w-48 sm:h-14 sm:w-56 flex items-center justify-center">
                   <Image
-                    src="/logo-full.png"
+                    src="/logo-full.webp"
                     alt="PROJEKTA Logo Officiel"
                     width={270}
                     height={100}

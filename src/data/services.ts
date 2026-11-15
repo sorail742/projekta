@@ -24,7 +24,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     fullDescription:
       "PROJEKTA accompagne les entreprises et porteurs de projet dans la conception et la réalisation de solutions numériques robustes, intuitives et adaptées aux exigences modernes du web et du mobile.",
     iconName: "Code2",
-    color: "from-emerald-500 to-teal-700",
+    color: "from-primary to-secondary",
     prestations: [
       "Création de sites web professionnels",
       "Création de sites vitrines sur mesure",
@@ -63,7 +63,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     fullDescription:
       "PROJEKTA accompagne les marques, institutions et créateurs dans la conception d'une identité visuelle percutante, harmonieuse et mémorable qui inspire confiance dès le premier regard.",
     iconName: "Palette",
-    color: "from-teal-600 to-emerald-800",
+    color: "from-primary to-secondary",
     prestations: [
       "Création de logos professionnels",
       "Création de chartes et identités visuelles complètes",
@@ -101,7 +101,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     fullDescription:
       "PROJEKTA aide les professionnels, consultants, freelances, artistes et étudiants à valoriser leur image sur Internet à travers des portfolios haut de gamme et des profils percutants.",
     iconName: "Briefcase",
-    color: "from-emerald-600 to-green-700",
+    color: "from-primary to-secondary",
     prestations: [
       "Création de portfolios personnels",
       "Création de portfolios d'entreprises et d'agences",
@@ -138,7 +138,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     fullDescription:
       "PROJEKTA accompagne les entreprises et personnalités dans le développement de leur communication numérique pour capter l'attention de leur audience et convertir des abonnés en clients fidèles.",
     iconName: "Share2",
-    color: "from-emerald-700 to-teal-900",
+    color: "from-primary to-secondary",
     prestations: [
       "Accompagnement dans la gestion de pages professionnelles",
       "Création de calendriers de contenus pour les réseaux sociaux",
@@ -175,7 +175,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     fullDescription:
       "PROJEKTA propose des initiations et des programmes d'accompagnement pratique conçus pour rendre les compétences numériques accessibles, concrètes et immédiatement applicables.",
     iconName: "GraduationCap",
-    color: "from-teal-700 to-emerald-950",
+    color: "from-primary to-secondary",
     prestations: [
       "Initiation à la programmation et aux algorithmes",
       "Initiation au développement web moderne",

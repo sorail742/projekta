@@ -360,7 +360,7 @@ export function HeroSection() {
 
                   <div className="relative h-14 sm:h-16 w-full flex items-center justify-center">
                     <Image
-                      src="/logo-full.png"
+                      src="/logo-full.webp"
                       alt="PROJEKTA - Innovation • Technology • Projects"
                       width={270}
                       height={100}
@@ -423,7 +423,7 @@ export function HeroSection() {
                 {/* Icône du symbole officiel avec cadre net */}
                 <div className="relative h-11 w-11 rounded-xl bg-[#F7F8FA] border border-ink/[0.06] p-1.5 flex items-center justify-center shrink-0">
                   <Image
-                    src="/logo-icon.png"
+                    src="/logo-icon.webp"
                     alt="PROJEKTA Emblème"
                     width={38}
                     height={38}

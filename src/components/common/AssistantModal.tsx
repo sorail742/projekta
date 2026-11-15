@@ -155,9 +155,10 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
           <div className="flex items-center gap-3">
             <div className="relative h-10 w-10 rounded-2xl overflow-hidden bg-white p-1 border border-white/20">
               <Image
-                src="/logo-icon.png"
+                src="/logo-icon.webp"
                 alt="PROJEKTA Assistant"
                 fill
+                sizes="40px"
                 className="object-contain"
               />
             </div>
@@ -198,9 +199,10 @@ export function AssistantModal({ isOpen, onClose }: AssistantModalProps) {
               {msg.sender === "assistant" && (
                 <div className="relative h-8 w-8 rounded-full overflow-hidden bg-white border border-ink/10 p-0.5 shrink-0 shadow-soft">
                   <Image
-                    src="/logo-icon.png"
-                    alt="Bot"
+                    src="/logo-icon.webp"
+                    alt="Assistant virtuel"
                     fill
+                    sizes="32px"
                     className="object-contain"
                   />
                 </div>

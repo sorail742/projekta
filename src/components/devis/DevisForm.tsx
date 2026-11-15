@@ -149,8 +149,8 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
       ) : (
         <form onSubmit={handleSubmit} className="space-y-9">
           {status === "error" && (
-            <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-start gap-2.5">
-              <AlertCircle className="h-5 w-5 shrink-0 text-rose-600 mt-0.5" />
+            <div className="p-4 rounded-2xl bg-ink/5 border border-ink/20 text-ink text-sm flex items-start gap-2.5">
+              <AlertCircle className="h-5 w-5 shrink-0 text-secondary mt-0.5" />
               <span>{errorMessage}</span>
             </div>
           )}
@@ -159,7 +159,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
           <div className="space-y-3.5">
             <label className="block tagline-label text-xs text-ink font-semibold">
               1. Sélectionnez le domaine principal de votre projet{" "}
-              <span className="text-rose-500">*</span>
+              <span className="text-primary">*</span>
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {SERVICES_DATA.map((srv) => {
@@ -310,7 +310,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                   htmlFor="clientName"
                   className="tagline-label text-[10px] text-ink block font-semibold"
                 >
-                  Votre nom complet <span className="text-rose-500">*</span>
+                  Votre nom complet <span className="text-primary">*</span>
                 </label>
                 <input
                   id="clientName"
@@ -333,7 +333,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                   htmlFor="clientEmail"
                   className="tagline-label text-[10px] text-ink block font-semibold"
                 >
-                  Adresse e-mail <span className="text-rose-500">*</span>
+                  Adresse e-mail <span className="text-primary">*</span>
                 </label>
                 <input
                   id="clientEmail"
@@ -356,7 +356,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                   htmlFor="clientPhone"
                   className="tagline-label text-[10px] text-ink block font-semibold"
                 >
-                  Téléphone / WhatsApp <span className="text-rose-500">*</span>
+                  Téléphone / WhatsApp <span className="text-primary">*</span>
                 </label>
                 <input
                   id="clientPhone"
@@ -405,7 +405,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
               className="tagline-label text-[10px] text-ink block font-semibold"
             >
               Description de votre projet & attentes spécifiques{" "}
-              <span className="text-rose-500">*</span>
+              <span className="text-primary">*</span>
             </label>
             <textarea
               id="projectDescription"
