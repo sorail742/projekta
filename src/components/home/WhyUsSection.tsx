@@ -40,7 +40,7 @@ export function WhyUsSection() {
                   <div className="h-12 w-12 rounded-2xl bg-white border border-ink/[0.06] flex items-center justify-center text-primary shadow-soft group-hover:scale-110 transition-transform duration-300">
                     <Layers strokeWidth={1.5} className="h-6 w-6" />
                   </div>
-                  <span className="text-5xl sm:text-6xl font-extralight text-ink/20 tracking-tighter select-none">
+                  <span aria-hidden="true" className="text-5xl sm:text-6xl font-extralight text-ink/20 tracking-tighter select-none">
                     01
                   </span>
                 </div>
@@ -79,7 +79,7 @@ export function WhyUsSection() {
                   <div className="h-12 w-12 rounded-2xl bg-[#F7F8FA] border border-ink/[0.06] flex items-center justify-center text-secondary shadow-soft group-hover:scale-110 transition-transform duration-300">
                     <HeartHandshake strokeWidth={1.5} className="h-6 w-6" />
                   </div>
-                  <span className="text-5xl sm:text-6xl font-extralight text-ink/20 tracking-tighter select-none">
+                  <span aria-hidden="true" className="text-5xl sm:text-6xl font-extralight text-ink/20 tracking-tighter select-none">
                     02
                   </span>
                 </div>
@@ -112,7 +112,7 @@ export function WhyUsSection() {
                   <div className="h-11 w-11 rounded-2xl bg-[#F7F8FA] border border-ink/[0.06] flex items-center justify-center text-primary shadow-soft group-hover:scale-110 transition-transform duration-300">
                     <Sparkles strokeWidth={1.5} className="h-5 w-5" />
                   </div>
-                  <span className="text-4xl sm:text-5xl font-extralight text-ink/20 tracking-tighter select-none">
+                  <span aria-hidden="true" className="text-4xl sm:text-5xl font-extralight text-ink/20 tracking-tighter select-none">
                     03
                   </span>
                 </div>
@@ -142,7 +142,7 @@ export function WhyUsSection() {
                   <div className="h-11 w-11 rounded-2xl bg-[#F7F8FA] border border-ink/[0.06] flex items-center justify-center text-secondary shadow-soft group-hover:scale-110 transition-transform duration-300">
                     <TrendingUp strokeWidth={1.5} className="h-5 w-5" />
                   </div>
-                  <span className="text-4xl sm:text-5xl font-extralight text-ink/20 tracking-tighter select-none">
+                  <span aria-hidden="true" className="text-4xl sm:text-5xl font-extralight text-ink/20 tracking-tighter select-none">
                     04
                   </span>
                 </div>
@@ -172,7 +172,7 @@ export function WhyUsSection() {
                   <div className="h-11 w-11 rounded-2xl bg-[#F7F8FA] border border-ink/[0.06] flex items-center justify-center text-primary shadow-soft group-hover:scale-110 transition-transform duration-300">
                     <Headphones strokeWidth={1.5} className="h-5 w-5" />
                   </div>
-                  <span className="text-4xl sm:text-5xl font-extralight text-ink/20 tracking-tighter select-none">
+                  <span aria-hidden="true" className="text-4xl sm:text-5xl font-extralight text-ink/20 tracking-tighter select-none">
                     05
                   </span>
                 </div>
@@ -217,7 +217,7 @@ export function WhyUsSection() {
               <div className="relative z-10 flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
                 <Link
                   href="/a-propos"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-ink bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-250 active:scale-[0.98] shadow-soft group"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[48px] text-xs font-semibold uppercase tracking-wider text-ink bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-250 active:scale-[0.98] shadow-soft group"
                 >
                   <span>Notre vision</span>
                   <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />

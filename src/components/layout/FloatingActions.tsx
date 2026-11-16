@@ -50,7 +50,7 @@ export function FloatingActions() {
             </div>
             <button
               onClick={() => setShowTooltip(false)}
-              className="text-ink-light hover:text-ink p-2 min-h-[36px] min-w-[36px] flex items-center justify-center rounded-lg hover:bg-ink/5 transition-colors shrink-0"
+              className="text-ink-light hover:text-ink p-3 min-h-[48px] min-w-[48px] flex items-center justify-center rounded-xl hover:bg-ink/5 transition-colors shrink-0"
               aria-label="Fermer l'infobulle d'assistance"
             >
               <X className="h-4 w-4" />
@@ -59,49 +59,25 @@ export function FloatingActions() {
         )}
 
         <div className="flex items-center gap-2.5 pointer-events-auto">
-          {/* Bouton WhatsApp Flottant avec pulsation très discrète */}
+          {/* Bouton WhatsApp Flottant avec pulsation matérielle ultra-légère (0ms JS loop) */}
           <div className="relative">
-            {/* Halo de pulsation discret */}
-            {!shouldReduceMotion && (
-              <motion.div
-                animate={{
-                  scale: [1, 1.25, 1],
-                  opacity: [0.35, 0, 0.35],
-                }}
-                transition={{
-                  duration: 3.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute inset-0 rounded-full bg-primary -z-10 pointer-events-none"
-              />
-            )}
+            {/* Halo de pulsation discret géré en pur CSS matériel */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 rounded-full bg-primary -z-10 pointer-events-none animate-pulse-ring"
+            />
 
-            <motion.a
+            <a
               href={COMPANY_INFO.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      scale: [1, 1.03, 1],
-                    }
-              }
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative flex items-center justify-center h-13 w-13 sm:h-14 sm:w-14 rounded-full bg-primary hover:bg-primary-hover text-white shadow-card ring-4 ring-white transition-colors duration-250"
+              className="group relative flex items-center justify-center h-14 w-14 rounded-full bg-primary hover:bg-primary-hover text-white shadow-card ring-4 ring-white transition-all duration-250 animate-float-subtle active:scale-95"
               aria-label="Démarrer une conversation sur WhatsApp avec PROJEKTA"
               title="Échanger sur WhatsApp"
             >
               <MessageCircle className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
               <span className="sr-only">Contacter PROJEKTA sur WhatsApp</span>
-            </motion.a>
+            </a>
           </div>
         </div>
       </motion.div>

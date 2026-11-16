@@ -140,7 +140,7 @@ export function Navbar() {
             <Link
               href="/devis"
               className={cn(
-                "inline-flex items-center justify-center min-h-[40px] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full active:scale-[0.98] transition-transform duration-250 sm:hidden",
+                "inline-flex items-center justify-center min-h-[48px] min-w-[64px] px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-full active:scale-[0.98] transition-transform duration-250 sm:hidden",
                 isDarkHero
                   ? "text-[#143E2C] bg-white font-bold"
                   : "text-white bg-ink"
@@ -151,7 +151,7 @@ export function Navbar() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className={cn(
-                "p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg focus:outline-none transition-colors duration-250 active:scale-[0.95]",
+                "p-3 min-h-[48px] min-w-[48px] flex items-center justify-center rounded-lg focus:outline-none transition-colors duration-250 active:scale-[0.95]",
                 isDarkHero
                   ? "text-white hover:bg-white/10"
                   : "text-ink hover:bg-surface-muted"

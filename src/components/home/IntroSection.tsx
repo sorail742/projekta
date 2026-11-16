@@ -65,7 +65,7 @@ export function IntroSection() {
             <div className="pt-3">
               <Link
                 href="/a-propos"
-                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink hover:text-primary transition-colors duration-250 active:scale-[0.98] group"
+                className="inline-flex items-center gap-2 py-2.5 min-h-[44px] text-xs font-semibold uppercase tracking-wider text-ink hover:text-primary transition-colors duration-250 active:scale-[0.98] group"
               >
                 <span>En savoir plus sur notre histoire et notre vision</span>
                 <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />

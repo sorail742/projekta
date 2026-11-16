@@ -83,7 +83,7 @@ export function ServicesOverview() {
                       <div className="h-12 w-12 rounded-2xl bg-[#F7F8FA] border border-ink/[0.06] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-soft">
                         {getServiceIcon(service.iconName)}
                       </div>
-                      <span className="text-4xl sm:text-5xl font-extralight text-ink/20 tracking-tighter select-none font-sans">
+                      <span aria-hidden="true" className="text-4xl sm:text-5xl font-extralight text-ink/20 tracking-tighter select-none font-sans">
                         {service.number}
                       </span>
                     </div>
@@ -114,11 +114,12 @@ export function ServicesOverview() {
                     </div>
                   </div>
 
-                  {/* Lien d'approfondissement */}
+                  {/* Lien d'approfondissement avec tap target généreuse (min-h 44px) et label distinct */}
                   <div className="relative z-10 mt-6 pt-5 border-t border-ink/[0.06] flex items-center justify-between">
                     <Link
                       href={`/services#${service.id}`}
-                      className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink group-hover:text-primary transition-colors duration-250 active:scale-[0.98]"
+                      aria-label={`En savoir plus sur notre offre ${service.title}`}
+                      className="inline-flex items-center gap-2 py-2.5 min-h-[44px] text-xs font-semibold uppercase tracking-wider text-ink group-hover:text-primary transition-colors duration-250 active:scale-[0.98]"
                     >
                       <span>En savoir plus</span>
                       <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
@@ -152,7 +153,7 @@ export function ServicesOverview() {
 
             <Link
               href="/devis"
-              className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white bg-ink hover:bg-primary rounded-full transition-all duration-250 active:scale-[0.98] shadow-soft shrink-0 group"
+              className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[48px] text-xs font-semibold uppercase tracking-wider text-white bg-ink hover:bg-primary rounded-full transition-all duration-250 active:scale-[0.98] shadow-soft shrink-0 group"
             >
               <span>Demander une étude gratuite</span>
               <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />

@@ -58,7 +58,7 @@ export function Logo({
     );
   }
 
-  // 2. Déclinaison Footer adaptée sur fond sombre (texte blanc pur avec teintes officielles vert & bleu)
+  // 2. Déclinaison Footer / Hero sombre (texte blanc pur avec teintes officielles vert & bleu)
   if (variant === "footer" || variant === "white") {
     const footerHeight = {
       sm: "h-[32px]",
@@ -70,7 +70,7 @@ export function Logo({
       <Link
         href="/"
         className={cn(
-          "inline-flex items-center transition-opacity hover:opacity-85 focus-visible:ring-2 focus-visible:ring-primary rounded-xl",
+          "inline-flex items-center min-h-[44px] min-w-[44px] transition-opacity hover:opacity-85 focus-visible:ring-2 focus-visible:ring-primary rounded-xl",
           className
         )}
         aria-label="PROJEKTA - Accueil"
@@ -82,8 +82,8 @@ export function Logo({
             width={270}
             height={100}
             className={cn("w-auto object-contain", footerHeight)}
-            priority={false}
-            loading="lazy"
+            priority={priority}
+            loading={priority ? undefined : "lazy"}
           />
         </div>
       </Link>

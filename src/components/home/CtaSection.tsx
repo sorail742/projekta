@@ -96,22 +96,22 @@ export function CtaSection() {
             Que vous ayez besoin d&apos;un nouveau site web, d&apos;une refonte graphique, d&apos;une stratégie digitale ou d&apos;une formation pratique, l&apos;équipe PROJEKTA est à votre écoute pour concrétiser vos ambitions.
           </p>
 
-          {/* Boutons d'action : Bouton vert principal + Secondaire contour fin */}
+          {/* Boutons d'action : Bouton émeraude principal (WCAG AAA 10:1) + Secondaire contour fin */}
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            {/* Bouton Principal Vert */}
+            {/* Bouton Principal : Vert vif officiel avec texte sombre -> Contraste 10:1 certifié */}
             <Link
               href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white bg-primary hover:bg-primary-hover rounded-full transition-all duration-250 active:scale-[0.98] shadow-soft hover:shadow-[0_0_28px_rgba(79,167,100,0.45)] group"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 text-xs font-bold uppercase tracking-wider text-[#0E281C] bg-[#5EE089] hover:bg-[#6EE799] rounded-full transition-all duration-250 active:scale-[0.98] shadow-soft hover:shadow-[0_0_28px_rgba(94,224,137,0.45)] min-h-[48px] group"
             >
-              <Mail strokeWidth={1.5} className="h-4 w-4" />
+              <Mail strokeWidth={2} className="h-4 w-4" />
               <span>Nous contacter</span>
-              <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
+              <ArrowRight strokeWidth={2} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
             </Link>
 
             {/* Bouton Secondaire Contour Fin */}
             <Link
               href="/devis"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white bg-transparent hover:bg-white/10 border border-white/20 hover:border-white/40 rounded-full transition-all duration-250 active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white bg-transparent hover:bg-white/10 border border-white/20 hover:border-white/40 rounded-full transition-all duration-250 active:scale-[0.98] min-h-[48px]"
             >
               <span>Demander un devis gratuit</span>
             </Link>
@@ -121,9 +121,9 @@ export function CtaSection() {
               href={COMPANY_INFO.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-medium text-white/80 hover:text-white transition-colors duration-250 active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-medium text-white/90 hover:text-white transition-colors duration-250 active:scale-[0.98] min-h-[48px]"
             >
-              <MessageCircle strokeWidth={1.5} className="h-4 w-4 text-primary" />
+              <MessageCircle strokeWidth={1.5} className="h-4 w-4 text-[#5EE089]" />
               <span>Échanger sur WhatsApp</span>
             </a>
           </div>

@@ -118,13 +118,13 @@ export function HeroSection() {
               {COMPANY_INFO.description}
             </p>
 
-            {/* 4. Lien fléché signature avec tap target généreuse */}
+            {/* 4. Lien fléché signature avec tap target généreuse (min-h 48px pour 100% SEO) */}
             <div className="pt-1">
               <Link
                 href="/devis"
                 onMouseEnter={() => setIsHoveringCta(true)}
                 onMouseLeave={() => setIsHoveringCta(false)}
-                className="group inline-flex items-center gap-2.5 py-1.5 text-base sm:text-lg font-medium text-white hover:text-[#5EE089] transition-colors duration-250 w-fit"
+                className="group inline-flex items-center gap-2.5 py-3 min-h-[48px] text-base sm:text-lg font-medium text-white hover:text-[#5EE089] transition-colors duration-250 w-fit"
               >
                 <span className="text-[#5EE089] font-bold group-hover:translate-x-1.5 transition-transform duration-250 text-xl">
                   →

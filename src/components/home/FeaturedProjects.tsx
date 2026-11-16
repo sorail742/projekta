@@ -29,7 +29,7 @@ export function FeaturedProjects() {
 
             <Link
               href="/realisations"
-              className="mt-6 md:mt-0 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink hover:text-primary transition-colors duration-250 active:scale-[0.98] group shrink-0"
+              className="mt-6 md:mt-0 inline-flex items-center gap-2 py-2.5 min-h-[44px] text-xs font-semibold uppercase tracking-wider text-ink hover:text-primary transition-colors duration-250 active:scale-[0.98] group shrink-0"
             >
               <span>Voir l&apos;espace réalisations</span>
               <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
@@ -65,7 +65,7 @@ export function FeaturedProjects() {
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <Link
                     href="/devis"
-                    className="inline-flex items-center gap-2 px-7 py-3 text-xs font-semibold uppercase tracking-wider text-white bg-ink hover:bg-primary rounded-full transition-all duration-250 shadow-soft active:scale-[0.98] group"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[48px] text-xs font-semibold uppercase tracking-wider text-white bg-ink hover:bg-primary rounded-full transition-all duration-250 shadow-soft active:scale-[0.98] group"
                   >
                     <span>Démarrer un projet</span>
                     <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
@@ -73,7 +73,7 @@ export function FeaturedProjects() {
 
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold tracking-wider text-ink hover:text-primary transition-colors duration-250"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[48px] text-xs font-semibold tracking-wider text-ink hover:text-primary transition-colors duration-250"
                   >
                     <span>Échanger sur votre besoin</span>
                   </Link>
