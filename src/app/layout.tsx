@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingActions } from "@/components/layout/FloatingActions";
 import { ReadingProgressBar } from "@/components/layout/ReadingProgressBar";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -88,7 +89,9 @@ export default function RootLayout({
       <body className={`${montserrat.variable} ${montserrat.className} min-h-screen flex flex-col bg-white text-ink font-sans antialiased selection:bg-primary-100 selection:text-ink`}>
         <ReadingProgressBar />
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 flex flex-col">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
         <FloatingActions />
       </body>
