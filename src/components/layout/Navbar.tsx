@@ -41,19 +41,24 @@ export function Navbar() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
+  const isHomePage = pathname === "/";
+  const isDarkHero = isHomePage && !isScrolled;
+
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-ink/5 py-3 shadow-soft"
+          ? "bg-white/95 backdrop-blur-md border-b border-ink/5 py-3 shadow-soft"
+          : isDarkHero
+          ? "bg-transparent border-b border-transparent py-4 sm:py-5"
           : "bg-transparent border-b border-transparent py-4 sm:py-5"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo officiel horizontal PROJEKTA (hauteur 36-40px, fond transparent) */}
-          <Logo size="md" />
+          {/* Logo officiel horizontal PROJEKTA (déclinaison blanche sur fond sombre, standard sinon) */}
+          <Logo variant={isDarkHero ? "white" : "default"} size="md" />
 
           {/* Navigation Desktop épurée avec trait animé sous le lien actif */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
@@ -69,7 +74,11 @@ export function Navbar() {
                   href={link.href}
                   className={cn(
                     "relative px-3.5 py-2 text-[13px] tracking-wide transition-colors duration-250",
-                    isActive
+                    isDarkHero
+                      ? isActive
+                        ? "text-white font-semibold"
+                        : "text-white/80 hover:text-white font-medium"
+                      : isActive
                       ? "text-ink font-semibold"
                       : "text-ink-muted hover:text-ink font-medium"
                   )}
@@ -78,7 +87,10 @@ export function Navbar() {
                   {isActive && (
                     <motion.span
                       layoutId={shouldReduceMotion ? undefined : "activeNavIndicator"}
-                      className="absolute bottom-0 left-3 right-3 h-[2px] bg-primary rounded-full z-0"
+                      className={cn(
+                        "absolute bottom-0 left-3 right-3 h-[2px] rounded-full z-0",
+                        isDarkHero ? "bg-[#5EE089]" : "bg-primary"
+                      )}
                       transition={
                         shouldReduceMotion
                           ? { duration: 0 }
@@ -97,16 +109,26 @@ export function Navbar() {
               href={COMPANY_INFO.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-ink-muted hover:text-primary transition-colors duration-250 border border-ink/10 rounded-full hover:border-primary/40 bg-surface-muted active:scale-[0.98]"
+              className={cn(
+                "inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors duration-250 border rounded-full active:scale-[0.98]",
+                isDarkHero
+                  ? "text-white/90 bg-white/10 border-white/20 hover:bg-white/20 hover:border-white/40"
+                  : "text-ink-muted hover:text-primary border-ink/10 hover:border-primary/40 bg-surface-muted"
+              )}
               title="Discuter directement sur WhatsApp"
             >
-              <MessageCircle className="h-3.5 w-3.5 text-primary" />
+              <MessageCircle className={cn("h-3.5 w-3.5", isDarkHero ? "text-[#5EE089]" : "text-primary")} />
               <span>WhatsApp</span>
             </a>
 
             <Link
               href="/devis"
-              className="inline-flex items-center gap-2 px-5 py-2 text-xs font-semibold tracking-wider uppercase text-white bg-ink hover:bg-primary rounded-full shadow-soft transition-all duration-250 active:scale-[0.98] group"
+              className={cn(
+                "inline-flex items-center gap-2 px-5 py-2 text-xs font-semibold tracking-wider uppercase rounded-full shadow-soft transition-all duration-250 active:scale-[0.98] group",
+                isDarkHero
+                  ? "text-[#143E2C] bg-white hover:bg-[#F0FAF4] shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                  : "text-white bg-ink hover:bg-primary"
+              )}
             >
               <span>Demander un devis</span>
               <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
@@ -117,20 +139,30 @@ export function Navbar() {
           <div className="flex items-center gap-2 lg:hidden">
             <Link
               href="/devis"
-              className="inline-flex items-center px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white bg-ink rounded-full active:scale-[0.98] transition-transform duration-250 sm:hidden"
+              className={cn(
+                "inline-flex items-center px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider rounded-full active:scale-[0.98] transition-transform duration-250 sm:hidden",
+                isDarkHero
+                  ? "text-[#143E2C] bg-white font-bold"
+                  : "text-white bg-ink"
+              )}
             >
               Devis
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-ink hover:bg-surface-muted focus:outline-none transition-colors duration-250 active:scale-[0.95]"
+              className={cn(
+                "p-2 rounded-lg focus:outline-none transition-colors duration-250 active:scale-[0.95]",
+                isDarkHero
+                  ? "text-white hover:bg-white/10"
+                  : "text-ink hover:bg-surface-muted"
+              )}
               aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? (
-                <X className="h-5 w-5 text-ink" />
+                <X className={cn("h-5 w-5", isDarkHero ? "text-white" : "text-ink")} />
               ) : (
-                <Menu className="h-5 w-5 text-ink" />
+                <Menu className={cn("h-5 w-5", isDarkHero ? "text-white" : "text-ink")} />
               )}
             </button>
           </div>
