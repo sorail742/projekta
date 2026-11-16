@@ -31,10 +31,9 @@ const FEATURES_LIST = [
 ];
 
 const BUDGET_RANGES = [
-  "Budget indicatif : Moins de 2 500 000 GNF",
-  "Budget indicatif : 2 500 000 à 5 000 000 GNF",
-  "Budget indicatif : 5 000 000 à 15 000 000 GNF",
-  "Budget indicatif : Plus de 15 000 000 GNF",
+  "Projet initial / Démarrage",
+  "Projet standard",
+  "Projet avancé / Sur-mesure",
   "Budget à définir selon les recommandations techniques",
 ];
 
@@ -120,7 +119,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
             Demande de devis enregistrée avec <span className="font-semibold text-primary">succès !</span>
           </h3>
           <p className="text-ink-muted text-base max-w-lg mx-auto leading-relaxed font-normal">
-            Merci de faire confiance à PROJEKTA. Notre équipe technique analyse vos spécifications et reviendra vers vous sous 24 à 48 heures ouvrées avec une estimation personnalisée.
+            Merci de faire confiance à PROJEKTA. Notre équipe analyse vos spécifications et reviendra vers vous rapidement avec une estimation personnalisée.
           </p>
           <div className="pt-6 flex justify-center gap-4">
             <button
@@ -131,7 +130,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
                   projectNature: PROJECT_NATURES[0],
                   mainNeeds: [],
                   features: [],
-                  estimatedBudget: BUDGET_RANGES[4],
+                  estimatedBudget: BUDGET_RANGES[3],
                   timeline: TIMELINES[1],
                   clientName: "",
                   clientEmail: "",

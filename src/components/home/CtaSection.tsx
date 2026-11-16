@@ -129,7 +129,7 @@ export function CtaSection() {
           </div>
 
           <p className="mt-8 text-xs text-white/40 font-normal">
-            Réponse assurée sous 24h à 48h ouvrées • Étude confidentielle sans engagement
+            Nous répondons rapidement • Étude confidentielle sans engagement
           </p>
         </ScrollReveal>
       </div>

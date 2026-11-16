@@ -46,7 +46,7 @@ export default function FormationsPage() {
                 <Target className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-ink">100% Pratique</h3>
+                <h3 className="text-sm font-semibold text-ink">Axé sur la pratique</h3>
                 <p className="mt-1 text-xs text-ink-muted leading-relaxed font-normal">
                   Moins de théorie abstraite, plus de code et de mini-projets concrets dès la première séance.
                 </p>

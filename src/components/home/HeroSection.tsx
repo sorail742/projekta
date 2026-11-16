@@ -402,7 +402,7 @@ export function HeroSection() {
                 <div className="rounded-2xl bg-[#F7F8FA] p-4 border border-ink/[0.08] flex items-center justify-between">
                   <div>
                     <p className="text-[11px] text-primary font-medium">Devis personnalisé gratuit</p>
-                    <p className="text-xs font-semibold text-ink">Sous 24h à 48h ouvrées</p>
+                    <p className="text-xs font-semibold text-ink">Nous répondons rapidement</p>
                   </div>
                   <Link
                     href="/devis"

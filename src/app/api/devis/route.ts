@@ -61,7 +61,7 @@ export async function POST(request: Request) {
       {
         success: true,
         message:
-          "Votre demande de devis a été transmise avec succès à PROJEKTA ! Notre équipe analysera votre projet et vous fera parvenir une proposition personnalisée sous 24 à 48 heures.",
+          "Votre demande de devis a été transmise avec succès à PROJEKTA ! Notre équipe analysera votre projet et vous fera parvenir une proposition personnalisée rapidement.",
       },
       { status: 200 }
     );

@@ -21,19 +21,19 @@ export default function DevisPage() {
               <span className="font-semibold text-ink">devis sur mesure.</span>
             </h1>
             <p className="mt-5 text-lg text-ink-muted leading-relaxed font-normal">
-              Prenez 2 minutes pour nous décrire vos besoins. Notre équipe technique analysera vos exigences et vous transmettra une proposition claire, chiffrée et adaptée sous 24 à 48 heures.
+              Prenez 2 minutes pour nous décrire vos besoins. Notre équipe analysera vos exigences et vous transmettra une proposition claire, chiffrée et adaptée dans les meilleurs délais.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Barre de garanties */}
+        {/* Atouts clés */}
         <StaggerGrid className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-ink/10">
           <StaggerCard>
             <div className="flex items-center gap-3.5 p-5 rounded-3xl bg-surface-muted border border-ink/[0.06] shadow-soft hover:shadow-card hover:-translate-y-[2px] transition-all duration-300">
               <Clock className="h-5 w-5 text-primary shrink-0" />
               <div>
                 <p className="text-xs font-semibold text-ink">Réponse rapide</p>
-                <p className="text-[11px] text-ink-muted font-normal">Sous 24h à 48h ouvrées</p>
+                <p className="text-[11px] text-ink-muted font-normal">Nous répondons rapidement</p>
               </div>
             </div>
           </StaggerCard>
@@ -42,8 +42,8 @@ export default function DevisPage() {
             <div className="flex items-center gap-3.5 p-5 rounded-3xl bg-surface-muted border border-ink/[0.06] shadow-soft hover:shadow-card hover:-translate-y-[2px] transition-all duration-300">
               <ShieldCheck className="h-5 w-5 text-secondary shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-ink">100% Gratuit & Sans engagement</p>
-                <p className="text-[11px] text-ink-muted font-normal">Étude technique confidentielle</p>
+                <p className="text-xs font-semibold text-ink">Gratuit & Sans engagement</p>
+                <p className="text-[11px] text-ink-muted font-normal">Étude confidentielle de votre projet</p>
               </div>
             </div>
           </StaggerCard>

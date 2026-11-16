@@ -99,7 +99,7 @@ export function WhyUsSection() {
 
               <div className="mt-8 pt-6 border-t border-ink/[0.08] flex items-center gap-2 text-xs font-semibold text-secondary">
                 <ShieldCheck strokeWidth={1.5} className="h-4 w-4 shrink-0" />
-                <span>Interlocuteur dédié joignable en continu</span>
+                <span>Interlocuteur dédié à chaque étape</span>
               </div>
             </div>
           </StaggerCard>
@@ -189,7 +189,7 @@ export function WhyUsSection() {
 
               <div className="mt-6 pt-5 border-t border-ink/[0.08] flex items-center gap-2 text-xs text-primary font-medium">
                 <CheckCircle2 strokeWidth={1.5} className="h-3.5 w-3.5 shrink-0" />
-                <span>Réponse garantie sous 24h</span>
+                <span>Nous répondons rapidement</span>
               </div>
             </div>
           </StaggerCard>

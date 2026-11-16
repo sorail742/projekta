@@ -80,7 +80,7 @@ export function ContactForm({ initialService = "" }: ContactFormProps) {
             Votre message a bien été <span className="font-semibold text-primary">envoyé !</span>
           </h3>
           <p className="text-sm text-ink-muted max-w-md mx-auto leading-relaxed font-normal">
-            Merci de contacter PROJEKTA. Notre équipe a bien reçu votre demande et vous répondra sous 24 à 48 heures ouvrées.
+            Merci de contacter PROJEKTA. Notre équipe a bien reçu votre message et vous répondra rapidement.
           </p>
           <div className="pt-4">
             <button

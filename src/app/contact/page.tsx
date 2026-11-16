@@ -85,7 +85,7 @@ export default function ContactPage() {
                       {COMPANY_INFO.email}
                     </a>
                     <p className="text-xs text-ink-muted font-normal">
-                      Réponse assurée sous 24h à 48h ouvrées.
+                      Nous répondons rapidement à vos messages.
                     </p>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ export default function ContactPage() {
                       {COMPANY_INFO.phoneFormatted}
                     </a>
                     <p className="text-xs text-ink-muted font-normal">
-                      Du lundi au vendredi, de 8h30 à 18h00.
+                      Échanges directs et prise en charge rapide.
                     </p>
                   </div>
                 </div>

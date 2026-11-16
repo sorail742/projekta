@@ -26,7 +26,7 @@ export const FAQS_DATA: FaqItem[] = [
   {
     question: "Combien coûte un site web ou une prestation chez PROJEKTA ?",
     answer:
-      "Chaque projet numérique étant unique (type de fonctionnalités, volume de pages, délais, complexité graphique), nous établissons un devis personnalisé sans engagement sous 24 à 48 heures. Vous pouvez faire une demande directement sur notre page 'Demander un devis'.",
+      "Chaque projet numérique étant unique (type de fonctionnalités, volume de pages, délais, complexité graphique), nous établissons un devis personnalisé sans engagement dans les meilleurs délais. Vous pouvez faire une demande directement sur notre page 'Demander un devis'.",
     category: "devis",
   },
   {
@@ -44,7 +44,7 @@ export const FAQS_DATA: FaqItem[] = [
   {
     question: "Puis-je modifier moi-même les contenus de mon site une fois livré ?",
     answer:
-      "Oui. Selon vos préférences, nous configurons des interfaces d'administration simples ou nous vous formons à la gestion de vos contenus (textes, articles, images, coordonnées) afin de vous garantir une totale autonomie.",
+      "Oui. Selon vos préférences, nous configurons des interfaces d'administration simples ou nous vous formons à la gestion de vos contenus (textes, articles, images, coordonnées) afin de vous permettre une totale autonomie.",
     category: "services",
   },
   {

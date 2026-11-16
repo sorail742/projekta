@@ -4,294 +4,188 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import {
-  ExternalLink,
-  ArrowRight,
-  X,
-  CheckCircle2,
-  Calendar,
-  Building,
-} from "lucide-react";
+import { ExternalLink, ArrowRight, Sparkles } from "lucide-react";
 import { Badge } from "@/components/common/Badge";
 import {
   PROJECTS_DATA,
   CATEGORIES_LIST,
-  ProjectCategory,
   ProjectItem,
 } from "@/data/projects";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 
 export default function RealisationsPage() {
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("all");
   const shouldReduceMotion = useReducedMotion();
+
+  // Règle de crédibilité absolue : uniquement les projets avec autorisation expresse et capture réelle
+  const authorizedProjects = PROJECTS_DATA.filter(
+    (p) => p.autorisationPublication === true && Boolean(p.imageReelle)
+  );
 
   const filteredProjects =
     activeCategory === "all"
-      ? PROJECTS_DATA
-      : PROJECTS_DATA.filter((p) => p.category === activeCategory);
+      ? authorizedProjects
+      : authorizedProjects.filter((p) => p.categorie.toLowerCase().includes(activeCategory));
 
   return (
     <div className="pt-36 pb-24 md:pt-44 md:pb-32">
-      {/* En-tête de la galerie avec animation au scroll */}
+      {/* En-tête de la galerie */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14">
         <ScrollReveal>
           <div className="max-w-3xl">
             <Badge variant="primary" className="mb-4">
-              Galerie de Réalisations & Projets
+              Portfolio & Réalisations
             </Badge>
             <h1 className="text-3xl sm:text-5xl lg:text-5xl font-light text-ink tracking-tight leading-tight">
               Nos projets et <span className="font-semibold text-ink">réalisations numériques.</span>
             </h1>
             <p className="mt-5 text-lg text-ink-muted leading-relaxed font-normal">
-              Explorez notre sélection de projets web, prototypes d&apos;applications mobiles, identités de marque et visuels conçus avec rigueur et créativité.
+              Découvrez les solutions web, applications et identités graphiques conçues avec rigueur et sens du détail pour nos partenaires.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Filtres par catégorie */}
-        <ScrollReveal delay={0.1}>
-          <div className="mt-8 flex flex-wrap gap-2 pt-5 border-t border-ink/10">
-            {CATEGORIES_LIST.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`tagline-label text-[10px] px-4 py-2 rounded-full border transition-all duration-250 active:scale-[0.97] ${
-                    isActive
-                      ? "bg-ink text-white border-ink shadow-soft"
-                      : "bg-surface-muted text-ink-muted border-ink/10 hover:border-primary/50 hover:text-ink"
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              );
-            })}
-          </div>
-        </ScrollReveal>
-      </div>
-
-      {/* Grille des réalisations avec Layout Animation fluide & Zoom lent */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          layout={!shouldReduceMotion}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                layout={!shouldReduceMotion}
-                initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 }}
-                transition={{
-                  duration: shouldReduceMotion ? 0 : 0.35,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="group rounded-3xl bg-white overflow-hidden border border-ink/[0.06] shadow-card hover:shadow-card-hover hover:-translate-y-[4px] transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  {/* Conteneur image avec zoom lent au survol (700ms) */}
-                  <div className="relative h-56 w-full overflow-hidden bg-surface-muted">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
-
-                    {/* Pastille catégorie */}
-                    <div className="absolute top-3.5 left-3.5">
-                      <span className="tagline-label text-[10px] px-3 py-1 rounded-full bg-white/95 text-ink shadow-soft border border-ink/10">
-                        {project.categoryLabel}
-                      </span>
-                    </div>
-
-                    {/* Statut projet */}
-                    <div className="absolute bottom-3.5 left-3.5 text-white">
-                      <span className="text-xs font-medium text-primary-200 flex items-center gap-1.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                        {project.status}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Détails du projet */}
-                  <div className="p-7">
-                    <div className="flex items-center gap-2 text-xs text-ink-light mb-2 font-normal">
-                      <span>{project.client}</span>
-                      <span>•</span>
-                      <span>{project.year}</span>
-                    </div>
-
-                    <h2 className="text-lg font-medium text-ink group-hover:text-primary transition-colors duration-250">
-                      {project.title}
-                    </h2>
-
-                    <p className="mt-2.5 text-sm text-ink-muted line-clamp-2 leading-relaxed font-normal">
-                      {project.summary}
-                    </p>
-
-                    {/* Mots-clés */}
-                    <div className="mt-5 flex flex-wrap gap-1.5">
-                      {project.tags.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-surface-muted text-ink-muted border border-ink/[0.06]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Action d'étude de cas */}
-                <div className="p-7 pt-0 border-t border-ink/[0.06] flex items-center justify-between mt-4">
+        {/* Filtres par catégorie (uniquement visibles si des projets sont publiés) */}
+        {authorizedProjects.length > 0 && (
+          <ScrollReveal delay={0.1}>
+            <div className="mt-8 flex flex-wrap gap-2 pt-5 border-t border-ink/10">
+              {CATEGORIES_LIST.map((cat) => {
+                const isActive = activeCategory === cat.id;
+                return (
                   <button
-                    onClick={() => setSelectedProject(project)}
-                    className="inline-flex items-center gap-1.5 tagline-label text-[10px] font-semibold text-ink group-hover:text-primary transition-colors duration-250 active:scale-[0.98]"
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`tagline-label text-[10px] px-4 py-2 rounded-full border transition-all duration-250 active:scale-[0.97] ${
+                      isActive
+                        ? "bg-ink text-white border-ink shadow-soft"
+                        : "bg-surface-muted text-ink-muted border-ink/10 hover:border-primary/50 hover:text-ink"
+                    }`}
                   >
-                    <span>Étudier l&apos;étude de cas</span>
-                    <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform duration-250" />
+                    {cat.label}
                   </button>
-
-                  {project.demoUrl && (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded-full text-ink-muted hover:text-primary hover:bg-surface-muted transition-colors duration-250 active:scale-[0.95]"
-                      title="Voir l'aperçu"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+                );
+              })}
+            </div>
+          </ScrollReveal>
+        )}
       </div>
 
-      {/* Modale d'Étude de Cas Détaillée */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl border border-ink/10">
-            {/* Bannière Image Modale */}
-            <div className="relative h-64 sm:h-72 w-full bg-ink">
-              <Image
-                src={selectedProject.image}
-                alt={selectedProject.title}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
+      {/* Contenu principal */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {authorizedProjects.length === 0 ? (
+          /* État d'attente élégant et transparent : aucune fausse réalisation */
+          <ScrollReveal delay={0.1}>
+            <div className="relative rounded-3xl bg-white p-10 sm:p-16 lg:p-20 border border-ink/[0.08] shadow-card text-center max-w-3xl mx-auto overflow-hidden">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 h-9 w-9 rounded-full bg-black/50 text-white hover:bg-black/80 flex items-center justify-center transition-colors active:scale-95"
-                aria-label="Fermer la vue détaillée"
-              >
-                <X className="h-5 w-5" />
-              </button>
-
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="tagline-label text-[10px] px-3 py-0.5 rounded-full bg-primary text-white">
-                    {selectedProject.categoryLabel}
-                  </span>
-                  <span className="text-xs text-white/60">
-                    {selectedProject.status} • {selectedProject.year}
-                  </span>
+              <div className="relative z-10 flex flex-col items-center">
+                <div className="h-16 w-16 rounded-2xl bg-[#F7F8FA] border border-ink/[0.08] flex items-center justify-center text-primary mb-6 shadow-soft">
+                  <Sparkles strokeWidth={1.5} className="h-7 w-7" />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-light text-white">
-                  {selectedProject.title}
-                </h3>
+
+                <span className="tagline-label text-[10px] text-primary bg-primary/10 border border-primary/20 px-3.5 py-1 rounded-full uppercase tracking-widest mb-4">
+                  Transparence & Rigueur
+                </span>
+
+                <h2 className="text-2xl sm:text-4xl font-light text-ink tracking-tight mb-4">
+                  Nos premières réalisations arrivent bientôt
+                </h2>
+
+                <p className="text-sm sm:text-base text-ink-muted leading-relaxed max-w-xl mb-8 font-normal">
+                  Nous finalisons actuellement plusieurs projets sur mesure pour nos premiers clients. Conformément à notre charte de confidentialité et de rigueur, seules les réalisations disposant d&apos;une autorisation formelle de diffusion seront publiées dans cette galerie.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center gap-4">
+                  <Link
+                    href="/devis"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-white bg-ink hover:bg-primary rounded-full transition-all duration-250 shadow-soft active:scale-[0.98] group"
+                  >
+                    <span>Démarrer un projet</span>
+                    <ArrowRight strokeWidth={1.5} className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
+                  </Link>
+
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 text-xs font-semibold tracking-wider text-ink hover:text-primary transition-colors duration-250"
+                  >
+                    <span>Nous contacter directement</span>
+                  </Link>
+                </div>
               </div>
             </div>
-
-            {/* Corps de la Modale */}
-            <div className="p-7 sm:p-9 space-y-7">
-              {/* Informations Client */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pb-6 border-b border-ink/[0.06] text-xs">
-                <div>
-                  <span className="tagline-label text-[10px] text-ink-light block mb-1">Commanditaire</span>
-                  <p className="font-semibold text-ink flex items-center gap-1.5">
-                    <Building className="h-3.5 w-3.5 text-primary" />
-                    <span>{selectedProject.client}</span>
-                  </p>
-                </div>
-                <div>
-                  <span className="tagline-label text-[10px] text-ink-light block mb-1">Année</span>
-                  <p className="font-semibold text-ink flex items-center gap-1.5">
-                    <Calendar className="h-3.5 w-3.5 text-secondary" />
-                    <span>{selectedProject.year}</span>
-                  </p>
-                </div>
-                <div>
-                  <span className="tagline-label text-[10px] text-ink-light block mb-1">Statut</span>
-                  <p className="font-semibold text-primary">{selectedProject.status}</p>
-                </div>
-              </div>
-
-              {/* Présentation Détaillée */}
-              <div>
-                <h4 className="tagline-label text-xs text-ink mb-2 font-semibold">Présentation du projet</h4>
-                <p className="text-sm text-ink-muted leading-relaxed font-normal">
-                  {selectedProject.description}
-                </p>
-              </div>
-
-              {/* Livrables & Déploiement */}
-              <div>
-                <h4 className="tagline-label text-xs text-ink mb-3 font-semibold">Fonctionnalités et réalisations</h4>
-                <div className="space-y-2">
-                  {selectedProject.features.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-ink-muted">
-                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Technologies */}
-              <div>
-                <h4 className="tagline-label text-xs text-ink mb-2.5 font-semibold">Technologies & Outils</h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 rounded-full text-xs font-medium bg-surface-muted border border-ink/[0.06] text-ink-muted"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA dans la modale */}
-              <div className="pt-6 border-t border-ink/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p className="text-xs text-ink-muted">
-                  Vous souhaitez réaliser un projet similaire ?
-                </p>
-                <Link
-                  href={`/devis?ref=${selectedProject.id}`}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white bg-ink hover:bg-primary rounded-full transition-all duration-250 active:scale-[0.98] group"
+          </ScrollReveal>
+        ) : (
+          /* Grille des réalisations réelles autorisées */
+          <motion.div
+            layout={!shouldReduceMotion}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project: ProjectItem) => (
+                <motion.div
+                  key={project.id}
+                  layout={!shouldReduceMotion}
+                  initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 }}
+                  transition={{
+                    duration: shouldReduceMotion ? 0 : 0.35,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="group rounded-3xl bg-white overflow-hidden border border-ink/[0.06] shadow-card hover:shadow-card-hover hover:-translate-y-[4px] transition-all duration-300 flex flex-col justify-between"
                 >
-                  <span>Demander un devis pour un projet équivalent</span>
-                  <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-250" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+                  <div>
+                    <div className="relative h-60 w-full overflow-hidden bg-surface-muted">
+                      <Image
+                        src={project.imageReelle}
+                        alt={project.titre}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                      <div className="absolute top-3.5 left-3.5">
+                        <span className="tagline-label text-[10px] px-3 py-1 rounded-full bg-white/95 text-ink shadow-soft border border-ink/10">
+                          {project.categorie}
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3.5 left-3.5 text-white">
+                        <span className="text-xs font-medium text-white/95 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                          {project.statut}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-7">
+                      <h2 className="text-lg font-medium text-ink leading-snug">
+                        {project.titre}
+                      </h2>
+                      <p className="mt-2.5 text-sm text-ink-muted leading-relaxed font-normal">
+                        {project.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {project.lien && (
+                    <div className="p-7 pt-0 border-t border-ink/[0.06] flex items-center justify-between mt-4">
+                      <a
+                        href={project.lien}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover transition-colors"
+                      >
+                        <span>Consulter le projet</span>
+                        <ExternalLink strokeWidth={1.5} className="h-3.5 w-3.5" />
+                      </a>
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </div>
     </div>
   );
 }

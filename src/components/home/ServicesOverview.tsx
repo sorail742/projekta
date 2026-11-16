@@ -145,7 +145,7 @@ export function ServicesOverview() {
                   Vous avez un projet spécifique nécessitant un accompagnement sur mesure ?
                 </p>
                 <p className="text-xs text-ink-muted mt-0.5">
-                  Nos ingénieurs et designers étudient votre cahier des charges et conçoivent une solution adaptée.
+                  Notre équipe étudie votre cahier des charges et conçoit une solution adaptée.
                 </p>
               </div>
             </div>

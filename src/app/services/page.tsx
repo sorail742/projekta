@@ -176,7 +176,7 @@ export default function ServicesPage() {
 
                       <div>
                         <span className="tagline-label text-[10px] text-ink block mb-2 font-semibold">
-                          Livrables garantis :
+                          Livrables inclus :
                         </span>
                         <ul className="text-ink-muted space-y-1 font-normal">
                           {service.deliverables.map((d, dIdx) => (

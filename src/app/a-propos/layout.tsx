@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "À Propos de PROJEKTA",
   description:
-    "Découvrez la vision, les valeurs et l'équipe d'ingénieurs et designers de PROJEKTA, dédiée à l'accélération technologique et à la réussite numérique de vos projets.",
+    "Découvrez la vision, les valeurs et l'équipe de PROJEKTA, dédiée à l'accélération technologique et à la réussite numérique de vos projets.",
   openGraph: {
     title: "À Propos de PROJEKTA | Innovation • Technology • Projects",
     description:

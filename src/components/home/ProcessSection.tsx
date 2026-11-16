@@ -78,7 +78,7 @@ export function ProcessSection() {
         <ScrollReveal>
           <SectionHeader
             badge="Méthodologie de travail"
-            title="Un processus transparent en 5 étapes pour garantir votre succès"
+            title="Un processus transparent en 5 étapes pour mener à bien votre projet"
             subtitle="De la première idée jusqu'au déploiement de votre solution, chaque étape est structurée avec rigueur et clarté."
             align="center"
           />

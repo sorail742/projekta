@@ -2,12 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { MessageCircle, Bot, X } from "lucide-react";
+import { MessageCircle, X } from "lucide-react";
 import { COMPANY_INFO } from "@/data/company";
-import { AssistantModal } from "@/components/common/AssistantModal";
 
 export function FloatingActions() {
-  const [isAssistantOpen, setIsAssistantOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
   const [isReady, setIsReady] = useState(false);
   const shouldReduceMotion = useReducedMotion();
@@ -47,7 +45,7 @@ export function FloatingActions() {
             <div className="flex-1">
               <p className="font-semibold text-ink">Un projet numérique ?</p>
               <p className="text-ink-muted mt-0.5 font-normal">
-                Discutez sur WhatsApp ou posez vos questions à notre assistant !
+                Échangez directement avec notre équipe sur WhatsApp !
               </p>
             </div>
             <button
@@ -61,19 +59,6 @@ export function FloatingActions() {
         )}
 
         <div className="flex items-center gap-2.5 pointer-events-auto">
-          {/* Bouton Assistant Virtuel Intelligent */}
-          <button
-            onClick={() => setIsAssistantOpen(true)}
-            className="group relative flex items-center justify-center h-12 w-12 rounded-full bg-ink hover:bg-primary text-white shadow-card hover:scale-105 active:scale-95 transition-all duration-250 ring-2 ring-white"
-            aria-label="Ouvrir l'assistant virtuel intelligent"
-            title="Assistant Virtuel PROJEKTA"
-          >
-            <Bot className="h-5 w-5 text-white/90 group-hover:rotate-12 transition-transform duration-250" />
-            <span className="absolute -top-1 -right-1 flex h-3 w-3">
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary ring-2 ring-white" />
-            </span>
-          </button>
-
           {/* Bouton WhatsApp Flottant avec pulsation très discrète */}
           <div className="relative">
             {/* Halo de pulsation discret */}
@@ -120,11 +105,6 @@ export function FloatingActions() {
           </div>
         </div>
       </motion.div>
-
-      <AssistantModal
-        isOpen={isAssistantOpen}
-        onClose={() => setIsAssistantOpen(false)}
-      />
     </>
   );
 }

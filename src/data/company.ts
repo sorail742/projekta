@@ -70,14 +70,14 @@ export const COMPANY_INFO: CompanyInfo = {
       description: "Du code au design en passant par la communication",
     },
     {
-      value: "100%",
+      value: "Sur-mesure",
       label: "Accompagnement dédié",
       description: "Une méthodologie collaborative étape par étape",
     },
     {
-      value: "24/48h",
-      label: "Réactivité devis",
-      description: "Étude personnalisée rapide de chaque besoin",
+      value: "Réactive",
+      label: "Réactivité",
+      description: "Étude attentive de chaque besoin exprimé",
     },
     {
       value: "International",
@@ -89,7 +89,7 @@ export const COMPANY_INFO: CompanyInfo = {
     {
       title: "Excellence & Rigueur",
       description:
-        "Nous appliquons les meilleurs standards d'ingénierie et de design pour des livrables robustes et pérennes.",
+        "Nous appliquons les meilleures pratiques de développement et de design pour des livrables robustes et soignés.",
       icon: "ShieldCheck",
     },
     {
