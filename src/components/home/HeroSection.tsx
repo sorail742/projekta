@@ -21,6 +21,8 @@ export function HeroSection() {
     if (shouldReduceMotion) return;
 
     const handleMouseMove = (e: MouseEvent) => {
+      // Ignorer sur mobile / écran tactile pour performance 100%
+      if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -50,30 +52,25 @@ export function HeroSection() {
   const parallaxSheetY = useTransform(scrollYProgress, [0, 1], [0, 50]);
   const parallaxContentY = useTransform(scrollYProgress, [0, 1], [0, -25]);
 
-  // Variantes d'animation en cascade
+  // LCP & FCP optimaux : Texte 100% visible dès le premier rendu HTML côté serveur
   const containerVariants = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: shouldReduceMotion ? 0 : 0.08,
-        delayChildren: shouldReduceMotion ? 0 : 0.05,
+        staggerChildren: shouldReduceMotion ? 0 : 0.05,
       },
     },
   };
 
   const itemVariants = {
     hidden: {
-      opacity: shouldReduceMotion ? 1 : 0,
-      y: shouldReduceMotion ? 0 : 20,
+      opacity: 1,
+      y: 0,
     },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: shouldReduceMotion ? 0 : 0.7,
-        ease: EASE_PREMIUM,
-      },
     },
   };
 
@@ -163,16 +160,6 @@ export function HeroSection() {
                 />
               </pattern>
 
-              {/* Grain de texture papier (feTurbulence) pour la sensation papier réel */}
-              <filter id="paper-texture">
-                <feTurbulence
-                  type="fractalNoise"
-                  baseFrequency="0.8"
-                  numOctaves="3"
-                  stitchTiles="stitch"
-                />
-                <feColorMatrix type="saturate" values="0" />
-              </filter>
             </defs>
 
             {/* Application de la sous-grille fine */}

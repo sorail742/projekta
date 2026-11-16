@@ -58,7 +58,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo officiel horizontal PROJEKTA (déclinaison blanche sur fond sombre, standard sinon) */}
-          <Logo variant={isDarkHero ? "white" : "default"} size="md" />
+          <Logo variant={isDarkHero ? "white" : "default"} size="md" priority />
 
           {/* Navigation Desktop épurée avec trait animé sous le lien actif */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
@@ -140,7 +140,7 @@ export function Navbar() {
             <Link
               href="/devis"
               className={cn(
-                "inline-flex items-center px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider rounded-full active:scale-[0.98] transition-transform duration-250 sm:hidden",
+                "inline-flex items-center justify-center min-h-[40px] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full active:scale-[0.98] transition-transform duration-250 sm:hidden",
                 isDarkHero
                   ? "text-[#143E2C] bg-white font-bold"
                   : "text-white bg-ink"
@@ -151,12 +151,12 @@ export function Navbar() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className={cn(
-                "p-2 rounded-lg focus:outline-none transition-colors duration-250 active:scale-[0.95]",
+                "p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg focus:outline-none transition-colors duration-250 active:scale-[0.95]",
                 isDarkHero
                   ? "text-white hover:bg-white/10"
                   : "text-ink hover:bg-surface-muted"
               )}
-              aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-label={mobileMenuOpen ? "Fermer le menu de navigation" : "Ouvrir le menu de navigation"}
               aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? (
@@ -184,7 +184,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "px-3 py-3 text-sm font-medium rounded-xl flex items-center justify-between transition-colors duration-250 active:scale-[0.99]",
+                    "px-4 py-3 min-h-[48px] text-sm font-medium rounded-xl flex items-center justify-between transition-colors duration-250 active:scale-[0.99]",
                     isActive
                       ? "text-primary bg-primary-50 font-semibold"
                       : "text-ink hover:bg-surface-muted"

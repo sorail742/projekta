@@ -30,6 +30,8 @@ export function IsometricBrandEmblem({
     if (shouldReduceMotion) return;
 
     const handleMouseMove = (e: MouseEvent) => {
+      // Ignorer sur mobile / écran tactile pour performance 100%
+      if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
       const centerX = window.innerWidth * 0.75;
       const centerY = window.innerHeight * 0.45;
       const dx = (e.clientX - centerX) / window.innerWidth;

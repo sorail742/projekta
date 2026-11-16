@@ -50,10 +50,10 @@ export function FloatingActions() {
             </div>
             <button
               onClick={() => setShowTooltip(false)}
-              className="text-ink-light hover:text-ink p-0.5 transition-colors"
-              aria-label="Fermer l'infobulle"
+              className="text-ink-light hover:text-ink p-2 min-h-[36px] min-w-[36px] flex items-center justify-center rounded-lg hover:bg-ink/5 transition-colors shrink-0"
+              aria-label="Fermer l'infobulle d'assistance"
             >
-              <X className="h-3.5 w-3.5" />
+              <X className="h-4 w-4" />
             </button>
           </motion.div>
         )}

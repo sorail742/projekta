@@ -6,13 +6,14 @@ import { Footer } from "@/components/layout/Footer";
 import { FloatingActions } from "@/components/layout/FloatingActions";
 import { ReadingProgressBar } from "@/components/layout/ReadingProgressBar";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { COMPANY_INFO } from "@/data/company";
 import { SITE_URL } from "@/lib/site";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-montserrat",
   display: "swap",
+  preload: true,
 });
 
 export const viewport: Viewport = {
@@ -94,8 +95,49 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": `${SITE_URL}/#organization`,
+        name: "PROJEKTA",
+        url: SITE_URL,
+        logo: `${SITE_URL}/logo-full.webp`,
+        image: `${SITE_URL}/opengraph-image`,
+        description: COMPANY_INFO.description,
+        telephone: COMPANY_INFO.phone,
+        email: COMPANY_INFO.email,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: COMPANY_INFO.address.city,
+          addressCountry: COMPANY_INFO.address.country,
+        },
+        sameAs: [
+          COMPANY_INFO.socialLinks.facebook,
+        ].filter(Boolean),
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: "PROJEKTA",
+        publisher: {
+          "@id": `${SITE_URL}/#organization`,
+        },
+        inLanguage: "fr-FR",
+      },
+    ],
+  };
+
   return (
     <html lang="fr" className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${montserrat.variable} ${montserrat.className} min-h-screen flex flex-col bg-white text-ink font-sans antialiased selection:bg-primary-100 selection:text-ink`}>
         <ReadingProgressBar />
         <Navbar />
