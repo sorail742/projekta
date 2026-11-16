@@ -45,8 +45,8 @@ const config: Config = {
           pure: "#0D0D0D",
           deep: "#121212",
           soft: "#262626",
-          muted: "#666666",
-          light: "#909090",
+          muted: "#555555", // Contraste WCAG AA élevé (7.4:1 sur fond blanc)
+          light: "#6B6B6B", // Contraste WCAG AA certifié (5.0:1 sur fond blanc, >= 4.5:1)
           border: "#E8E9EC",
           divider: "rgba(24, 24, 24, 0.07)",
         },
