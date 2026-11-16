@@ -57,7 +57,7 @@ export const COMPANY_INFO: CompanyInfo = {
     label: "Conakry, République de Guinée (Interventions locales & internationales)",
   },
   socialLinks: {
-    // Liens réseaux sociaux réservés aux pages certifiées et confirmées par l'équipe
+    facebook: "https://www.facebook.com/profile.php?id=61592034988843",
   },
   metrics: [
     {

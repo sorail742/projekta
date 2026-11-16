@@ -601,6 +601,7 @@ Avant le développement définitif, les éléments suivants devront être valid�
 |---|---|
 | Nom PROJEKTA | Confirmé |
 | Cinq domaines de services | Confirmés |
+| Page Facebook officielle | Confirmée (https://www.facebook.com/profile.php?id=61592034988843) |
 | Logo officiel | À fournir |
 | Charte graphique | À valider |
 | Numéro WhatsApp | À confirmer |
