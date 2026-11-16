@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { FloatingActions } from "@/components/layout/FloatingActions";
 import { ReadingProgressBar } from "@/components/layout/ReadingProgressBar";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { SITE_URL } from "@/lib/site";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -48,19 +49,22 @@ export const metadata: Metadata = {
     email: true,
     telephone: true,
   },
-  metadataBase: new URL("https://projekta-tech.com"),
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "./",
+  },
   openGraph: {
     title: "PROJEKTA | Innovation • Technology • Projects",
     description:
       "Accompagnement d'excellence dans le développement web et mobile, la création graphique, la communication digitale et la formation informatique.",
-    url: "https://projekta-tech.com",
+    url: SITE_URL,
     siteName: "PROJEKTA",
     images: [
       {
-        url: "/logo-full-whitebg.png",
-        width: 1254,
-        height: 464,
-        alt: "PROJEKTA - Innovation • Technology • Projects",
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "PROJEKTA | Innovation • Technology • Projects",
       },
     ],
     locale: "fr_FR",
@@ -71,7 +75,7 @@ export const metadata: Metadata = {
     title: "PROJEKTA | Innovation • Technology • Projects",
     description:
       "Solutions numériques, développement web/mobile, graphisme et accompagnement en Guinée et à l'international.",
-    images: ["/logo-full-whitebg.png"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,

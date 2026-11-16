@@ -58,7 +58,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
     projectNature: PROJECT_NATURES[0],
     mainNeeds: [] as string[],
     features: [] as string[],
-    estimatedBudget: BUDGET_RANGES[4],
+    estimatedBudget: BUDGET_RANGES[3],
     timeline: TIMELINES[1],
     clientName: "",
     clientEmail: "",
@@ -67,6 +67,7 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
     projectDescription: "",
   });
 
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -84,20 +85,45 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
     setErrorMessage("");
+
+    // Validation stricte côté client
+    if (!formData.clientName.trim() || formData.clientName.trim().length < 2) {
+      setStatus("error");
+      setErrorMessage("Veuillez renseigner votre nom complet (au moins 2 caractères).");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!formData.clientEmail.trim() || !emailRegex.test(formData.clientEmail.trim())) {
+      setStatus("error");
+      setErrorMessage("Veuillez renseigner une adresse email valide.");
+      return;
+    }
+
+    if (!formData.projectDescription.trim() || formData.projectDescription.trim().length < 10) {
+      setStatus("error");
+      setErrorMessage("Veuillez décrire votre projet (au moins 10 caractères).");
+      return;
+    }
+
+    setStatus("loading");
 
     try {
       const response = await fetch("/api/devis", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          _gotcha: honeypot,
+        }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         setStatus("success");
+        setHoneypot("");
       } else {
         setStatus("error");
         setErrorMessage(data.error || "Une erreur est survenue lors de l'envoi.");
@@ -147,6 +173,20 @@ export function DevisForm({ initialServiceId = "" }: DevisFormProps) {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-9">
+          {/* Protection anti-spam honeypot */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="_devis_gotcha">Ne pas renseigner ce champ</label>
+            <input
+              type="text"
+              id="_devis_gotcha"
+              name="_gotcha"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           {status === "error" && (
             <div className="p-4 rounded-2xl bg-ink/5 border border-ink/20 text-ink text-sm flex items-start gap-2.5">
               <AlertCircle className="h-5 w-5 shrink-0 text-secondary mt-0.5" />

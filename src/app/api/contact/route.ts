@@ -1,56 +1,85 @@
 import { NextResponse } from "next/server";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limiter";
+import { sendNotificationEmail, DESTINATION_EMAIL } from "@/lib/mailer";
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { name, email, phone, service, subject, message } = body;
+    const clientIp = getClientIp(request);
 
-    // Server-side validation
-    if (!name || !email || !message) {
+    // 1. Protection Anti-Bruteforce & Limitation de débit (5 requêtes max par 10 min)
+    const rateCheck = checkRateLimit(`contact:${clientIp}`, 5, 10 * 60 * 1000);
+    if (!rateCheck.allowed) {
       return NextResponse.json(
-        { error: "Veuillez renseigner les champs obligatoires (nom, email, message)." },
+        {
+          error:
+            "Trop de messages envoyés depuis votre connexion. Veuillez patienter quelques minutes avant de renouveler votre demande.",
+        },
+        { status: 429 }
+      );
+    }
+
+    const body = await request.json();
+    const { name, email, phone, service, subject, message, _gotcha } = body;
+
+    // 2. Protection Anti-Spam (Honeypot) : si le champ caché est rempli, rejet silencieux
+    if (_gotcha && String(_gotcha).trim().length > 0) {
+      console.warn(`[Anti-Spam] Soumission bot bloquée depuis l'IP ${clientIp}`);
+      return NextResponse.json(
+        { success: true, message: "Votre message a été transmis avec succès." },
+        { status: 200 }
+      );
+    }
+
+    // 3. Validation stricte côté serveur
+    if (!name || String(name).trim().length < 2) {
+      return NextResponse.json(
+        { error: "Veuillez renseigner votre nom complet (au moins 2 caractères)." },
         { status: 400 }
       );
     }
 
-    // Basic email format check
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!email || !emailRegex.test(String(email).trim())) {
       return NextResponse.json(
         { error: "Veuillez renseigner une adresse email valide." },
         { status: 400 }
       );
     }
 
-    // Structured lead information
-    const lead = {
-      type: "contact",
-      name: String(name).trim(),
-      email: String(email).trim().toLowerCase(),
-      phone: phone ? String(phone).trim() : "Non renseigné",
-      service: service || "Général",
-      subject: subject || "Demande via site web",
-      message: String(message).trim(),
-      createdAt: new Date().toISOString(),
-      userAgent: request.headers.get("user-agent") || "Inconnu",
-    };
+    if (!message || String(message).trim().length < 10) {
+      return NextResponse.json(
+        { error: "Votre message est trop court (au moins 10 caractères requis)." },
+        { status: 400 }
+      );
+    }
 
-    // Log the contact lead (in production, integrate with Resend, Sendgrid, or SMTP)
-    console.log("=== NOUVEAU MESSAGE DE CONTACT REÇU (PROJEKTA) ===");
-    console.log(JSON.stringify(lead, null, 2));
+    // 4. Envoi effectif vers l'e-mail professionnel
+    await sendNotificationEmail({
+      subject: subject ? String(subject).trim() : `Demande Contact - ${service || "Général"}`,
+      senderName: String(name).trim(),
+      senderEmail: String(email).trim().toLowerCase(),
+      senderPhone: phone ? String(phone).trim() : undefined,
+      content: String(message).trim(),
+      metadata: {
+        service: service || "Non spécifié",
+        ip: clientIp,
+        destination: DESTINATION_EMAIL,
+        date: new Date().toISOString(),
+      },
+    });
 
     return NextResponse.json(
       {
         success: true,
         message:
-          "Merci ! Votre message a bien été envoyé à l'équipe PROJEKTA. Nous vous répondrons dans les plus brefs délais.",
+          "Merci ! Votre message a bien été transmis à l'équipe PROJEKTA. Nous vous répondrons rapidement.",
       },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Erreur API Contact :", error);
+    console.error("Erreur serveur API Contact :", error);
     return NextResponse.json(
-      { error: "Une erreur interne est survenue. Veuillez réessayer ultérieurement." },
+      { error: "Une erreur interne est survenue lors de l'enregistrement de votre message." },
       { status: 500 }
     );
   }

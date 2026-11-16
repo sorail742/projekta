@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Badge } from "@/components/common/Badge";
 import { COMPANY_INFO } from "@/data/company";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Mentions Légales",
@@ -26,7 +27,7 @@ export default function MentionsLegalesPage() {
             </h2>
             <p>
               Le site web officiel accessible à l&apos;adresse{" "}
-              <strong className="text-ink">https://projekta-tech.com</strong> est édité par l&apos;initiative{" "}
+              <strong className="text-ink">{SITE_URL}</strong> est édité par l&apos;initiative{" "}
               <strong className="text-ink">PROJEKTA</strong>, spécialisée dans les services numériques, le développement informatique, la création graphique et la formation.
             </p>
             <ul className="list-disc pl-5 space-y-1">

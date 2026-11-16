@@ -26,6 +26,7 @@ export function ContactForm({ initialService = "" }: ContactFormProps) {
     message: "",
   });
 
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -37,14 +38,38 @@ export function ContactForm({ initialService = "" }: ContactFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
     setErrorMessage("");
+
+    // Validation stricte côté client
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      setStatus("error");
+      setErrorMessage("Veuillez renseigner votre nom complet (au moins 2 caractères).");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
+      setStatus("error");
+      setErrorMessage("Veuillez renseigner une adresse email valide.");
+      return;
+    }
+
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      setStatus("error");
+      setErrorMessage("Votre message est trop court (au moins 10 caractères requis).");
+      return;
+    }
+
+    setStatus("loading");
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          _gotcha: honeypot,
+        }),
       });
 
       const data = await response.json();
@@ -59,6 +84,7 @@ export function ContactForm({ initialService = "" }: ContactFormProps) {
           subject: "",
           message: "",
         });
+        setHoneypot("");
       } else {
         setStatus("error");
         setErrorMessage(data.error || "Une erreur est survenue lors de l'envoi.");
@@ -93,6 +119,20 @@ export function ContactForm({ initialService = "" }: ContactFormProps) {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Protection anti-spam honeypot */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="_gotcha">Champ anti-robot</label>
+            <input
+              type="text"
+              id="_gotcha"
+              name="_gotcha"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           {status === "error" && (
             <div className="p-4 rounded-2xl bg-ink/5 border border-ink/20 text-ink text-xs sm:text-sm flex items-start gap-2.5">
               <AlertCircle className="h-5 w-5 shrink-0 text-secondary" />

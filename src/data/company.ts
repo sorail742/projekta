@@ -57,11 +57,7 @@ export const COMPANY_INFO: CompanyInfo = {
     label: "Conakry, République de Guinée (Interventions locales & internationales)",
   },
   socialLinks: {
-    linkedin: "https://linkedin.com/company/projekta",
-    facebook: "https://facebook.com/projekta.gn",
-    instagram: "https://instagram.com/projekta_gn",
-    tiktok: "https://tiktok.com/@projekta_gn",
-    twitter: "https://x.com/projekta_gn",
+    // Liens réseaux sociaux réservés aux pages certifiées et confirmées par l'équipe
   },
   metrics: [
     {
